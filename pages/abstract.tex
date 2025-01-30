@@ -1,0 +1,10 @@
+\chapter{\abstractname}
+
+The contents of this thesis are the conceptualization and implementation of a database for computational fluid dynamics data and a fusion algorithm for the fusion of wind tunnel and computational fluid dynamics aerodynamic data. The data consist of polars for coefficients of forces and torques over the angle of attack and the angle of sideslip and is based on Eurofighter Typhoon aerodynamic testing. A relational database structure is implemented and performance tested to store the simulation data, after which two Gaussian process-based approaches, weighted by the uncertainty associated to the aerodynamic data, are pursued for fusion. One approach is based on merging probability density functions resulting from separate Gaussian process models for both sources, which is discarded in favor of the approach to jointly train the Gaussian process regression on both data sources. The ability to fuse two data sources weighted by their associated uncertainty via Gaussian processes is shown and an initial application to the aerodynamic polar data is performed.
+
+
+\makeatletter
+\ifthenelse{\pdf@strcmp{\languagename}{english}=0}
+{\renewcommand{\abstractname}{Kurzfassung}}
+{\renewcommand{\abstractname}{Abstract}}
+\makeatother

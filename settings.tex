@@ -1,0 +1,51 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman,english]{babel} % english is the same as american or USenglish
+\usepackage{longtable}
+\usepackage[]{classicthesis}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subfig} % for having figures side by side
+\usepackage[autostyle]{csquotes}
+\usepackage{comment}
+\usepackage{float}
+\usepackage[%
+  backend=biber,
+  url=true,
+  style=numeric, % alphabetic, numeric
+  sorting=none, % default == nty, https://tex.stackexchange.com/questions/51434/biblatex-citation-order
+  maxnames=4,
+  minnames=3,
+  maxbibnames=99,
+  giveninits,
+  uniquename=init]{biblatex} % TODO: adapt citation style
+
+\bibliography{bibliography}
+
+% Settings for search order of pictures
+\graphicspath{
+    {logos/}
+    {figures/}
+}
+
+% ************** Math commands *********************
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\norm}[1]{|\negthinspace|{#1}|\negthinspace|}
+\newcommand{\scp}[2]{\langle #1,\,#2\rangle}
+\newcommand{\Mat}[1][n\times n]{\ensuremath{\R^{#1}}}
+\newcommand{\definedas}{\mathrel{:=}}
+\newcommand{\asdefined}{\mathrel{=:}}
+\newcommand{\vect}[2]{\begin{pmatrix}	#1\\#2 \end{pmatrix}}
+\newcommand{\vectt}[3]{\begin{pmatrix}	#1\\#2\\#3 \end{pmatrix}}
+\newcommand{\vecttt}[4]{\begin{pmatrix}	#1\\#2\\#3\\#4 \end{pmatrix}}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\renewcommand{\ker}{\ensuremath{\text{Kern}\,}}
+\newcommand{\bild}{\text{Bild}\,}
+\newcommand{\grad}{\text{grad}\,}
+\newcommand{\rang}{\text{rang}\,}
+
+% ************** New functions **************
+
