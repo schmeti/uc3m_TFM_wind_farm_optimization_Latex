@@ -1,0 +1,17 @@
+\chapter{Abbreviations}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{2}
+    \begin{tabular}{ll}
+        ACM & Aerodynamic Characteristics Model \\
+    \end{tabular}
+\end{table}
+
+\makeatletter
+\ifthenelse{\pdf@strcmp{\languagename}{english}=0}{
+    % English version
+}{
+    % German version
+}
+\makeatother
