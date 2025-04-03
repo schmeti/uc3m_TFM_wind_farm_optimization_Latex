@@ -1,8 +1,26 @@
 \begin{thebibliography}{1}
 
-\bibitem{Latex}
-Leslie Lamport.
-\newblock {\em LaTeX : A Documentation Preparation System User's Guide and Reference Manual}.
-\newblock Addison-Wesley Professional, 1994.
+\bibitem{EEA_Wind_Energy_Potential_2009}
+European~Environment Agency.
+\newblock Europe's onshore and offshore wind energy potential.
+\newblock Technical Report Technical report 6/2009, European Environment Agency, 2009.
+\newblock Accessed: 2025-04-03.
+
+\bibitem{ALCANTARA2023120895}
+Antonio Alcántara and Carlos Ruiz.
+\newblock A neural network-based distributional constraint learning methodology for mixed-integer stochastic optimization.
+\newblock {\em Expert Systems with Applications}, 232:120895, 2023.
+
+\bibitem{ConsiliumEU_Harnessing_Wind_Power_2024}
+Analysis and General Secretariat of the Council of the European~Union Research~Team.
+\newblock Harnessing wind power: Navigating the eu energy transition and its challenges.
+\newblock \url{https://www.consilium.europa.eu/media/1kyk0wjm/2024_685_art_windpower_web.pdf}, September 2024.
+\newblock Accessed: 2025-04-03.
+
+\bibitem{EU_RE_Targets_2023}
+European Commission.
+\newblock Renewable energy targets.
+\newblock \url{https://energy.ec.europa.eu/topics/renewable-energy/renewable-energy-directive-targets-and-rules/renewable-energy-targets_en}, 2023.
+\newblock Accessed: 2025-04-03.
 
 \end{thebibliography}

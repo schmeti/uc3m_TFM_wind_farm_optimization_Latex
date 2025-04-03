@@ -4,30 +4,12 @@
 \chapter{Introduction}\label{chapter:introduction}
 
 
-With the clean energy transition currently taking place in europe with ambitious targets for 2030 and beyond 
+With the clean energy transition currently taking place in europe with ambitious targets for 2030 and beyond \cite{EU_RE_Targets_2023} , wind energy is playing a central role in that transition, with wind energy expected rise to 50 \% in the EU energy mix. \cite{ConsiliumEU_Harnessing_Wind_Power_2024}
+With wind energy thus expected to become the main contributer to the EU's energy production and large potentials identified for both onshore and offshore parks \cite{EEA_Wind_Energy_Potential_2009} attempts to optimize all parameters of windparks with even minor power efficeny improvement can be expected to yield significant returns in absolute power due to the scale of future wind energy production. 
 
-% (https://energy.ec.europa.eu/topics/renewable-energy/renewable-energy-directive-targets-and-rules/renewable-energy-targets_en#:~:text=The%20revised%20Renewable%20Energy%20Directive,to%20a%20minimum%20of%2042.5%25.&text=The%20energy%20sector%20is%20responsible,the%20EU%27s%20greenhouse%20gas%20emissions.)
-, wind energy is playing a central role in that transition, with wind energy expected rise to 50 \% in the EU energy mix
+As a contribution to increasing power efficeny on future wind farms, this thesis is dedicated to a new approach for optimizing the placement of a fixed number of wind turbines in a predefined area (typically a square). To solve this optimization problem, a extension to the pyomo python library is used, that allows the introduction of Neural Networks to the optimization problem as constraints. \cite{ALCANTARA2023120895} This extension allows for introducing a Neural Neural Network to model the effects of wind turbine placement relative to each other on power production for the respective windturbines. Introducing this model to the optimization problem defined in pyomo then allows for the optimization of overall power productions across all wind turbines in the wind park. 
 
-% (https://www.consilium.europa.eu/media/1kyk0wjm/2024_685_art_windpower_web.pdf). 
-
-With wind energy thus expected to become the main contributer to the EU's energy production and large potentials identified for both onshore and offshore parks 
-
-% (https://www.eea.europa.eu/en/analysis/publications/europes-onshore-and-offshore-wind-energy-potential), 
-
-attempts to optimize all parameters of windparks with even minor power efficeny improvement can be expected to yield significant returns in absolute power due to the scale of future wind energy production. 
-
-\cite{Latex}
-
-As a contribution to increasing power efficeny on future wind farms, this thesis is dedicated to a new approach for optimizing the placement of a fixed number of wind turbines in a predefined area (typically a square).
-
-FIG: Wind Park birdseye
-
-To solve this optimization problem, a extension to the pyomo python library is used, that allows the introduction of Neural Networks to the optimization problem as constraints
-
-% (Constraint Learning, https://www.sciencedirect.com/topics/computer-science/constraint-learning#:~:text=Constraint%20learning%20refers%20to%20the,performance%20in%20computer%20science%20applications.)
-
-. This extension allows for introducing a Neural Neural Network to model the effects of wind turbine placement relative to each other on power production for the respective windturbines. Introducing this model to the optimization problem defined in pyomo then allows for the optimization of overall power productions across all wind turbines in the wind park. To create a model optimally fit to the needs of the optimization problem, the model is trained on data specifically generated with the FLORIS wind farm simulation tool (https://www.nrel.gov/wind/floris.html) for optimal coverage of the parameter space of the optimization. (HOW IS THE MODEL VALIDATED ?)
+To create a model optimally fit to the needs of the optimization problem, the model is trained on data specifically generated with the \href{https://www.nrel.gov/wind/floris.html}{FLORIS} wind farm simulation tool  for optimal coverage of the parameter space of the optimization. 
 
 To simplify the problem, the surface below the turbines is assumed to be perfectly flat and equal wind speed is assumed along the entire hight of the turbines. 
 
