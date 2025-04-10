@@ -59,3 +59,17 @@ author = {Leslie Lamport}
 	abstract = {The use of machine-learning methods helps to improve decision-making in different fields. In particular, the idea of bridging predictions (predictive models) and prescriptions (optimization problems) is gaining attention within the scientific community. One of the main ideas to address this trade-off is the Constraint Learning (CL) methodology, where the structure of the machine learning model can be treated as a set of constraints to be embedded within the optimization problem, establishing the relationship between a direct decision variable x and a response variable y. However, most CL approaches have focused on making point predictions, not considering the statistical and external uncertainty faced in the modeling process. In this paper, we extend the CL methodology to deal with uncertainty in the response variable y. The novel Distributional Constraint Learning (DCL) methodology makes use of a piece-wise linearizable neural network-based model to estimate the parameters of the conditional distribution of y (dependent on decisions x and contextual information), which can be embedded within mixed-integer optimization problems. In particular, we formulate a stochastic optimization problem by sampling random values from the estimated distribution by using a linear set of constraints. In this sense, DCL combines both the predictive performance of the neural network method and the possibility of generating scenarios to account for uncertainty within a tractable optimization model. The behavior of the proposed methodology is tested in the context of electricity systems, where a Virtual Power Plant seeks to optimize its operation, subject to different forms of uncertainty, and with price-responsive consumers.}
 }
 
+@article{FAJEMISIN20241,
+	title = {Optimization with constraint learning: A framework and survey},
+	journal = {European Journal of Operational Research},
+	volume = {314},
+	number = {1},
+	pages = {1-14},
+	year = {2024},
+	issn = {0377-2217},
+	doi = {https://doi.org/10.1016/j.ejor.2023.04.041},
+	url = {https://www.sciencedirect.com/science/article/pii/S0377221723003405},
+	author = {Adejuyigbe O. Fajemisin and Donato Maragno and Dick {den Hertog}},
+	keywords = {Analytics, Optimization, Constraint learning, Machine learning},
+	abstract = {Many real-life optimization problems frequently contain one or more constraints or objectives for which there are no explicit formulae. If however data on feasible and/or infeasible states are available, these data can be used to learn the constraints. The benefits of this approach are clearly seen, however, there is a need for this process to be carried out in a structured manner. This paper, therefore, provides a framework for Optimization with Constraint Learning (OCL) which we believe will help to formalize and direct the process of learning constraints from data. This framework includes the following steps: (i) setup of the conceptual optimization model, (ii) data gathering and preprocessing, (iii) selection and training of predictive models, (iv) resolution of the optimization model, and (v) verification and improvement of the optimization model. We then review the recent OCL literature in light of this framework and highlight current trends, as well as areas for future research.}
+}

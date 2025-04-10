@@ -1,4 +1,45 @@
 
 \chapter{Optimization}\label{chapter:optimization}
 
+\subsection{Optimization under Uncertainty}
+1. minimize Expectation of Cost function 
+
+
+\subsection{Constraint Learning}
+
+Constraint learning refers to introducing a model that has learned relationships between certain variables from data into a optimization problem. In the case of constraint learning, the model gets more specifically introduced into a optimization problem as part of a constraint. As many real real life relationships struggle to be represented by explicit function to be defined as objective function or constraint, introducing machine learning models to optimization problems opens up many new possibilities \cite{FAJEMISIN20241}.
+
+In the case of Neural Networks, one way of introducing a Network as constraints into a optimization Problem, is by recognizing that when using the Rectifier Linear Unit (ReLu) Function as activation function 
+
+\begin{equation}
+	\tilde{v}_i^\ell = b_i^\ell + \sum_j w_{ij}^\ell v_j^{\ell - 1}
+\end{equation}
+
+
+the function can be written as the following constraints 
+
+\begin{align}
+	v_i^\ell &\geq \tilde{v}_i^\ell \\
+	v_i^\ell &\leq \tilde{v}_i^\ell - M^{\text{low}}(1 - j_i) \\
+	v_i^\ell &\leq M^{\text{up}} j_i
+\end{align}
+
+
+
+1. Distributional Learnin via Distributional NN (DNN), for example by two output neurons mean and standard deviation
+2. See that input into activation function is a linear sum
+
+
+https://www.sciencedirect.com/science/article/pii/S0957417423013970?via%3Dihub
+
+https://www.sciencedirect.com/science/article/pii/S0377221724005186
+
+
+\subsection{Scale up to n turbines}
+
+Thoughts: 
+
+IDEA: generalize inputs in a way that allow for power calculation of each turbine individually instead of farm power
+
+IDEA : derive basic rules from 2 turbine problem and set up new optimization problem without NN 
 

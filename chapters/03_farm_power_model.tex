@@ -3,6 +3,18 @@
 
 \chapter{Farm Power Model}\label{chapter:power_model}
 
+The first central component to the optimization of the wind farm layout is to generate a data drive surrogate Model that can be introduced into the optimization problem and be solved by a solver. As detailed in the introduction, more specifically the aim is to use the distCL extension to the pyomo python package, requiring a small Neural Network as surrogate model. The following chapter documents the steps taken to generate such a model. To train such a Neural Network, data is required that covers the parameter space of the optimization to prevent extrapolation by the model. Therefore, the chapter start by explaining how the open source wind farm simulation tool FLORIS® was used to generate a dataset and what the simulations behind this dataset are. Then, the fundamentals of Neural Network arcitecture and training are briefly introduced, before the model of the interactions for two turbines is trained and evaluated.
+
+TODO: 
+Main Effects of Wake Turbolence: 
+- Wind Speed (needs time to mix with outside airflow)
+- Turbolence
+
+\section{Data Source}
+
+With the goal of generating a data-driven surrogate model to 
+
+
 With the goal of training a model tailor made to the requirements of the optimization problem, the data used for training the model has to generated using a open source simulation method, allowing to set the parameter space of the model as required to the given optimization problem. After investigating the two python based wind farm simulation tools FLORIS and PyWake, FLORIS was chosen due to solid documentation, what appears to be very stable releases and broad functionalities regarding wake modelling. FLORIS is a wind farm simulation tool developed by the National Renewable Energy Laboratory (NREL).
 
 
@@ -14,11 +26,8 @@ Floris:
 https://github.com/nrel/floris
 
 
+TODO: Justify Chosen Wind turbine Config
 
-Main Effects of Wake Turbolence: 
-- Wind Speed (needs time to mix with outside airflow)
-- Turbolence
-\section{Data Source}
 
 \section{Modelling}
 
@@ -74,6 +83,8 @@ The training of the Neural Network thus corresponds to adjusting the weights and
 
 many Degrees of Freedom, many local maxima
 
+
+\textit{Distributional Learning}
 
 \subsection{Generating Neural Network Model for two Windturbines}
 

@@ -23,4 +23,9 @@ European Commission.
 \newblock \url{https://energy.ec.europa.eu/topics/renewable-energy/renewable-energy-directive-targets-and-rules/renewable-energy-targets_en}, 2023.
 \newblock Accessed: 2025-04-03.
 
+\bibitem{FAJEMISIN20241}
+Adejuyigbe~O. Fajemisin, Donato Maragno, and Dick {den Hertog}.
+\newblock Optimization with constraint learning: A framework and survey.
+\newblock {\em European Journal of Operational Research}, 314(1):1--14, 2024.
+
 \end{thebibliography}
