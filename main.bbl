@@ -28,4 +28,19 @@ Adejuyigbe~O. Fajemisin, Donato Maragno, and Dick {den Hertog}.
 \newblock Optimization with constraint learning: A framework and survey.
 \newblock {\em European Journal of Operational Research}, 314(1):1--14, 2024.
 
+\bibitem{James2023}
+Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, and Jonathan Taylor.
+\newblock {\em An Introduction to Statistical Learning: with Applications in Python}.
+\newblock Springer Texts in Statistics. Springer, 2023.
+
+\bibitem{nielsen2015neural}
+Michael Nielsen.
+\newblock Neural networks and deep learning - chapter 1, 2015.
+\newblock Accessed: 2025-04-10.
+
+\bibitem{vanderbei2020chapter3}
+Robert~J. Vanderbei.
+\newblock {\em Linear Programming}, chapter~3.
+\newblock Springer, New York, NY, 5 edition, 2020.
+
 \end{thebibliography}

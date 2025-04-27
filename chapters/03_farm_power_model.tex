@@ -35,7 +35,11 @@ To model the relationship between the attributes of a incoming airflow to a wind
 
 \subsection{Neural Networks and Training of  Neural Networks}
 
-In the following section, a biref introduction is given into how Neural Networks work and are trained.  Fundemanetally, Neural Networks represents Graph Networks consisting out of Function blocks as the nodes, in the case of Neural Networks called perceptron (or Neurons as more general terms) and arcs which correspond to the inputs/outputs of a given perceptron. In simple words, the inputs to the Neurons are summed up and introduced as argument into a function $f()$ which yields a output $y$, representing the output of the given perceptron. These Neurons are organized in layers, which correspond to the row type structure Neural Networks are usually represented in and each perceptron of one layer is connected to every other perceptron of the following layer. The following layer in this case means in the direction of flow, in visualizations usually from left to right. The arcs thus in simple terms correspond to a single number and the Neurons to the action of summing up all inputs and then applying the unspecified function $f()$ to generate a output. This process is repeated for all Neurons in the network, with the first layer of the network taking as input the values of the values of the given data features (the input values to the model) and the last layer producing outputs corresponding to the output value(s) of the model. The number of Neurons in this first and last layer correspond to the task the Neural Network is supposed to perform. If the goal is to identify handwritten numbers 1-9 from 50x50 pixel images, the imput layer might have 50x50 Neurons for the value of each pixel, and the output layer 9 layers with the output value of each perceptron representing how much the networks thinks the given image shows the corresponding numbers 1-9. A schematic of this architecture is given in Figure \ref{fig:neural_network_architecture}.
+In the following section, a biref introduction is given into how Neural Networks work and are trained.  
+
+\subsubsection{Arcitecture of a Neural Network}
+
+Fundemanetally, Neural Networks represents Graph Networks consisting out of Function blocks as the nodes, in the case of Neural Networks called perceptron (or Neurons as more general terms) and arcs which correspond to the inputs/outputs of a given perceptron. In simple words, the inputs to the Neurons are summed up and introduced as argument into a function $f()$ which yields a output $y$, representing the output of the given perceptron. These Neurons are organized in layers, which correspond to the row type structure Neural Networks are usually represented in and each perceptron of one layer is connected to every other perceptron of the following layer. The following layer in this case means in the direction of flow, in visualizations usually from left to right. The arcs thus in simple terms correspond to a single number and the Neurons to the action of summing up all inputs and then applying the unspecified function $f()$ to generate a output. This process is repeated for all Neurons in the network, with the first layer of the network taking as input the values of the values of the given data features (the input values to the model) and the last layer producing outputs corresponding to the output value(s) of the model. The number of Neurons in this first and last layer correspond to the task the Neural Network is supposed to perform. If the goal is to identify handwritten numbers 1-9 from 50x50 pixel images, the imput layer might have 50x50 Neurons for the value of each pixel, and the output layer 9 layers with the output value of each perceptron representing how much the networks thinks the given image shows the corresponding numbers 1-9. A schematic of this architecture is given in Figure \ref{fig:neural_network_architecture}.
 
 \begin{figure}[h] 
 \centering
@@ -69,6 +73,10 @@ This relationship also becomes aparent when plotting both of those functions ove
 	\label{fig:activation_functions}
 \end{figure}
 
+\cite{nielsen2015neural}
+
+
+\subsubsection{Training a Neural Network}
 
 With the general structure set up, and assuming that a layout has been chosen for the neural network (e.g. number of layers and number of their coirresponding neurons), the training of the neural network corresponds to adjusting the weights $w$ and the biases $b$ of each neuron in a way, that allows the model to perform the task it is given well. What is means for the model to perform well is defined by a \textit{Loss Function}, that defines a relationship between the output of the model and the correct output (defined by training data) and gives a Loss as output, which is some sort of delta between model prediction and truth. As what it means for a model to perform well heavily depends on the task (regression, binary classification, multiclass classification etc.), but regardless of the task, the goal is always to minimize the Loss Function. A well known Loss Function in regression is the Mean Squared Error (MSE)
 
@@ -77,14 +85,28 @@ With the general structure set up, and assuming that a layout has been chosen fo
 \]
 
 The training of the Neural Network thus corresponds to adjusting the weights and biases in a way that minimizes the chosen loss function. The algorithm most commonly used for this is called \textit{Backpropagation}.
+ \cite{nielsen2015neural}
+ 
+ (....) 
+ 
+ 
+
+ 
+ Like for most machine learning models, regularization tequniques like Cross-Validation can be applied to the training of Neural Networks. One very specific method to Neural Networks is \textit{Dropout Learning}, which corresponds to randomly removing Neurons from the network (by effectively setting their activation function and thus their output to 0) for each training observation. By other nodes having to "stand-in" for the dropped-out nodes, nodes are prevented from developing overspecializa tion. \cite{James2023}
 
 
+\textbf{Notes}
+- many Degrees of Freedom, many local maxima
+- Adaptive Moment Estimation (ADAM) optimization
+
+\subsubsection{Neural Networks for Parametric and Non-parametric Distributions}
 
 
-many Degrees of Freedom, many local maxima
+Distributional Neural Networks
+Quantile Neural Networks
 
+Loss for Parametric Normal: Gaussian Negative Log Likelihood
 
-\textit{Distributional Learning}
 
 \subsection{Generating Neural Network Model for two Windturbines}
 

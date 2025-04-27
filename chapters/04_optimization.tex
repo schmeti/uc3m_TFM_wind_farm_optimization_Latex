@@ -1,22 +1,23 @@
 
 \chapter{Optimization}\label{chapter:optimization}
 
-\subsection{Optimization under Uncertainty}
+\section{Optimization under Uncertainty}
 1. minimize Expectation of Cost function 
 
 
-\subsection{Constraint Learning}
+\section{Constraint Learning}
 
 Constraint learning refers to introducing a model that has learned relationships between certain variables from data into a optimization problem. In the case of constraint learning, the model gets more specifically introduced into a optimization problem as part of a constraint. As many real real life relationships struggle to be represented by explicit function to be defined as objective function or constraint, introducing machine learning models to optimization problems opens up many new possibilities \cite{FAJEMISIN20241}.
 
-In the case of Neural Networks, one way of introducing a Network as constraints into a optimization Problem, is by recognizing that when using the Rectifier Linear Unit (ReLu) Function as activation function 
+In the case of Neural Networks, one way of introducing a Network as constraints into a optimization problem, is by recognizing that when using the Rectifier Linear Unit (ReLu) Function is used as activation function with the (linear) sum of neuron bias and weighted inputs $\tilde{v}_i^\ell$ being the function argument
+
 
 \begin{equation}
-	\tilde{v}_i^\ell = b_i^\ell + \sum_j w_{ij}^\ell v_j^{\ell - 1}
+	v_i^\ell = \max(0, \tilde{v}_i^\ell) = \max(0,  b_i^\ell + \sum_j w_{ij}^\ell v_j^{\ell - 1})
 \end{equation}
 
 
-the function can be written as the following constraints 
+the function can be rewritten as the following constraints 
 
 \begin{align}
 	v_i^\ell &\geq \tilde{v}_i^\ell \\
@@ -24,18 +25,33 @@ the function can be written as the following constraints
 	v_i^\ell &\leq M^{\text{up}} j_i
 \end{align}
 
+with $j_i \in \{0,1\}$ a integer variable such that
+
+\begin{align}
+	j_i =
+	\begin{cases}
+		0 & \text{if } \tilde{v}_i^\ell < 0 \\
+		1 & \text{if } \tilde{v}_i^\ell > 0
+	\end{cases}
+\end{align}
+
+This decomposition allows to for introducing a Neural Network of limited size into a optimization problem by decomposing it into a set of linear constraints of the form shown above. \cite{ALCANTARA2023120895}
+
+In practice, this decomposition 
 
 
-1. Distributional Learnin via Distributional NN (DNN), for example by two output neurons mean and standard deviation
-2. See that input into activation function is a linear sum
 
 
 https://www.sciencedirect.com/science/article/pii/S0957417423013970?via%3Dihub
 
 https://www.sciencedirect.com/science/article/pii/S0377221724005186
 
+\section{The two turbine problem}
 
-\subsection{Scale up to n turbines}
+In the two turbine problem, problems arise due to the degeneracy of the problem. e.g. due to an infinite amount of equally optimal solutions (see  \cite{vanderbei2020chapter3} for more exact definition of degeneracy) everywhere outside the wake of turbine 1.
+
+
+\section{Scale up to n turbines}
 
 Thoughts: 
 
