@@ -3,46 +3,46 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: bibliography.bib
-Warning--I didn't find a database entry for "James2013"
-You've used 16 entries,
+Warning--empty journal in Akpabio
+You've used 19 entries,
             2118 wiz_defined-function locations,
-            601 strings with 7199 characters,
-and the built_in function-call counts, 4735 in all, are:
-= -- 448
-> -- 262
+            620 strings with 7768 characters,
+and the built_in function-call counts, 5597 in all, are:
+= -- 528
+> -- 311
 < -- 3
-+ -- 106
-- -- 88
-* -- 311
-:= -- 848
-add.period$ -- 55
-call.type$ -- 16
-change.case$ -- 91
++ -- 125
+- -- 104
+* -- 375
+:= -- 1003
+add.period$ -- 64
+call.type$ -- 19
+change.case$ -- 108
 chr.to.int$ -- 0
-cite$ -- 16
-duplicate$ -- 157
-empty$ -- 352
-format.name$ -- 88
-if$ -- 965
+cite$ -- 20
+duplicate$ -- 188
+empty$ -- 412
+format.name$ -- 104
+if$ -- 1135
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 12
-newline$ -- 88
-num.names$ -- 32
-pop$ -- 101
+int.to.str$ -- 19
+missing$ -- 15
+newline$ -- 103
+num.names$ -- 38
+pop$ -- 116
 preamble$ -- 1
-purify$ -- 76
+purify$ -- 90
 quote$ -- 0
-skip$ -- 105
+skip$ -- 129
 stack$ -- 0
-substring$ -- 181
-swap$ -- 16
+substring$ -- 214
+swap$ -- 18
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 58
-warning$ -- 0
-while$ -- 37
-width$ -- 18
-write$ -- 185
+type$ -- 70
+warning$ -- 1
+while$ -- 44
+width$ -- 21
+write$ -- 216
 (There was 1 warning)

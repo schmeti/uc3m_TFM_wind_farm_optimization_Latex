@@ -101,7 +101,6 @@ The training of the Neural Network thus corresponds to adjusting the weights and
  	\caption{Notation of Neural Network weights and biases with weight $w_{jk}^l$ and $l$ being the input layer,  $j$ the neuron from that input layer and $k$ the neuron of the  $(l-1)^{th}$ output layer. Similarly, the bias as $b_j^l$ with $l$ as the layer and $j$ the neuron.}
  	\label{fig:bias_and_weights_notation}
  \end{figure}
- (....) 
  
  Using this notation, the output of a given neuron $a_j^l$ can be calculated as 
  
@@ -137,7 +136,21 @@ This algorithm represents a gradient descent algorithm with learning rate  $\rho
 - many Degrees of Freedom, many local maxima
 - Adaptive Moment Estimation (ADAM) optimization
 
-\subsubsection{Neural Networks for Parametric Distributions, Quantile Neural Networks}
+\subsubsection{Estimating Distributions using Neural Networks }
+
+Neural Networks can also be used to estimate distributions of a random variable. Two possible approaches are to so called Quantile Neural Networks and Distributional Neural Networks. While their Architecture is that of a normal Neural Network as discussed in the previous section, they differentiate in the output layer, where the Quantile Neural Network has outputs that correspond to the probability for a specific quantile while the distributional Neural Network outputs the distribution, like in Figure  \ref{fig:quantile_dist_nn} for a normal distribution.
+
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/modelling/quantile_dist_nn.png} 
+	\caption{Neural Networks to estimate a distribution by estimating specific quantiles (left) or the parameters of a distribution (right)}
+	\label{fig:quantile_dist_nn}
+\end{figure}
+
+The different outputs from both neural Networks require appropriate Loss functions. For Quantile Neural Networks, the Pinnball Loss (Quantile loss, for more see \cite{Steinwart_2011}) used while in the case of Distributional Neural Networks, the Likelihood can be used as commonly used in classical statistic for parameter estimation. 
+
+\cite{Akpabio} \cite{Marcjasz_2023}
 
 
 Distributional Neural Networks
@@ -146,6 +159,10 @@ Quantile Neural Networks
 Loss for Parametric Normal: Gaussian Negative Log Likelihood
 
 
-\subsection{Generating Neural Network Model for two Windturbines}
+\section{Generating Neural Network Model for two Windturbines}
 
-\section{Validation}
+\subsubsection{Generate Data}
+
+\subsubsection{Train Model}
+
+\subsubsection{Validate Model}

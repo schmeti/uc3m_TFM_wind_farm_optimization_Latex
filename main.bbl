@@ -6,6 +6,11 @@ European~Environment Agency.
 \newblock Technical Report Technical report 6/2009, European Environment Agency, 2009.
 \newblock Accessed: 2025-04-03.
 
+\bibitem{Akpabio}
+Inimfon Akpabio and Serap Savari.
+\newblock On the construction of distribution-free prediction intervals for an image regression problem in semiconductor manufacturing.
+\newblock 03 2022.
+
 \bibitem{ALCANTARA2023120895}
 Antonio Alcántara and Carlos Ruiz.
 \newblock A neural network-based distributional constraint learning methodology for mixed-integer stochastic optimization.
@@ -64,6 +69,11 @@ M.~Magnusson and A.-S. Smedman.
 \newblock Air flow behind wind turbines.
 \newblock {\em Journal of Wind Engineering and Industrial Aerodynamics}, 80(1):169--189, 1999.
 
+\bibitem{Marcjasz_2023}
+Grzegorz Marcjasz, Michał Narajewski, Rafał Weron, and Florian Ziel.
+\newblock Distributional neural networks for electricity price forecasting.
+\newblock {\em Energy Economics}, 125:106843, September 2023.
+
 \bibitem{nielsen2015neuralChap1}
 Michael Nielsen.
 \newblock Neural networks and deep learning - chapter 1, 2015.
@@ -73,6 +83,11 @@ Michael Nielsen.
 Michael Nielsen.
 \newblock Neural networks and deep learning - chapter 2: How the backpropagation algorithm works, 2015.
 \newblock Accessed: 2025-05-01.
+
+\bibitem{Steinwart_2011}
+Ingo Steinwart and Andreas Christmann.
+\newblock Estimating conditional quantiles with the help of the pinball loss.
+\newblock {\em Bernoulli}, 17(1), February 2011.
 
 \bibitem{vanderbei2020chapter3}
 Robert~J. Vanderbei.
