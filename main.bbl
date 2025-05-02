@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{EEA_Wind_Energy_Potential_2009}
 European~Environment Agency.
@@ -17,6 +17,11 @@ Analysis and General Secretariat of the Council of the European~Union Research~T
 \newblock \url{https://www.consilium.europa.eu/media/1kyk0wjm/2024_685_art_windpower_web.pdf}, September 2024.
 \newblock Accessed: 2025-04-03.
 
+\bibitem{Bortolotti2019}
+Pietro Bortolotti, Helena~Canet Tarrés, Katherine Dykes, Karl Merz, Latha Sethuraman, David Verelst, and Frederik Zahle.
+\newblock Iea wind task 37 on systems engineering in wind energy – wp2.1 reference wind turbines.
+\newblock Technical report, National Renewable Energy Laboratory, 2019.
+
 \bibitem{EU_RE_Targets_2023}
 European Commission.
 \newblock Renewable energy targets.
@@ -33,14 +38,46 @@ Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, and Jonathan Tay
 \newblock {\em An Introduction to Statistical Learning: with Applications in Python}.
 \newblock Springer Texts in Statistics. Springer, 2023.
 
-\bibitem{nielsen2015neural}
+\bibitem{Kainz2024IEA}
+Samuel Kainz, Julian Quick, Mauricio~Souza de~Alencar, Sebastian Sanchez~Perez Moreno, Katherine Dykes, Christopher Bay, Michiel Zaaijer, and Pietro Bortolotti.
+\newblock Iea wind tcp task 55: The iea wind 740-10-mw reference offshore wind plants.
+\newblock Technical Report NREL/TP-5000-87923, National Renewable Energy Laboratory, 2024.
+\newblock Technical Report.
+
+\bibitem{KIRANOUDIS1997439}
+C.T. Kiranoudis and Z.B. Maroulis.
+\newblock Effective short-cut modelling of wind park efficiency.
+\newblock {\em Renewable Energy}, 11(4):439--457, 1997.
+
+\bibitem{Madsen2022}
+Mads Madsen, Frederik Zahle, Sergio~Gonzalez Horcas, Thanasis Barlas, and Niels Sørensen.
+\newblock Cfd-based curved tip shape design for wind turbine blades.
+\newblock {\em Wind Energy Science}, 7:1471--1501, 07 2022.
+
+\bibitem{MAGNUSSON1999169}
+M.~Magnusson and A.-S. Smedman.
+\newblock Air flow behind wind turbines.
+\newblock {\em Journal of Wind Engineering and Industrial Aerodynamics}, 80(1):169--189, 1999.
+
+\bibitem{nielsen2015neuralChap1}
 Michael Nielsen.
 \newblock Neural networks and deep learning - chapter 1, 2015.
 \newblock Accessed: 2025-04-10.
+
+\bibitem{nielsen2015neuralChap2}
+Michael Nielsen.
+\newblock Neural networks and deep learning - chapter 2: How the backpropagation algorithm works, 2015.
+\newblock Accessed: 2025-05-01.
 
 \bibitem{vanderbei2020chapter3}
 Robert~J. Vanderbei.
 \newblock {\em Linear Programming}, chapter~3.
 \newblock Springer, New York, NY, 5 edition, 2020.
+
+\bibitem{windpowermonthly_offshore_clusters}
+{Windpower Monthly}.
+\newblock Offshore wind clusters to lower energy production – study.
+\newblock {\em Windpower Monthly}, 2019.
+\newblock Accessed: 2025-04-29.
 
 \end{thebibliography}
