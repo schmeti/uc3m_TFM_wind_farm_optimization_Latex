@@ -5,11 +5,37 @@
 
 While some things in life are certain, most are not and this is as true for optimization as for anything else. That means, that while optimizing anything from next years crop to tomorrows energy pricing might be done by assuming fixed values for the parameters of a optimization problem, in reality most of these parameters will contain uncertainty. The field of Stochasitc Programming contains is occupied with finding methods that allow for introducing these uncertainties into optimization problems.
 
+One way to approach these uncertainties is to split the problem in scenarios. A bakery for example has to decide on how many Baguettes to bake for the next day with the objective of maximizing its profit. Baking too little Baguettes will lead to missing out on potential sales while baking too many baguettes will mean that the demand is fullfilled but the money invested in the excess number of baguettes is lost. Assuming the mean number of baguettes bought every day is $1000$, the price to buy a baguette is $1 €$ and the cost to produce an baguette is $0,2 €$ the classical approach to solving such a problem would be by the following formulation \footnote{$x$ of course non negative}: 
 
 
-https://link.springer.com/book/10.1007/978-1-4614-0237-4
+\begin{align*}
+	\max_{x} \quad \left( 1.00 \cdot \min(x,1000) - 0.20 \cdot x \right)
+\end{align*}
 
-1. minimize Expectation of Cost function 
+
+To introduce the two scenarios additional scenarios of the demand being $10\%$ lower ($900$ Baguettes) and $10\%$ higher ($1100$ Baguettes) can be added. Assuming that the mean demand having a $50\%$ probability of occouring and the $10\%$ demand increase a $20\%$ probability and the decrease a $10\%$  probability, the problem can be modified to maxmize the expected profit across these three scenarios by the formulation
+
+\begin{align*}
+	\max_{x} \quad & 0.5 \cdot \left(1.00 \cdot \min(x,1000) - 0.20 \cdot x \right) \\
+	&+ 0.3 \cdot \left(1.00 \cdot \min(x,900) - 0.20 \cdot x\right) \\
+	&+ 0.2 \cdot \left(1.00 \cdot \min(x,1100) - 0.20 \cdot x\right)
+\end{align*}
+
+The result from this optimization problem would be the Expected profit and how many Baguettes are baked the optimal number of Baguettes to yield the maximum Expected profit across all scenarios. This would be optimal assuming there exists no more information about the next days demand, meaning that by using this approach the total profit over a long time would be maximal. In case there is more information regarding the next days demand the probabilities that give the weights in this optimization might shift, with one scenario potentially reaching probability $100\%$ if there were to be absolute certainty that the next days demand would be for example $1100$ baguettes. As having such exact information is however very rare, the best solution will be in most cases to maximize the profit Expectation. 
+
+The obvious connection to conventional statistical analysis is that the demand is a random variable that can take multiple values, in this case we assumed it to be a discrete random variable $Y$ with support ${900,1000,1100}$ even though in real world applications the demand of baguettes will move somewhere between $[0,\infty]$. Finding the Expectation for such a discrete random variable can be done as 
+
+\[
+\mathbb{E}[X] = \sum_{i} x_i \cdot \mathbb{P}(X = x_i) = \sum_{i} x_i p_i
+\]
+
+or for continious random variables  
+ 
+\[
+\mathbb{E}[X] = \int_{-\infty}^{\infty} x \cdot f_X(x) \, dx
+\]
+
+Using these two expressions, optimization problems can thus be formulated to optimize the Expectation of objective functions containing random variables. \cite{BirgeLouveauxStochasticProgramming}
 
 
 \section{Constraint Learning} \label{sec:constraint_learning}

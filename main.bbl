@@ -17,6 +17,11 @@ Analysis and General Secretariat of the Council of the European~Union Research~T
 \newblock \url{https://www.consilium.europa.eu/media/1kyk0wjm/2024_685_art_windpower_web.pdf}, September 2024.
 \newblock Accessed: 2025-04-03.
 
+\bibitem{BirgeLouveauxStochasticProgramming}
+John~R. Birge and Fran\c{c}ois Louveaux.
+\newblock {\em {Introduction to Stochastic Programming}}.
+\newblock Springer Series in Operations Research and Financial Engineering. Springer, July 1997.
+
 \bibitem{Bortolotti2019}
 Pietro Bortolotti, Helena~Canet Tarrés, Katherine Dykes, Karl Merz, Latha Sethuraman, David Verelst, and Frederik Zahle.
 \newblock Iea wind task 37 on systems engineering in wind energy – wp2.1 reference wind turbines.
