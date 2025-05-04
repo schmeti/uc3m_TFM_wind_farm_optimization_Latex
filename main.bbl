@@ -22,6 +22,16 @@ Analysis and General Secretariat of the Council of the European~Union Research~T
 \newblock \url{https://www.consilium.europa.eu/media/1kyk0wjm/2024_685_art_windpower_web.pdf}, September 2024.
 \newblock Accessed: 2025-04-03.
 
+\bibitem{AZLAN2021110047}
+F.~Azlan, J.C. Kurnia, B.T. Tan, and M.-Z. Ismadi.
+\newblock Review on optimisation methods of wind farm array under three classical wind condition problems.
+\newblock {\em Renewable and Sustainable Energy Reviews}, 135:110047, 2021.
+
+\bibitem{wes-9-869-2024}
+N.~Bempedelis, F.~Gori, A.~Wynn, S.~Laizet, and L.~Magri.
+\newblock Data-driven optimisation of wind farm layout and wake steering with large-eddy simulations.
+\newblock {\em Wind Energy Science}, 9(4):869--882, 2024.
+
 \bibitem{BirgeLouveauxStochasticProgramming}
 John~R. Birge and Fran\c{c}ois Louveaux.
 \newblock {\em {Introduction to Stochastic Programming}}.
@@ -43,6 +53,11 @@ Adejuyigbe~O. Fajemisin, Donato Maragno, and Dick {den Hertog}.
 \newblock Optimization with constraint learning: A framework and survey.
 \newblock {\em European Journal of Operational Research}, 314(1):1--14, 2024.
 
+\bibitem{hou_review_2019}
+Peng Hou, Jiangsheng Zhu, Kuichao MA, Guangya YANG, Weihao HU, and Zhe CHEN.
+\newblock A review of offshore wind farm layout optimization and electrical system design methods.
+\newblock {\em Journal of Modern Power Systems and Clean Energy}, 7(5):975--986, September 2019.
+
 \bibitem{James2023}
 Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, and Jonathan Taylor.
 \newblock {\em An Introduction to Statistical Learning: with Applications in Python}.
@@ -53,6 +68,11 @@ Samuel Kainz, Julian Quick, Mauricio~Souza de~Alencar, Sebastian Sanchez~Perez M
 \newblock Iea wind tcp task 55: The iea wind 740-10-mw reference offshore wind plants.
 \newblock Technical Report NREL/TP-5000-87923, National Renewable Energy Laboratory, 2024.
 \newblock Technical Report.
+
+\bibitem{KIM2024123383}
+Taewan Kim, Jeonghwan Song, and Donghyun You.
+\newblock Optimization of a wind farm layout to mitigate the wind power intermittency.
+\newblock {\em Applied Energy}, 367:123383, 2024.
 
 \bibitem{KIRANOUDIS1997439}
 C.T. Kiranoudis and Z.B. Maroulis.
@@ -94,10 +114,20 @@ Robert~J. Vanderbei.
 \newblock {\em Linear Programming}, chapter~3.
 \newblock Springer, New York, NY, 5 edition, 2020.
 
+\bibitem{WANG2024118508}
+Li~Wang, Mi~Dong, Jian Yang, Lei Wang, Sifan Chen, Neven Duić, Young~Hoon Joo, and Dongran Song.
+\newblock Wind turbine wakes modeling and applications: Past, present, and future.
+\newblock {\em Ocean Engineering}, 309:118508, 2024.
+
 \bibitem{windpowermonthly_offshore_clusters}
 {Windpower Monthly}.
 \newblock Offshore wind clusters to lower energy production – study.
 \newblock {\em Windpower Monthly}, 2019.
 \newblock Accessed: 2025-04-29.
+
+\bibitem{YANG2023119240}
+Kun Yang, Xiaowei Deng, Zilong Ti, Shanghui Yang, Senbin Huang, and Yuhang Wang.
+\newblock A data-driven layout optimization framework of large-scale wind farms based on machine learning.
+\newblock {\em Renewable Energy}, 218:119240, 2023.
 
 \end{thebibliography}
