@@ -72,8 +72,7 @@ with $j_i \in \{0,1\}$ a integer variable such that
 
 This decomposition allows to for introducing a Neural Network of limited size into a optimization problem by decomposing it into a set of linear constraints of the form shown above. \cite{ALCANTARA2023120895}
 
-
-\section{The two turbine problem}
+\section{The two Turbine Problem}
 
 Optimizing the positioning of two wind turbines can be expressed as optimizing the relative position of a second wind turbine $T_2$ to a fixed first turbine $T_2$, defined by the relative distances $\Delta x$ and  $\Delta y$. Both  $\Delta x$ and  $\Delta y$ are constrained by minimum distance $\Delta_{min}$ to  $T_2$ and maximum distances $\Delta x_{max}$/$\Delta y_{max}$ to make the problem bounded. 
 This problem can be visualized as shown in Figure \ref{fig:two_turbine_problem}.
@@ -110,7 +109,7 @@ The two main challenges of the optimization of the shown two turbine problem are
 The first of these challenges is tackled by applying the Neural Network models discussed in Section \ref{sec:modelling} and introduce them into the optimization problem via constraint learning as described in Section \ref{sec:constraint_learning}. For the second problem, multiple approaches are now explored in the following subsection.
 
 
-\subsection{Deterministic Optimization : Optimization for main Wind direction and Speed}
+\subsubsection{Deterministic Optimization : Optimization for main Wind direction and Speed}
 
 To begin with solving the problem, the most simplest approach is taken by assuming the wind conditions to be discrete. In application, this might be analouge to getting the Expectation of the joined probability distribution all wind condition parameters. Taking these parameters as constant and homogenious across the entire parameter space, the result is a objective function that is effectively only dependent on the relative positions of the turbine with the previously discussed geometrical constraints.
 
@@ -145,7 +144,7 @@ TODO :  Insert Figure
 This phenomenom whill have to be kept in mind going forwards, while introducing a distribution for wind condition parameters might reduce the number of global optima. 
 
 
-\subsection{Stochastic Optimization:  Power weighted by probability}
+\subsubsection{Stochastic Optimization:  Power weighted by probability}
 
 As the deterministic optimization does not take into accound the distribution of wind condition parameters and having found that the deterministic approach leaves a range of infinite global optima outside of the wake of turbine 1, the next step is proceeding with the introduction of uncertainty in the form of probability distributions of wind condition parameters into the problem. This step primarily changes the objective function, which is set up such that the neural network takes in both position and wind condition parameters. the output of this neural network is then weighed by the probability of the specific wind condition occouring and the Expected power is calculated by integrating (discretized as sum) across all combinations of wind condition parameters.
 
@@ -168,7 +167,7 @@ where:
 
 In practice, this approach come with challenges as it requires the constraints representing the neural network to be realized $n$ times for each wind condition combination. With one instance of the neural network already adds a significant amount of constraints to the optimization model, realizing those constraints $n$ times may lead to an overflow of constraints, making the model to dificult to solve.
 	
-\subsection{Stochastic Optimization:  Power function as Quantile Neural Network}
+\subsubsection{Stochastic Optimization:  Power function as Quantile Neural Network}
 
 An alternative approach to the one shown in the previous section, is to implant the uncertainties of the wind condition into the power model, with the output as quantiles from a quantile neural network. 
 
@@ -177,9 +176,9 @@ https://pubs.aip.org/aip/aml/article/2/1/016111/3265451/Predicting-wind-farm-wak
 
 	
 
-\section{The 3 turbine problem}
+\section{The three Turbine Problem}
 
-\section{The n turbine problem}
+\section{The n Turbine Problem}
 
 Thoughts: 
 
