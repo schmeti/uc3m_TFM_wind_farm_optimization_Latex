@@ -3,11 +3,13 @@
 
 \chapter{State of the Art}\label{chapter:state_of_the_art}
 
-Since the arrival of large scale wind turbine farm operations as part of energy infrastructure, optimizing the positioning of the individual wind turbines relative to each to mitigate wake effects reducing the total power output is subject of scientific investigation. As this Thesis is an attempt to apply a novel constraint learning method to the optimization of wind farm layouts, the following state of the art is split into two pices, with the first investigating the current state of the art of wind farm optimization and the second a brief introduction into recent developments made in the field of constraint learning. 
+Since the arrival of large scale wind turbine farm operations as part of energy infrastructure, optimizing the positioning of the individual wind turbines relative to each to mitigate wake effects reducing the total power output is subject of scientific investigation. As this Thesis is an attempt to apply a novel constraint learning method introduced by Alcantara and Ruiz in \cite{ALCANTARA2023120895} to the optimization of wind farm layouts, the following state of the art is split into two pices, with the first investigating the current state of the art of wind farm optimization and the second a brief introduction into recent developments made in the field of constraint learning. 
+
+\subsubsection{Optimization of Wind Farm Layouts}
 
 As discussed in the Introduction, one of the main goals in the optimization of layouts, is to reduce the negative impact wake effects inbetween windturbines \cite{KIM2024123383}. Historically, the initial approaches were to use rule of thumb approaches by setting up the layout as a grid and with distance between wind turbines of in dominant wind direction  between 8 and 12 times the turbine rotor diameter and spacing perpendicular to the dominant wind direction 4 to 6 times the turbine rotor diameter \cite{AZLAN2021110047} \cite{hou_review_2019}.
 
-These methods have evolved to with most current reasearch pursuing the goal of maximizing the Anual Energy Production (AEP) of windfarms, with some optimization works adding additional goals like minimizing intermittency \cite{KIM2024123383}. 
+These methods have evolved to with most current reasearch pursuing the goal of maximizing the Anual Energy Production (AEP) of windfarms in the context of stochastic optimization as done in \cite{Sinner_2024} \cite{KIM2024123383}. 
 
 The core of any of the most recent optimizations is a wake model which becomes part of the objective function by representing the wake effects on power output. These models can be categorized as \cite{WANG2024118508}: 
 
@@ -18,14 +20,14 @@ The core of any of the most recent optimizations is a wake model which becomes p
 	\item Data-driven modeling
 \end{enumerate}
 
-While experimental methods and numerical models might be the most precise models available for wake modeling, one of the challanges that comes with the optimization is that the model has to be able to be introduced into current state of the art solvers as part of an objective function, leading to the prevalent use of analytical wake models like Gaussian wake model and the 3D wake model  \cite{WANG2024118508}. With advancements in machine learning the field of data - driven modeling is meanwhile expanding, with successfull attempts of introducing Neural Networks and other Machine Learning frameworks into optimizations of wind farm layouts. Generally, either experimental data or (more prevalent) data from numerical modelling is used to train  a chosen model type and the resulting model is then introduced into the optimization problem, as done in \cite{YANG2023119240} \cite{wes-9-869-2024}
+While experimental methods and numerical models might be the most precise models available for wake modeling, one of the challanges that comes with the optimization is that the model has to be able to be introduced into current state of the art solvers as part of an objective function, leading to the prevalent use of analytical wake models like Gaussian wake model and the 3D wake model  \cite{WANG2024118508}. With advancements in machine learning the field of data - driven modeling is meanwhile expanding, with successfull attempts of introducing Neural Networks and other Machine Learning frameworks into optimizations of wind farm layouts. Generally, either experimental data or (more prevalent) data from numerical modelling is used to train  a chosen model type and the resulting model is then introduced into the optimization problem, as done in \cite{YANG2023119240} \cite{wes-9-869-2024} \cite{TI2020114025} \cite{TI2021618}. 
 
+\subsubsection{Constraint Learning}
 
+The term Constraint Learning, defined as "finding a set of constraints, a constraint theory, that satisfies a given dataset" by Raedt et al. is the intersection of machine learning and optimization, or more in practical terms, the introduction of machine learning models into optimization problems as constaints. As the models learned (from a given data set), the constraints resulting from such a model are thus equally learned. \cite{de2018learning} 
 
+For this thesis specifically, the novel constraint learning method of decomposing a neural network into a set of constraints using an big M approach introduced in \cite{ALCANTARA2023120895} and \cite{ALCANTARA2025127876} is the foundation. Similar approaches of embedding machine learning models into optimization problems have been taken for Decision Trees and Random Forests in \cite{preprintBonfiettiEmbeddDecisionTrees} or again for Neural Networks but without integer variables required as done in \cite{dealba2024reformulationembeddingneuralnetwork}. A survey performed by Fajemisin et al.\cite{FAJEMISIN20241} shows how the field is currently emerging with a increase in publications in recent years and most publications revolving around the Embedding of Neural Networks and Decision Trees/Random Forests.
 
-https://www.sciencedirect.com/science/article/pii/S0306261924007669
-
- https://www.sciencedirect.com/science/article/pii/S1364032120303385
 
 
 

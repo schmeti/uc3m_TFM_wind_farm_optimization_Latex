@@ -16,6 +16,11 @@ Antonio Alcántara and Carlos Ruiz.
 \newblock A neural network-based distributional constraint learning methodology for mixed-integer stochastic optimization.
 \newblock {\em Expert Systems with Applications}, 232:120895, 2023.
 
+\bibitem{ALCANTARA2025127876}
+Antonio Alcántara, Carlos Ruiz, and Calvin Tsay.
+\newblock A quantile neural network framework for two-stage stochastic optimization.
+\newblock {\em Expert Systems with Applications}, page 127876, 2025.
+
 \bibitem{ConsiliumEU_Harnessing_Wind_Power_2024}
 Analysis and General Secretariat of the Council of the European~Union Research~Team.
 \newblock Harnessing wind power: Navigating the eu energy transition and its challenges.
@@ -37,6 +42,11 @@ John~R. Birge and Fran\c{c}ois Louveaux.
 \newblock {\em {Introduction to Stochastic Programming}}.
 \newblock Springer Series in Operations Research and Financial Engineering. Springer, July 1997.
 
+\bibitem{preprintBonfiettiEmbeddDecisionTrees}
+Alessio Bonfietti, Michele Lombardi, and Michela Milano.
+\newblock Embedding decision trees and random forests in constraint programming.
+\newblock 05 2015.
+
 \bibitem{Bortolotti2019}
 Pietro Bortolotti, Helena~Canet Tarrés, Katherine Dykes, Karl Merz, Latha Sethuraman, David Verelst, and Frederik Zahle.
 \newblock Iea wind task 37 on systems engineering in wind energy – wp2.1 reference wind turbines.
@@ -47,6 +57,15 @@ European Commission.
 \newblock Renewable energy targets.
 \newblock \url{https://energy.ec.europa.eu/topics/renewable-energy/renewable-energy-directive-targets-and-rules/renewable-energy-targets_en}, 2023.
 \newblock Accessed: 2025-04-03.
+
+\bibitem{dealba2024reformulationembeddingneuralnetwork}
+Héctor~G. de~Alba, Andres Tellez, Cipriano Santos, and Emmanuel Gómez.
+\newblock A reformulation to embedding a neural network in a linear program without integer variables, 2024.
+
+\bibitem{de2018learning}
+Luc De~Raedt, Andrea Passerini, and Stefano Teso.
+\newblock Learning constraints from examples.
+\newblock In {\em Proceedings of the AAAI conference on artificial intelligence}, volume~32, 2018.
 
 \bibitem{FAJEMISIN20241}
 Adejuyigbe~O. Fajemisin, Donato Maragno, and Dick {den Hertog}.
@@ -104,10 +123,25 @@ Michael Nielsen.
 \newblock Neural networks and deep learning - chapter 2: How the backpropagation algorithm works, 2015.
 \newblock Accessed: 2025-05-01.
 
+\bibitem{Sinner_2024}
+Michael Sinner and Paul Fleming.
+\newblock Robust wind farm layout optimization.
+\newblock {\em Journal of Physics: Conference Series}, 2767(3):032036, jun 2024.
+
 \bibitem{Steinwart_2011}
 Ingo Steinwart and Andreas Christmann.
 \newblock Estimating conditional quantiles with the help of the pinball loss.
 \newblock {\em Bernoulli}, 17(1), February 2011.
+
+\bibitem{TI2020114025}
+Zilong Ti, Xiao~Wei Deng, and Hongxing Yang.
+\newblock Wake modeling of wind turbines using machine learning.
+\newblock {\em Applied Energy}, 257:114025, 2020.
+
+\bibitem{TI2021618}
+Zilong Ti, Xiao~Wei Deng, and Mingming Zhang.
+\newblock Artificial neural networks based wake model for power prediction of wind farm.
+\newblock {\em Renewable Energy}, 172:618--631, 2021.
 
 \bibitem{vanderbei2020chapter3}
 Robert~J. Vanderbei.

@@ -171,7 +171,8 @@ where:
 	\item \(  X_{\max}, Y_{\max} \) define the maximal distance the two turbines can be placed apart
 	\item \( d_{\min} \) is the minimum distance between the two turbines
 	\item \( n \) is index of the discretized possible combinations of wind conditions 
-	
+\end{itemize}
+
 In practice, this approach come with challenges as it requires the constraints representing the neural network to be realized $n$ times for each wind condition combination. With one instance of the neural network already adds a significant amount of constraints to the optimization model, realizing those constraints $n$ times may lead to an overflow of constraints, making the model to dificult to solve.
 	
 \subsection{Stochastic Optimization:  Power function as Quantile Neural Network}
@@ -179,8 +180,9 @@ In practice, this approach come with challenges as it requires the constraints r
 An alternative approach to the one shown in the previous section, is to implant the uncertainties of the wind condition into the power model, with the output as quantiles from a quantile neural network. 
 
 
+https://pubs.aip.org/aip/aml/article/2/1/016111/3265451/Predicting-wind-farm-wake-losses-with-deep
+
 	
-\end{itemize}
 
 \section{The 3 turbine problem}
 

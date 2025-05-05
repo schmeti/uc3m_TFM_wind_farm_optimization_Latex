@@ -327,3 +327,101 @@ author = {Leslie Lamport}
 	URL = {https://wes.copernicus.org/articles/9/869/2024/},
 	DOI = {10.5194/wes-9-869-2024}
 }
+
+
+@article{TI2020114025,
+	title = {Wake modeling of wind turbines using machine learning},
+	journal = {Applied Energy},
+	volume = {257},
+	pages = {114025},
+	year = {2020},
+	issn = {0306-2619},
+	doi = {https://doi.org/10.1016/j.apenergy.2019.114025},
+	url = {https://www.sciencedirect.com/science/article/pii/S030626191931712X},
+	author = {Zilong Ti and Xiao Wei Deng and Hongxing Yang},
+	keywords = {Wind turbine wake, Wake model, Artificial neural network (ANN), Machine learning, ADM-R (actuator-disk model with rotation) model, Computational fluid dynamics (CFD)},
+	abstract = {In the paper, a novel framework that employs the machine learning and CFD (computational fluid dynamics) simulation to develop new wake velocity and turbulence models with high accuracy and good efficiency is proposed to improve the turbine wake predictions. An ANN (artificial neural network) model based on the back-propagation (BP) algorithm is designed to build the underlying spatial relationship between the inflow conditions and the three-dimensional wake flows. To save the computational cost, a reduced-order turbine model ADM-R (actuator disk model with rotation), is incorporated into RANS (Reynolds-averaged Navier-Stokes equations) simulations coupled with a modified k-ε turbulence model to provide big datasets of wake flow for training, testing, and validation of the ANN model. The numerical framework of RANS/ADM-R simulations is validated by a standalone Vestas V80 2 MW wind turbine and NTNU wind tunnel test of double aligned turbines. In the ANN-based wake model, the inflow wind speed and turbulence intensity at hub height are selected as input variables, while the spatial velocity deficit and added turbulence kinetic energy (TKE) in wake field are taken as output variables. The ANN-based wake model is first deployed to a standalone turbine, and then the spatial wake characteristics and power generation of an aligned 8-turbine row as representation of Horns Rev wind farm are also validated against Large Eddy Simulations (LES) and field measurement. The results of ANN-based wake model show good agreement with the numerical simulations and measurement data, indicating that the ANN is capable of establishing the complex spatial relationship between inflow conditions and the wake flows. The machine learning techniques can remarkably improve the accuracy and efficiency of wake predictions.}
+}
+
+
+\cite{@article{TI2021618,
+	title = {Artificial Neural Networks based wake model for power prediction of wind farm},
+	journal = {Renewable Energy},
+	volume = {172},
+	pages = {618-631},
+	year = {2021},
+	issn = {0960-1481},
+	doi = {https://doi.org/10.1016/j.renene.2021.03.030},
+	url = {https://www.sciencedirect.com/science/article/pii/S0960148121003840},
+	author = {Zilong Ti and Xiao Wei Deng and Mingming Zhang},
+	keywords = {Wind farm, Power prediction, Wake model, Machine learning, Artificial neural networks, Computational fluid dynamics},
+	abstract = {In the wind industry, power prediction of wind farm is commonly implemented by analytical wake models, which is low-cost but insufficient in accuracy for high-turbulent wake modelling. In this study, a novel machine-learning-based wake model is developed to improve the power prediction of wind farms. The presented model can reproduce the velocity and turbulence fields in turbine wakes commensurate to the high-fidelity Computational Fluid Dynamics (CFD) simulations while achieving good computational efficiency. Driven by massive CFD simulation dataset, the implicit relationship between inflows and wake flows is established using the Artificial Neural Networks (ANN) technique based on back-propagation algorithm. The reduced-order method Actuator Disk Model with Rotation (ADM-R) and modified k−ε turbulence model are implemented into RANS simulations to save the computational costs dramatically in producing the big-data of wake flows. The ANN wake model is deployed in the Horn Rev wind farm, and validated against LES, onsite measurement, and analytical wake models. The conclusions show that the ANN model can appreciably improve the power predictions compared with the existing analytical models and match the LES and measurement data well. The validated model is also adopted to investigate the influence of wind direction and turbine layout on power production of wind farms.}
+	}}
+	
+	
+	
+	@article{ALCANTARA2025127876,
+		title = {A quantile neural network framework for two-stage stochastic optimization},
+		journal = {Expert Systems with Applications},
+		pages = {127876},
+		year = {2025},
+		issn = {0957-4174},
+		doi = {https://doi.org/10.1016/j.eswa.2025.127876},
+		url = {https://www.sciencedirect.com/science/article/pii/S0957417425014988},
+		author = {Antonio Alcántara and Carlos Ruiz and Calvin Tsay},
+		keywords = {Optimization under uncertainty, Stochastic programming, Neural networks, Mixed-integer programming (MIP)},
+		abstract = {Two-stage stochastic programming is a popular framework for optimization under uncertainty, where decision variables are split between first-stage decisions, and second-stage (or recourse) decisions, with the latter being adjusted after uncertainty is realized. These problems are often formulated using Sample Average Approximation (SAA), where uncertainty is modeled as a finite set of scenarios, resulting in a large “monolithic” problem, i.e., where the model is repeated for each scenario. The resulting models can be challenging to solve, and several problem-specific decomposition approaches have been proposed. An alternative approach is to approximate the expected second-stage objective value using a surrogate model, which can then be embedded in the first-stage problem to produce good heuristic solutions. In this work, we propose to instead model the distribution of the second-stage objective, specifically using a quantile neural network. Embedding this distributional approximation enables capturing uncertainty and is not limited to expected-value optimization, e.g., the proposed approach enables optimization of the Conditional Value at Risk (CVaR). We discuss optimization formulations for embedding the quantile neural network and demonstrate the effectiveness of the proposed framework using several computational case studies including a set of mixed-integer optimization problems.}
+	}
+	
+	
+	
+	@inproceedings{de2018learning,
+		title={Learning constraints from examples},
+		author={De Raedt, Luc and Passerini, Andrea and Teso, Stefano},
+		booktitle={Proceedings of the AAAI conference on artificial intelligence},
+		volume={32},
+		year={2018}
+	}
+	
+	
+	@inproceedings{preprintBonfiettiEmbeddDecisionTrees,
+		author = {Bonfietti, Alessio and Lombardi, Michele and Milano, Michela},
+		year = {2015},
+		month = {05},
+		pages = {},
+		title = {Embedding Decision Trees and Random Forests in Constraint Programming},
+		isbn = {978-3-319-18007-6},
+		doi = {10.1007/978-3-319-18008-3_6}
+	}
+	
+	
+	
+	@misc{dealba2024reformulationembeddingneuralnetwork,
+		title={A reformulation to Embedding a Neural Network in a linear program without integer variables}, 
+		author={Héctor G. -de-Alba and Andres Tellez and Cipriano Santos and Emmanuel Gómez},
+		year={2024},
+		eprint={2402.02086},
+		archivePrefix={arXiv},
+		primaryClass={math.OC},
+		url={https://arxiv.org/abs/2402.02086}, 
+	}
+	
+	
+	@article{Sinner_2024,
+		doi = {10.1088/1742-6596/2767/3/032036},
+		url = {https://dx.doi.org/10.1088/1742-6596/2767/3/032036},
+		year = {2024},
+		month = {jun},
+		publisher = {IOP Publishing},
+		volume = {2767},
+		number = {3},
+		pages = {032036},
+		author = {Sinner, Michael and Fleming, Paul},
+		title = {Robust wind farm layout optimization},
+		journal = {Journal of Physics: Conference Series},
+		abstract = {Wake interactions in wind farms cause losses in annual energy production (AEP) on the order of 10%. Wind farm designers optimize the layout of the farm to mitigate wake losses, especially in the dominant site-specific wind directions. As wind turbines and wind farms grow in scale, optimization becomes more complex. Offshore wind farms regularly comprise more than 100 wind turbines and are characterized by complex boundaries due to shipping lanes, neighboring wind farms, and other constraints.
+		
+		Layout optimization methods are broadly split between gradient-based and gradient-free approaches. Gradient-based approaches can converge quickly and perform well for smaller, academic problems but are often sensitive to initial conditions and tuning parameters and require expert knowledge to use. On the other hand, gradient-free approaches can be more robust to problem complexities. We present a robust layout optimization approach based on a random search algorithm. The algorithm is intended for those who are not optimization experts and has few tuning parameters that need specification to achieve satisfactory results. Unlike off-the-shelf methods, which use generally available, non-domain-specific optimization routines that accept as inputs an optimization function and constraint definitions, this approach takes advantage of the relative computational costs of the different evaluations by evaluating cheaper computations first (boundary and minimum distance constraints) and running expensive AEP evaluations only if all other checks pass. Moreover, an outer genetic algorithm allows multiple solutions to evolve in parallel, enabling rapid solution development on high-performance computers. We discuss the relative ease of selecting necessary tuning parameters and demonstrate the efficacy of the genetic random search on a complex layout problem consisting of placing 70 turbines in a nonconvex and unconnected boundary region.}
+	}
+	
+	
