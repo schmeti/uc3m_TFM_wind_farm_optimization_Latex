@@ -67,21 +67,31 @@ The activation function $f()$ is called activation function, as in its most simp
 \sigma(x) = \frac{1}{1 + e^{-x}}
 \]
 
-This relationship also becomes aparent when plotting both of those functions over each other, as shown in \ref{fig:activation_functions}
+This relationship also becomes aparent when plotting both of those functions over each other, as shown in Figure \ref{fig:activation_functions}. 
+An alternative to the sigmoid as activation function is the Rectified Linear Unit (ReLu) function, or in simple words, the maximum function, defined as follows. 
 
-\textbf{TODO: ReLU Function in text and plot}
+\[
+\text{ReLU}(x) = \max(0, x) = 
+\begin{cases}
+	0 & \text{if } x < 0, \\
+	x & \text{if } x \geq 0.
+\end{cases}
+\]
+ 
+ The main general applicable benefit of the ReLu function is that it has a constant, non-vanishing gradient for both directions (see Figure \ref{fig:activation_functions}), leading to better gradient propagation, a attribute that is relavant in the context of the backpropagation algorithm briefly discussed in Section \ref{subsubsec:training_nn}. \cite{preprintReLuGlorot}
+ Beyond this, the ReLu function allows for embedding the Neural Network into a conventional optimization problem as will be discussed in Section \ref{sec:constraint_learning}.
 
 \begin{figure}[h] 
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/modelling/activation_functions.png} % file name without extension
-	\caption{The Sigmoid Function being a close to the Step Function without being as sensetive to slight changes in $x$ due to its continuity}
+	\caption{The Sigmoid Function being a close to the Step Function without being as sensetive to slight changes in $x$ due to its continuity. Alternatively, the Rectified Linear Unit function (ReLu) can be used as activation function. }
 	\label{fig:activation_functions}
 \end{figure}
 
 \cite{nielsen2015neuralChap1}
 
 
-\subsubsection{Training a Neural Network}
+\subsubsection{Training a Neural Network} \label{subsubsec:training_nn}
 
 With the general structure set up, and assuming that a layout has been chosen for the neural network (e.g. number of layers and number of their coirresponding neurons), the training of the neural network corresponds to adjusting the weights $w$ and the biases $b$ of each neuron in a way, that allows the model to perform the task it is given well. What is means for the model to perform well is defined by a \textit{Loss Function}, that defines a relationship between the output of the model and the correct output (defined by training data) and gives a Loss as output, which is some sort of delta between model prediction and truth. As what it means for a model to perform well heavily depends on the task (regression, binary classification, multiclass classification etc.), but regardless of the task, the goal is always to minimize the Loss Function. A well known Loss Function in regression is the Mean Squared Error (MSE)
 

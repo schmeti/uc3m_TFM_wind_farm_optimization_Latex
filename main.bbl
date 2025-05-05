@@ -72,6 +72,11 @@ Adejuyigbe~O. Fajemisin, Donato Maragno, and Dick {den Hertog}.
 \newblock Optimization with constraint learning: A framework and survey.
 \newblock {\em European Journal of Operational Research}, 314(1):1--14, 2024.
 
+\bibitem{preprintReLuGlorot}
+Xavier Glorot, Antoine Bordes, and Y.~Bengio.
+\newblock Deep sparse rectifier neural networks.
+\newblock volume~15, 01 2010.
+
 \bibitem{hou_review_2019}
 Peng Hou, Jiangsheng Zhu, Kuichao MA, Guangya YANG, Weihao HU, and Zhe CHEN.
 \newblock A review of offshore wind farm layout optimization and electrical system design methods.
