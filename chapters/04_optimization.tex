@@ -131,14 +131,12 @@ where:
 
 When solving this problem as defined using Gurobi, a major challenge becomes apparent as the result shows that there is an infinite amount of equally optimal solutions (e.g. degeneracy of the problem, see  \cite{vanderbei2020chapter3} for an exact definition of degeneracy) everywhere outside the wake of turbine 1. This phenomenon is very intuitive when generating a heatmap of the power generation for all possible positions of turbine 2, as shown in Figure \ref{fig:two_turbine_heatmap_degeneracy}
 
-TODO :  Insert Figure
-
-%\begin{figure}[h] 
-%	\centering
-%	\includegraphics[width=0.9\textwidth]{figures/optimization/} 
-%	\caption{}
-%	\label{fig:two_turbine_heatmap_degeneracy}
-%\end{figure}
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=1\textwidth]{figures/optimization/opti_determ270.png} 
+	\caption{Deterministic optimization of the relative position of two windturbines relative to each other with winddirection 270° and constant windspeed}
+	\label{fig:two_turbine_heatmap_degeneracy}
+\end{figure}
 
 This phenomenon will have to be kept in mind going forward while introducing a distribution for wind condition parameters might reduce the number of global optima. 
 
@@ -165,6 +163,15 @@ where:
 \end{itemize}
 
 In practice, this approach comes with challenges as it requires the constraints representing the neural network to be realized $n$ times for each wind condition combination. With one instance of the neural network already adding a significant amount of constraints to the optimization model, realizing those constraints $n$ times may lead to an overflow of constraints, making the model too difficult to solve.
+	
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=1\textwidth]{figures/optimization/probabilistc_scenarios.png} 
+	\caption{Stochastic optimization of the relative position of two windturbines relative to each other with wind normally distributed with mean $\mu = ?$ and standard deviation $\sigma = ?$, windspeed constant}
+	\label{fig:two_turbine_heatmap_degeneracy}
+\end{figure}
+	
 	
 \subsubsection{Stochastic Optimization:  Power function as Quantile Neural Network}
 
