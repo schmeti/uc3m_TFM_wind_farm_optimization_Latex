@@ -4,6 +4,8 @@ With the model of farm/turbine power established, the following section treats t
 
 \section{Optimization under Uncertainty}
 
+TODO : REWRITE FIRST SCENTENCE
+
 While some things in life are certain, most are not and this is as true for optimization as for anything else. That means, that while optimizing anything from next year's crop to tomorrow's energy pricing might be done by assuming fixed values for the parameters of an optimization problem, in reality, most of these parameters contain uncertainty. The field of Stochastic Programming is occupied with finding methods that allow for introducing these uncertainties into optimization problems.
 
 One way to approach these uncertainties is to split the problem into scenarios. A bakery for example has to decide on how many Baguettes to bake for the next day to maximize its profit. Baking too few Baguettes will lead to missing out on potential sales while baking too many baguettes will mean that the demand is fulfilled but the money invested in the excess number of baguettes is lost. Assuming the mean number of baguettes bought every day is $1000$, the price to buy a baguette is $1 €$ and the cost to produce a baguette is $0,2 €$ the classical approach to solving such a problem would be by the following formulation \footnote{$x$ of course non-negative}: 
@@ -108,15 +110,15 @@ The two main challenges of the optimization of the shown two turbine problem are
 The first of these challenges is tackled by applying the Neural Network models discussed in Section \ref{sec:modelling} and introducing them into the optimization problem via constraint learning as described in Section \ref{sec:constraint_learning}. For the second problem, multiple approaches are now explored in the following subsection.
 
 
-\subsubsection{Deterministic Optimization: Optimization for main Wind direction and Speed}
+\subsection{Deterministic Optimization}
 
 To begin solving the problem, the simplest approach is taken by assuming the wind conditions to be discrete. In application, this might be analogous to getting the Expectation of the joined probability distribution of all wind condition parameters. Taking these parameters as constant and homogeneous across the entire parameter space, the result is an objective function that is effectively only dependent on the relative positions of the turbine with the previously discussed geometrical constraints.
 
 \begin{align}
 	\max_{\mathbf{x}, \mathbf{y}} & f_{Power,\text{NN}}(\Delta x, \Delta y) \\
 	\text{s.t.} \quad 
-	&  \Delta x \leq X_{\max} \\
-	&  \Delta y \leq Y_{\max} \\
+	&  0 \leq \Delta x \leq X_{\max} \\
+	&  0 \leq \Delta y \leq Y_{\max} \\
 	& \sqrt{(\Delta x)^2 + (\Delta y)^2} \geq d_{\min}
 \end{align}
 
@@ -129,7 +131,55 @@ where:
 \end{itemize}
 
 
-When solving this problem as defined using Gurobi, a major challenge becomes apparent as the result shows that there is an infinite amount of equally optimal solutions (e.g. degeneracy of the problem, see  \cite{vanderbei2020chapter3} for an exact definition of degeneracy) everywhere outside the wake of turbine 1. This phenomenon is very intuitive when generating a heatmap of the power generation for all possible positions of turbine 2, as shown in Figure \ref{fig:two_turbine_heatmap_degeneracy}
+\subsubsection{Modelling}
+
+To begin with, the simulations to generate the dataset used to train the corresponding model for the deterministic case has to be generated. For the deterministic optimization, the position of the second turbine is variable in the bounds and a even steplength resulting from $n_{Steps}$ as shown in Table \ref{tab:val_determ_data}. All remaining airflow characteristics remain constant (deterministic).
+
+\begin{table}[ht]
+	\centering
+	\caption{Value Ranges for Deterministic Two Turbine Problem Data Set}
+	\begin{tabular}{|l|c|c|c|}
+		\hline
+		\textbf{Variable} & \textbf{Constant/Variable} & \textbf{Value} & \textbf{$n_{Steps}$}\\
+		\hline
+		$x_{\text{turb2}}$ & Variable & [0, 5000] m &\\
+		$y_{\text{turb2}}$ & Variable & [0, 500] m &\\
+		wind\_speed & Constant & 8 m/s & -\\
+		wind\_direction & Constant & 270°&- \\
+		turbulence\_intensity & Constant & 0.06 & - \\
+		\hline
+	\end{tabular}
+
+	\label{tab:val_determ_data}
+\end{table}
+
+In line with the parameter space defined in Table \ref{tab:val_determ_data}, simulations are performed as described in Section \ref{sec:model_pipe}. The resulting dataset is then introduced into the Neural Network optimization method, yielding Figure \ref{fig:determ_nn_opti}. HERE WE DECIDE SOMETHING BEFORE CONtiNUING
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=1\textwidth]{figures/optimization/determ_nn_opti.png} 
+	\caption{}
+	\label{fig:determ_nn_opti}
+\end{figure}
+
+To validate the chosen model and gain a deeper understanding of its predictive power, we proceed to visualize the total power output across the variable parameter space. Figure \ref{fig:determ_model_colormap} shows a colormap generated from linealy interpolating between the datapoints for the simulation data (Subplot 1), a finder grid of predictions of the model (Subplot 2) and a colormap of the percentage deviation between model and raw data (calculated at points and then again linearly interpolated). The color in the first two subplots represents the \textit{total power generated of both wind turbines}, with the second turbine placed at the given x/y location We find that the model appears to overall represents the behaviour well, with only systematic deviation occuring at locations very close to the first wind turbine at the origin. As the simulation allows for placing wind turbines at the exact same location and with corresponding results unrealistic, simulations in this area are not necessarily correct in results either. For the optimization, the minimum distant constraint removes this area from the feasible region, meaning that the comparetively large deviations there do not affect the optimization. 
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=1\textwidth]{figures/optimization/determ_model_colormap.png} 
+	\caption{}
+	\label{fig:determ_model_colormap}
+\end{figure}
+
+The model thus appears to be suitable to represent the interactions between the two turbines and we proceed to the optimization.
+
+\subsubsection{Optimization}
+
+
+With the model trained and validated, we proceed to implementing the defined optimization problem in pyomo  (\href{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_determin.ipynb}{Notebook Github}) and embedd the trained model using the the approach described in Section \ref{sec:constraint_learning}.
+
+When solving this problem as defined using Gurobi, a major challenge becomes apparent as the result shows that there is an large number of equally optimal solutions (e.g. degeneracy of the problem, see  \cite{vanderbei2020chapter3} for an exact definition of degeneracy) everywhere outside the wake of turbine 1, as can be seen  in the visualization of the optimization result found in \ref{fig:two_turbine_heatmap_degeneracy}.
+
 
 \begin{figure}[h] 
 	\centering
@@ -138,10 +188,10 @@ When solving this problem as defined using Gurobi, a major challenge becomes app
 	\label{fig:two_turbine_heatmap_degeneracy}
 \end{figure}
 
-This phenomenon will have to be kept in mind going forward while introducing a distribution for wind condition parameters might reduce the number of global optima. 
+The existence of a large number of optimal values thus has to be taken into account moving forward.
 
 
-\subsubsection{Stochastic Optimization:  Power weighted by probability}
+\subsection{Stochastic Optimization}
 
 As the deterministic optimization does not take into account the distribution of wind condition parameters and having found that the deterministic approach leaves a range of infinite global optima outside of the wake of turbine 1, the next step is proceeding with the introduction of uncertainty in the form of probability distributions of wind condition parameters into the problem. This step primarily changes the objective function, which is set up such that the neural network takes in both position and wind condition parameters. the output of this neural network is then weighed by the probability of the specific wind condition occurring and the Expected power is calculated by integrating (discretized as a sum) across all combinations of wind condition parameters.
 
@@ -161,6 +211,45 @@ where:
 	\item \( d_{\min} \) is the minimum distance between the two turbines
 	\item \( n \) is the index of the discretized possible combinations of wind conditions 
 \end{itemize}
+
+
+\subsubsection{Modelling}
+
+\begin{table}[ht]
+	\centering
+	\caption{Value Ranges for Deterministic Two Turbine Problem Data Set}
+	\begin{tabular}{|l|c|c|c|}
+		\hline
+		\textbf{Variable} & \textbf{Constant/Variable} & \textbf{Value} & \textbf{$n_{Steps}$}\\
+		\hline
+		$x_{\text{turb2}}$ & Variable & [0, 5000] m &\\
+		$y_{\text{turb2}}$ & Variable & [0, 500] m &\\
+		wind\_speed & Constant & 8 m/s & -\\
+		wind\_direction & Constant & 270°&- \\
+		turbulence\_intensity & Constant & 0.06 & - \\
+		\hline
+	\end{tabular}
+	\label{tab:val_determ_data}
+\end{table}
+
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=1\textwidth]{figures/optimization/determ_nn_opti.png} 
+	\caption{}
+	\label{fig:determ_nn_opti}
+\end{figure}
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=1\textwidth]{figures/optimization/determ_model_colormap.png} 
+	\caption{}
+	\label{fig:determ_model_colormap}
+\end{figure}
+
+
+\subsubsection{Optimization}
+
 
 In practice, this approach comes with challenges as it requires the constraints representing the neural network to be realized $n$ times for each wind condition combination. With one instance of the neural network already adding a significant amount of constraints to the optimization model, realizing those constraints $n$ times may lead to an overflow of constraints, making the model too difficult to solve.
 	
@@ -198,3 +287,5 @@ IDEA : analogue to forward/backward selection with 2 turbine neural network
 FINIDINGS: 
 
 problem degenerate if not one wind turbine fixed
+
+\section{Possible Improvements in Optimization}

@@ -160,23 +160,18 @@ The different outputs from both neural Networks require appropriate Loss functio
 
 \cite{Akpabio} \cite{Marcjasz_2023}
 
-\section{Modelling Pipeline}
+\section{Modelling Pipeline} \label{sec:model_pipe}
 
 With the theoretical foundations layed out, this section is going to treat the actual training process of the Neural Networks to be introduced into the optimization. Part of the challenge of training Neural Networks for this specific purpose is, that the objective in optimizing the Neural Network is to not only minimize the cost function, but also to minimize the  number of model parameters, e.g. to minimize the total number of neurons the network consists of. This is due to the fact, that each neuron corresponds to an additional three linear constraints in the optimization problem, leading the number of constraints to grow as $\Delta n_{constraints} =3 \times \Delta n_{neurons}$. In general, individual models are trained for each optimization problem seen in Chapter \ref{section:optimization} tailored to their individual needs and parameter space. This is why this chapter will detail the main components of the modeling process and parameters that will be defined according to the optimization problem later on. The exact configuration of the models will then be defined together with the optimization problem.  
 
-The modelling pipeline contains three main components, with the elements consisting of the data generation, hyperparameter tuning (training) and the final model training.as seen in in Figure \ref{}, where data generation corresponds to running the required simulations via FLORIS  for the given parameter space, hyperparameter tuning corresponds to the training and evaluation of different model configurations and final model training as the step in which the final model that is to be introduced into the optimization problem is trained.
+The modelling pipeline contains three main components, with the elements consisting of the data generation, hyperparameter tuning (training) and the final model training.as seen in in Figure \ref{fig:model_flow}, where data generation corresponds to running the required simulations via FLORIS  for the given parameter space, hyperparameter tuning corresponds to the training and evaluation of different model configurations and final model training as the step in which the final model that is to be introduced into the optimization problem is trained.
 
 
-TODO : Consits of two turbines
-
-TODO: Validate Model ? 
-
-TODO: FLOW
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.9\textwidth]{figures/modelling/quantile_dist_nn.png} 
-	\caption{Neural Networks to estimate a distribution by estimating specific quantiles (left) or the parameters of a distribution (right)}
-	\label{fig:quantile_dist_nn}
+	\includegraphics[width=0.9\textwidth]{figures/modelling/model_flow.png} 
+	\caption{Flow of model generation, with parameter grid as input and the final model as output}
+	\label{fig:model_flow}
 \end{figure}
 
 \subsubsection{Data Generation}
@@ -191,14 +186,14 @@ The Data Generation corresponds to the creating of a dataset corresponding to a 
 	\item turbulence\_intensities
 \end{itemize}
 
-Where x\_range and y\_range correspond to the relative distances of the second wind turbine to the first, wind speed corresponds to wind velocity in m/s,  direction to the incoming wind angle in Degrees (with 0° corresponding to norht, 180° to south) and turbolence intensities as a measure of turbolence for the incoming airflow. Figure \ref{} shows a simulation configuration for (PARAMETERS). 
+Where x\_range and y\_range correspond to the relative distances of the second wind turbine to the first, wind speed corresponds to wind velocity in m/s,  direction to the incoming wind angle in Degrees (with 0° corresponding to norht, 180° to south) and turbolence intensities as a measure of turbolence for the incoming airflow. Figure \ref{fig:Floris} shows a example of a simulation output. 
 
-TODO: Insert plot from FLORIS
+
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.9\textwidth]{figures/modelling/quantile_dist_nn.png} 
-	\caption{Neural Networks to estimate a distribution by estimating specific quantiles (left) or the parameters of a distribution (right)}
-	\label{fig:quantile_dist_nn}
+	\includegraphics[width=0.7\textwidth]{figures/modelling/Floris.png} 
+	\caption{Example of a Simulation output from the FOLORIS Wind Turbine Simulation Tool with colormap corresponding to airflow velocity}
+	\label{fig:Floris}
 \end{figure}
 
 The method implemented in [LINK TO GITHUB], takes a range of values together with a specified number of chosen number of steps for the specific parameter and performs simulation for all combinations for the given ranges to fill the entire grid. As the number of steps or limits may be different for the different parameters, the grid is not necessarily equally spaced for all parameters, but for each parameter individually is constant, e.g. the distance between values is the same for the entire range.  
@@ -215,7 +210,9 @@ where the total power generation corresponds to the summation of the power gener
 
 \subsubsection{Neural Network Configuration}
 
-The next step in the process corresponds to the hyperparameter tuning of the Neural Network. According to the chosen type of Neural Network, (distributional Neural Network or single output Neural Network) a apropriate loss function has to be chosen first. The data is then split into a training and a evaluation set and the model is trained on on the training partition using the algorithms detailed in  \ref{subsubsec:training_nn}, using backpropagation/gradient descent as well as dropout learning for regularization for a chosen number of times.  TODO ADD CONVERGENCE ? 
+The next step in the process corresponds to the hyperparameter tuning of the Neural Network. According to the chosen type of Neural Network, (distributional Neural Network or single output Neural Network) a apropriate loss function has to be chosen first. The data is then split into a training and a evaluation set and the model is trained on on the training partition using the algorithms detailed in  \ref{subsubsec:training_nn}, using backpropagation/gradient descent as well as dropout learning for regularization for a chosen number of times.  
+
+TODO: ADD CONVERGENCE ? 
 
 Once the training process is ended, the model is used to predict for the test partition of the data and the results evaluated by scoring the predictions using the Mean Squared Error (MSE). 
 
@@ -229,8 +226,8 @@ and a plot like shown in Figure	\ref{fig:hyperparm} generated to decide what the
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.5\textwidth]{figures/modelling/hyperparm.png} 
-	\caption{Exemplary Output of Hyperparameter tuning }
+	\includegraphics[width=0.8\textwidth]{figures/modelling/hyperparm.png} 
+	\caption{Exemplary Output of Hyperparameter tuning with number of hiden layers $n_{hidden} $ and number of nodes per hidden layer}
 	\label{fig:hyperparm}
 \end{figure}
 
@@ -241,7 +238,12 @@ The final decision on what is the ideal model configuration is not only based on
 
 After having chosen a specific model configuration, a model is then trained using that configuration. This is the model that eventually is introduced into the optimization problems of detailed in  Chapter \ref{section:optimization}.
 
-\subsection{Potential future Improvements in the Modelling Process}
+\section{Possible Improvements in the Modelling Process}
 
-- Data points not evenly spaced 
-- Different number of nodes in each hidden layer
+As one of the two main components of the optimization process, the model generation step show some potential for improvement in the future. The currently evenly spaced grid of data points could be replaced by a grid that is organicly generated according to the gradient of the underlying function by providing a denser grid in areas of large changes in the power function to provide the Neural Network with more data in these areas. The result could be an improved accuracy and efficency, with data points concentrated on areas of interst.   
+
+To reduce the size of the Network, the number of Neurons could be allowed to change from hidden layer to hidden layer and allow for removing expendable Neurons. 
+
+To improve the accuracy of the models, an higher quality simulation method could be used to generate the dataset. While this might come at a computational cost, the more accurate data might lead to a increase in accuracy of power output prediction, which depending on the application context might be worthwhile.  
+
+Beyond these two proposals, it is safe to assume that a wide range of methods are available to improve performance and efficency. These might be worthwhile to pursue once the method developed in this thesis has shown to provide a valuable new approach to wind turbine positioning optimization.
