@@ -11,6 +11,15 @@ With wind energy thus expected to become the main contributer to the EU's energy
 TODO : REWRITE 
 As discussed in the Introduction, one of the main goals in the optimization of layouts, is to reduce the negative impact wake effects inbetween windturbines have on overall power generation with yield reduction of up to $15 \%$  mainly due to reduced windspeeds in wake reagions. Optimizing the farm for overal minimal wake exposure inbetween windturbines can thus bring potentially significant power yield increases. \cite{hou_review_2019} \cite{KIM2024123383}
 
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=1\textwidth]{figures/introduction/intro_plot.png} 
+	\caption{}
+	\label{fig:intro_plot}
+\end{figure}
+
+
 As a contribution to increasing power efficeny on future wind farms, this thesis is dedicated to a new approach for optimizing the placement of a fixed number of wind turbines in a predefined area (typically a square). To solve this optimization problem, a extension to the pyomo python library is used, that allows the introduction of Neural Networks to the optimization problem as constraints. \cite{ALCANTARA2023120895} This extension allows for introducing a Neural Neural Network to model the effects of wind turbine placement relative to each other on power production for the respective windturbines. Introducing this model to the optimization problem defined in pyomo then allows for the optimization of overall power productions across all wind turbines in the wind park. The optimization problem in its simplest form can be defined as
 
 \begin{align}
