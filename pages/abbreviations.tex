@@ -1,21 +1,18 @@
-\chapter{Abbreviations}
+\chapter*{Abbreviations}
+\addcontentsline{toc}{chapter}{Abbreviations}
+\vspace{-0.5em} % Optional: tighten vertical space if needed
 
-\begin{table}[H]
-    \centering
-    \renewcommand{\arraystretch}{2}
-    \begin{tabular}{ll}
-		AEP & Anual Energy Production \\
-		MSE & Mean Squared Error \\
-		ReLu & Rectifier Linear Unit \\
-		IEA & International Energy Agency \\
-		MW  & Mega Watt
-    \end{tabular}
-\end{table}
 
-\makeatletter
-\ifthenelse{\pdf@strcmp{\languagename}{english}=0}{
-    % English version
-}{
-    % German version
-}
-\makeatother
+\renewcommand{\arraystretch}{1.5}
+\noindent
+\begin{tabular}{@{}ll@{}}
+	\textbf{Abbreviation} & \textbf{Meaning} \\
+	\hline
+	AEP & Annual Energy Production \\
+	MSE & Mean Squared Error \\
+	ReLu & Rectified Linear Unit \\
+	IEA & International Energy Agency \\
+	MW  & Mega Watt \\
+\end{tabular}
+\vspace{-1em} % Optional: to avoid pushing to next page
+\clearpage % Ensures the next chapter starts on a new page

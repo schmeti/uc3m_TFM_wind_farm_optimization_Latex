@@ -266,7 +266,7 @@ Since the parameter space has now become three dimensional, conditioning on a si
 \end{figure}
 
 
-For optimization purposes, the individual 
+For optimization purposes, the individual power per wind direction however becomes less relevant, as the power outputs are weighted by their probability of occouring. 
 To do so, we first have to define the probability distribution of the wind directions. For simplicity sake, a Normal distribution with mean 270° and standard deviation of 5°, as shown in Figure \ref{fig:wind_dist_opti}.
 
 
@@ -278,24 +278,40 @@ To do so, we first have to define the probability distribution of the wind direc
 \end{figure}
 
 
+Using this distribution, the expected power for the ranges of x and y coordinates can thus now be calculated by aggregating the powers for the different wind directions as a sum weighted by probability to yield the expected farm power generated at the specific coordinate. By evaluating the expected farm power both for the training data as well as for predictions for the training data, we can again compare the results and deviations as done in Figure \ref{label} 
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/optimization/wind_dist_opti.png} 
+	\caption{REPLACE FIGURE }
+	\label{fig:wind_dist_opti}
+\end{figure}
 
 
 
 While increasing the size of the Neural Network would undoubtetly reduce the deviations across wind directions and for the individual wind directions, the size of the Neural Network is restricted by the solvability of the optimization problem. While there is no exact threshold, solving time of the mixed integer problem that results from the embedding of the Neural Network increases roughly exponentially by adding Neurons to the Network and therefore adding binary variables to the problem. The shown Neural Network was thus found to be the maximum feasible size of Neural Network for the given computational recourses. 
 
 
+The same way the distribution of farm power was previously dependent on the wind direction, it is now dependent on the wind direction distribution and therefore in the case of the Normal, on its mean and variance. Changing the mean of the distribution corresponds to changing the direction of the principal wind direction and thus the direction of the highest expected wake losses from turbine 1. Meanwhile, increasing the variance corresponds to spreading the expected wake losses due to turbine 1 across a wider range of wind directions and therefore increasing the areaaffected by expected wake losses, while reducing the absolute reduction in expected power within the area affected by the wake. This relationship can be seen in the expected power distribution for a normal with mean MEAN and standard deviation STDEVIATION shown in Figure \ref{label}
 
 
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/optimization/wind_dist_opti.png} 
+	\caption{REPLACE FIGURE }
+	\label{fig:wind_dist_opti}
+\end{figure}
 
+
+The normal distribution is used in this thesis as a placeholder for proof of concept purposes. In practice, in practical application, the real wind distribution would have to be evaluated at the specific location. 
 
 TODO: Improvements -> train NN slightly beyondactual parameter space
 
 \subsubsection{Optimization}
 
-With the model set up, we now proceed to solving the stochastich optimization problem for a maximial expected farm power output. 
+With the model set up, solving the stochastich optimization problem for a maximial expected farm power output can be attempted
 
-
-The Neural Network and the wind direction distribution is then again introduced into pyomo to find a global maximum. Like before, plotting the result as shown in \ref{fig:prob_data_lininter}, it is possible to visually find that there is a large range of more or less equally optimal points in the wind directions that the wind distribution discretization does not cover the space evenly as the parameter space for x and y of turbine 2 are not identical. The discretization in the shown scenarios thus does not sufficiently cover the whole space, leading to seemingly optimal areas where in reality significant wake losses can be expected.
+The Neural Network and the wind direction distribution is  again introduced into pyomo to find a global maximum. Like before, plotting the result as shown in \ref{fig:prob_data_lininter}, it is possible to visually find that there is a large range of more or less equally optimal points in the wind directions that the wind distribution discretization does not cover the space evenly as the parameter space for x and y of turbine 2 are not identical. The discretization in the shown scenarios thus does not sufficiently cover the whole space, leading to seemingly optimal areas where in reality significant wake losses can be expected.
 
 
 \begin{figure}[h] 
@@ -305,8 +321,33 @@ The Neural Network and the wind direction distribution is then again introduced 
 	\label{fig:prob_data_lininter}
 \end{figure}
 
+In practice, the size of the Neural Network required to represent the farm power function makes the identification of the global optimum challanging due to the number of integer variables added to the problem. Adding to this is the large range of nearly equal optimal solutions, leading to solvers like gurobi to require extremely large runtimes. The development of best optimal and upper limit, showing how the maximum of the objective function remains nearly identical, the upper limit to the solution converges towards the first found optima. This behaviour can bee seend in Figure \ref{asd}
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=1\textwidth]{figures/optimization/prob_data_lininter.png} 
+	\caption{}
+	\label{fig:prob_data_lininter}
+\end{figure} 
+
+TODO : PLAY WITH CONSTRAINTS
+
+A discussion of the value of this approach will be performed in the conclusion of this thesis. 
 	
 \subsubsection{Stochastic Optimization: Quantile Discretization of Wind Direction Distribution }
+
+One thing noticable in the previously shown plots of the distribution of theexpected farm power is how it is affected by the discretization of the wind directions, previously done in 10° steps. This does however mean that in the directions for which a long wake is considered (x direction/ 270°) the space in between the space between the scenarios  is fairly large, as very apparent  by the degree lines shwon in the solution to the probabilistic case (Figure \ref{label}). A way to take this into account is by discretizing not with an constant step length but based on the quantiles of the distribution. The discretization can thus be performed not by a constant length of the disrcetization steps, but a constant probability within a chosen number of quantiles. For each quantile individually the mean is then calculated and the resulting expected values for the quantile are taken as discretization steps. Such an approach used for the same Normal distribution with mean 270° and standard deviation 5° degrees, fixing the scenario/quantile count to 7, yields the discretization shown in Figure \ref{fig:wind_dist_opti_quantiles}. 
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/optimization/wind_dist_opti_quantiles.png} 
+	\caption{Quantile based discretization of Normal mean 270°,  standard deviation 5°, disrcetized into 7 scenarios with equal probability for scenario and the scenario angle corresponding to the expected value for the quantile }
+	\label{fig:wind_dist_opti_quantiles}
+\end{figure} 
+
+Using this distribution, the expected power distribution changes for the corresponding scenarios/quantiles, with the the expected wake losses moving towards the true high-probability zone for wake losses. The optimal area thus moves out of the spaces inbetween scenarios to the true zone of low expected wake losses, as can be seen in Figure \ref{label}
+
+\subsubsection{Stochastic Optimization: Unsymmetric Wind Direction Distributions}
 
 
 \section{The three Turbine Problem}
@@ -327,3 +368,7 @@ FINIDINGS:
 problem degenerate if not one wind turbine fixed
 
 \section{Possible Improvements in Optimization}
+
+The main limitation of the approach as presented in this chapter is that the increasing the number of neurons in the Neural Network by one neuron increases the number of integer variables by one and the number of constraints by three, while adding an additional scenario requires reintroducing the entire Neural Network for that specific scenario. As computation time is a function of the number of constraints and decision variables, the computation time increases approximately exponentially with adding neurons or scenarios. 
+
+Finding a way to reduce the number of constraints/integer variables would thus be the main concern when attempting to improve the presented method. 
