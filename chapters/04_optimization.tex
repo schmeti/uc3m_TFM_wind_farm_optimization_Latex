@@ -153,12 +153,12 @@ To begin with, the simulations to generate the dataset used to train the corresp
 	\label{tab:val_determ_data}
 \end{table}
 
-In line with the parameter space defined in Table \ref{tab:val_determ_data}, simulations are performed as described in Section \ref{sec:model_pipe}. The resulting dataset is then introduced into the Neural Network optimization method, yielding Figure \ref{fig:determ_nn_opti}. HERE WE DECIDE SOMETHING BEFORE CONtiNUING
+In line with the parameter space defined in Table \ref{tab:val_determ_data}, simulations are performed as described in Section \ref{sec:model_pipe}. The resulting dataset is then introduced into the Neural Network optimization method, yielding Figure \ref{fig:determ_nn_opti}. When considering the results, it is apparent that models with number of layers greater or equal than two and greater or equal than 8 nodes per hidden layer are nearly identical in performance. The chosen model configuration is therefore a $\text{NN}(5\,{-}\,8^{\times2}\,{-}\,1)$, yielding good performance while limiting model size as much as possible, to be implemented in the optimization problem. 
 
 \begin{figure}[h] 
 	\centering
 	\includegraphics[width=1\textwidth]{figures/optimization/determ_nn_opti.png} 
-	\caption{}
+	\caption{Grid search for Neural Network parameters for the deterministic model, showing how models with $n_{hidden} \geq 2$ and $n_{nodes} \geq 8$ yield near identical performance}
 	\label{fig:determ_nn_opti}
 \end{figure}
 
@@ -167,7 +167,7 @@ To validate the chosen model and gain a deeper understanding of its predictive p
 \begin{figure}[h] 
 	\centering
 	\includegraphics[width=1\textwidth]{figures/optimization/determ_model_colormap.png} 
-	\caption{}
+	\caption{Colormap showing the Farm Power distribution for the second turbine being placed at any given x/y based on linear interpolation for real data, predicted data and the resulting percentage deviation, indicating overall good fit with only area of major deviation extremly close to turbine 1, an area excluded from the feasible region of the optimization problem }
 	\label{fig:determ_model_colormap}
 \end{figure}
 
@@ -178,14 +178,14 @@ The model thus appears to be suitable to represent the interactions between the 
 
 With the model trained and validated, we proceed to implementing the defined optimization problem in pyomo  (\href{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_determin.ipynb}{Notebook Github}) and embedd the trained model using the the approach described in Section \ref{sec:constraint_learning}.
 
-When solving this problem as defined using Gurobi, a major challenge becomes apparent as the result shows that there is an large number of equally optimal solutions (e.g. degeneracy of the problem, see  \cite{vanderbei2020chapter3} for an exact definition of degeneracy) everywhere outside the wake of turbine 1, as can be seen  in the visualization of the optimization result found in \ref{fig:two_turbine_heatmap_degeneracy}.
+When solving this problem as defined using Gurobi, a major challenge becomes apparent as the result shows that there is an large number of equally optimal solutions (e.g. degeneracy of the problem, see  \cite{vanderbei2020chapter3} for an exact definition of degeneracy) everywhere outside the wake of turbine 1, as can be seen  in the visualization of the optimization result found in \ref{fig:opti_determ270}.
 
 
 \begin{figure}[h] 
 	\centering
 	\includegraphics[width=1\textwidth]{figures/optimization/opti_determ270.png} 
 	\caption{Deterministic optimization of the relative position of two windturbines relative to each other with winddirection 270° and constant windspeed}
-	\label{fig:two_turbine_heatmap_degeneracy}
+	\label{fig:opti_determ270}
 \end{figure}
 
 The existence of a large number of optimal values thus has to be taken into account moving forward.
