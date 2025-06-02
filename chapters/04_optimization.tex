@@ -1,14 +1,12 @@
 \chapter{Optimization}\label{section:optimization}
 
-With the model of farm/turbine power established, the following section treats the embedding of the trained model(s)  into a stochastic optimization problem. The underlying theory of optimization under uncertainty and constraint learning is introduced before the actual optimization problems are defined, required models trained and results discussed.
+With the model of farm/turbine power established, the following section treats the embedding of the trained model(s)  into a stochastic optimization problem. The underlying theory of optimization under uncertainty and constraint learning is introduced before the actual optimization problems are defined, the required models trained, and the results discussed.
 
 \section{Optimization under Uncertainty}
 
-TODO : REWRITE FIRST SCENTENCE
+Like in many areas, knowledge about the uncertainty associated with certain variables can change decisions in which these variables' underlying uncertainty plays a part. That means that while optimizing anything from next year's crop to tomorrow's energy pricing, the field of Stochastic Programming is occupied with finding methods that allow for introducing these uncertainties into optimization problems.
 
-While some things in life are certain, most are not and this is as true for optimization as for anything else. That means, that while optimizing anything from next year's crop to tomorrow's energy pricing might be done by assuming fixed values for the parameters of an optimization problem, in reality, most of these parameters contain uncertainty. The field of Stochastic Programming is occupied with finding methods that allow for introducing these uncertainties into optimization problems.
-
-One way to approach these uncertainties is to split the problem into scenarios. A bakery for example has to decide on how many Baguettes to bake for the next day to maximize its profit. Baking too few Baguettes will lead to missing out on potential sales while baking too many baguettes will mean that the demand is fulfilled but the money invested in the excess number of baguettes is lost. Assuming the mean number of baguettes bought every day is $1000$, the price to buy a baguette is $1 €$ and the cost to produce a baguette is $0,2 €$ the classical approach to solving such a problem would be by the following formulation \footnote{$x$ of course non-negative}: 
+One way to approach these uncertainties is to split the problem into scenarios. A bakery, for example, has to decide on how many Baguettes to bake for the next day to maximize its profit. Baking too few Baguettes will lead to missing out on potential sales, while baking too many baguettes will mean that the demand is fulfilled, but the money invested in the excess number of baguettes is lost. Assuming the mean number of baguettes bought every day is $1000$, the price to buy a baguette is $1 €$ and the cost to produce a baguette is $0,2 €$ the classical approach to solving such a problem would be by the following formulation \footnote{$x$ of course non-negative}: 
 
 
 \begin{align*}
@@ -16,7 +14,7 @@ One way to approach these uncertainties is to split the problem into scenarios. 
 \end{align*}
 
 
-To introduce the two scenarios additional scenarios of the demand being $10\%$ lower ($900$ Baguettes) and $10\%$ higher ($1100$ Baguettes) can be added. Assuming that the mean demand has a $50\%$ probability of occurring and the $10\%$ demand increases a $20\%$ probability and the decrease a $10\%$  probability, the problem can be modified to maximize the expected profit across these three scenarios by the formulation
+To introduce the two scenarios, additional scenarios of the demand being $10\%$ lower ($900$ Baguettes) and $10\%$ higher ($1100$ Baguettes) can be added. Assuming that the mean demand has a $50\%$ probability of occurring and the $10\%$ demand increases a $20\%$ probability, and the decrease a $10\%$  probability, the problem can be modified to maximize the expected profit across these three scenarios by the formulation
 
 \begin{align*}
 	\max_{x} \quad & 0.5 \cdot \left(1.00 \cdot \min(x,1000) - 0.20 \cdot x \right) \\
@@ -24,7 +22,7 @@ To introduce the two scenarios additional scenarios of the demand being $10\%$ l
 	&+ 0.2 \cdot \left(1.00 \cdot \min(x,1100) - 0.20 \cdot x\right)
 \end{align*}
 
-The result from this optimization problem would be the Expected profit and how many Baguettes are the optimal number of Baguettes to yield the maximum Expected profit across all scenarios. This would be optimal assuming there exists no more information about the next day's demand, meaning that by using this approach the total profit over a long time would be maximal. In case there is more information regarding the next day's demand the probabilities that give the weights in this optimization might shift, with one scenario potentially reaching probability $100\%$ if there were to be absolute certainty that the next day's demand would be for example $1100$ baguettes. As having such exact information is however very rare, the best solution will be in most cases to maximize the profit Expectation. 
+The result from this optimization problem would be the Expected profit and how many Baguettes are the optimal number of Baguettes to yield the maximum Expected profit across all scenarios. This would be optimal assuming there is no more information about the next day's demand, meaning that by using this approach, the total profit over a long time would be maximal. In case there is more information regarding the next day's demand, the probabilities that give the weights in this optimization might shift, with one scenario potentially reaching probability $100\%$ if there were to be absolute certainty that the next day's demand would be, for example, $1100$ baguettes. As having such exact information is very rare, the best solution will be in most cases to maximize the profit Expectation. 
 
 The obvious connection to conventional statistical analysis is that the demand is a random variable that can take multiple values, in this case, we assumed it to be a discrete random variable $Y$ with support ${900,1000,1100}$ even though in real-world applications the demand of baguettes will move somewhere between $[0,\infty]$. Finding the Expectation for such a discrete random variable can be done as 
 
@@ -43,7 +41,7 @@ Using these two expressions, optimization problems can thus be formulated to opt
 
 \section{Constraint Learning} \label{sec:constraint_learning}
 
-Constraint learning refers to introducing a model that has learned relationships between certain variables from data into an optimization problem. In the case of constraint learning, the model gets more specifically introduced into an optimization problem as part of a constraint. As many real-life relationships struggle to be represented by explicit function to be defined as objective function or constraint, introducing machine learning models to optimization problems opens up many new possibilities \cite{FAJEMISIN20241}.
+Constraint learning refers to introducing a model that has learned relationships between certain variables from data into an optimization problem. In the case of constraint learning, the model is more specifically introduced into an optimization problem as part of a constraint. As many real-life relationships struggle to be represented by an explicit function to be defined as an objective function or constraint, introducing machine learning models to optimization problems opens up many new possibilities \cite{FAJEMISIN20241}.
 
 In the case of Neural Networks, one way of introducing a Network as a constraint into an optimization problem is by recognizing that when using the Rectifier Linear Unit (ReLu) Function is used as an activation function with the (linear) sum of neuron bias and weighted inputs $\tilde{v}_i^\ell$ being the function argument
 
@@ -53,7 +51,7 @@ In the case of Neural Networks, one way of introducing a Network as a constraint
 \end{equation}
 
 
-the function can be rewritten as the following constraints 
+The function can be rewritten as the following constraints 
 
 \begin{align}
 	v_i^\ell &\geq \tilde{v}_i^\ell \\
@@ -73,7 +71,7 @@ with $j_i \in \{0,1\}$ a integer variable such that
 
 This decomposition allows for introducing a Neural Network of limited size into an optimization problem by decomposing it into a set of linear constraints of the form shown above. \cite{ALCANTARA2023120895}
 
-\section{The two Turbine Problem}
+\section{The Two Turbine Problem}
 
 Optimizing the positioning of two wind turbines can be expressed as optimizing the relative position of a second wind turbine $T_2$ to a fixed first turbine $T_2$, defined by the relative distances $\Delta x$ and  $\Delta y$. Both  $\Delta x$ and  $\Delta y$ are constrained by minimum distance $\Delta_{min}$ to  $T_2$ and maximum distances $\Delta x_{max}$/$\Delta y_{max}$ to make the problem bounded. 
 This problem can be visualized as shown in Figure \ref{fig:two_turbine_problem}.
@@ -85,13 +83,13 @@ This problem can be visualized as shown in Figure \ref{fig:two_turbine_problem}.
 	\label{fig:two_turbine_problem}
 \end{figure}
 
-The objective function to be optimized is the total power generation, e.g. the sum of power generated by both turbines. This objective is a function both of the position of the wind turbine as well as of the wind conditions like wind direction and wind speed. 
+The objective function to be optimized is the total power generation, e.g. the sum of power generated by both turbines. This objective is a function of both the position of the wind turbine as well as of the wind conditions like wind direction and wind speed. 
 
 $$
 f_{total Power}(x,y,\text{windspeed},\text{wind direction}, \text{(...)})
 $$
 
-Differently from the geographic coordinates, th wind condition parameters like windspeed are inherently not deterministic and follow distributions like the normal distribution as shown in Figure \ref{fig:wind_dist}.
+Different from the geographic coordinates, the wind condition parameters like windspeed are inherently not deterministic and follow distributions like the normal distribution as shown in Figure \ref{fig:wind_dist}.
 
 \begin{figure}[h] 
 	\centering
@@ -100,10 +98,10 @@ Differently from the geographic coordinates, th wind condition parameters like w
 	\label{fig:wind_dist}
 \end{figure}
 
-The two main challenges of the optimization of the shown two turbine problem are thus: 
+The two main challenges of the optimization of the two-turbine problem are thus: 
 
 \begin{enumerate}
-	\item Introduce the complex relationship between turbine position and wind conditions and power output into the optimization problem
+	\item Introduce the complex relationship between turbine position and wind conditions, and power output into the optimization problem
 	\item Introduce the non-deterministic nature of wind conditions into the optimization problem
 \end{enumerate}
 
@@ -112,7 +110,7 @@ The first of these challenges is tackled by applying the Neural Network models d
 
 \subsection{Deterministic Optimization}
 
-To begin solving the problem, the simplest approach is taken by assuming the wind conditions to be discrete. In application, this might be analogous to getting the Expectation of the joined probability distribution of all wind condition parameters. Taking these parameters as constant and homogeneous across the entire parameter space, the result is an objective function that is effectively only dependent on the relative positions of the turbine with the previously discussed geometrical constraints.
+To begin solving the problem, the simplest approach is to assume the wind conditions to be discrete. In application, this might be analogous to getting the Expectation of the joint probability distribution of all wind condition parameters. Taking these parameters as constant and homogeneous across the entire parameter space, the result is an objective function that is effectively only dependent on the relative positions of the turbine with the previously discussed geometrical constraints.
 
 \begin{align}
 	\max_{\mathbf{x}, \mathbf{y}} & f_{Power,\text{NN}}(\Delta x, \Delta y) \\
@@ -124,16 +122,16 @@ To begin solving the problem, the simplest approach is taken by assuming the win
 
 where:
 \begin{itemize}
-	\item \( (\Delta x, \Delta y) \) are the relative distances of the two turbines,
-	\item \( f_{Power, \text{NN}}(\Delta x, \Delta y)\) is a neural network (deterministic) approximating the total power output ,
+	\item \( (\Delta x, \Delta y) \) are the relative distances of the two turbines
+	\item \( f_{Power, \text{NN}}(\Delta x, \Delta y)\) is a neural network (deterministic) approximating the total power output
 	\item \(  X_{\max}, Y_{\max} \) define the maximal distance the two turbines can be placed apart
-	\item \( d_{\min} \) is the minimum distance between the two turbines.
+	\item \( d_{\min} \) is the minimum distance between the two turbines
 \end{itemize}
 
 
 \subsubsection{Modelling}
 
-To begin with, the simulations to generate the dataset used to train the corresponding model for the deterministic case has to be generated. For the deterministic optimization, the position of the second turbine is variable in the bounds and a even steplength resulting from $n_{Steps}$ as shown in Table \ref{tab:val_determ_data}. All remaining airflow characteristics remain constant (deterministic).
+To begin with, the simulations to generate the dataset used to train the corresponding model for the deterministic case have to be generated. For the deterministic optimization, the position of the second turbine is variable in the bounds and an even steplength resulting from $n_{Steps}$ as shown in Table \ref{tab:val_determ_data}. All remaining airflow characteristics remain constant (deterministic).
 
 \begin{table}[ht]
 	\centering
@@ -153,7 +151,7 @@ To begin with, the simulations to generate the dataset used to train the corresp
 	\label{tab:val_determ_data}
 \end{table}
 
-In line with the parameter space defined in Table \ref{tab:val_determ_data}, simulations are performed as described in Section \ref{sec:model_pipe}. The resulting dataset is then introduced into the Neural Network optimization method, yielding Figure \ref{fig:determ_nn_opti}. When considering the results, it is apparent that models with number of layers greater or equal than two and greater or equal than 8 nodes per hidden layer are nearly identical in performance. The chosen model configuration is therefore a $\text{NN}(5\,{-}\,8^{\times2}\,{-}\,1)$, yielding good performance while limiting model size as much as possible, to be implemented in the optimization problem. 
+In line with the parameter space defined in Table \ref{tab:val_determ_data}, simulations are performed as described in Section \ref{sec:model_pipe}. The resulting dataset is then introduced into the Neural Network optimization method, yielding Figure \ref{fig:determ_nn_opti}. When considering the results, it is apparent that models with a number of layers greater or equal than two and greater or equal than 8 nodes per hidden layer are nearly identical in performance. The chosen model configuration is therefore a $\text{NN}(5\,{-}\,8^{\times2}\,{-}\,1)$, yielding good performance while limiting model size as much as possible, to be implemented in the optimization problem. 
 
 \begin{figure}[h] 
 	\centering
@@ -162,7 +160,7 @@ In line with the parameter space defined in Table \ref{tab:val_determ_data}, sim
 	\label{fig:determ_nn_opti}
 \end{figure}
 
-To validate the chosen model and gain a deeper understanding of its predictive power, we proceed to visualize the total power output across the variable parameter space. Figure \ref{fig:determ_model_colormap} shows a colormap generated from linealy interpolating between the datapoints for the simulation data (Subplot 1), a finder grid of predictions of the model (Subplot 2) and a colormap of the percentage deviation between model and raw data (calculated at points and then again linearly interpolated). The color in the first two subplots represents the \textit{total power generated of both wind turbines}, with the second turbine placed at the given x/y location We find that the model appears to overall represents the behaviour well, with only systematic deviation occuring at locations very close to the first wind turbine at the origin. As the simulation allows for placing wind turbines at the exact same location and with corresponding results unrealistic, simulations in this area are not necessarily correct in results either. For the optimization, the minimum distant constraint removes this area from the feasible region, meaning that the comparetively large deviations there do not affect the optimization. 
+To validate the chosen model and gain a deeper understanding of its predictive power, we proceed to visualize the total power output across the variable parameter space. Figure \ref{fig:determ_model_colormap} shows a colormap generated from linealy interpolating between the datapoints for the simulation data (Subplot 1), a finder grid of predictions of the model (Subplot 2) and a colormap of the percentage deviation between model and raw data (calculated at points and then again linearly interpolated). The color in the first two subplots represents the \textit{total power generated of both wind turbines}, with the second turbine placed at the given x/y location We find that the model appears to overall represents the behaviour well, with only systematic deviation occuring at locations very close to the first wind turbine at the origin. As the simulation allows for placing wind turbines at the exact same location and with corresponding results unrealistic, simulations in this area are not necessarily correct in results either. For the optimization, the minimum distance constraint removes this area from the feasible region, meaning that the comparatively large deviations there do not affect the optimization. 
 
 \begin{figure}[h] 
 	\centering
@@ -176,7 +174,7 @@ The model thus appears to be suitable to represent the interactions between the 
 \subsubsection{Optimization}
 
 
-With the model trained and validated, we proceed to implementing the defined optimization problem in pyomo  (\href{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_determin.ipynb}{Notebook Github}) and embedd the trained model using the the approach described in Section \ref{sec:constraint_learning}.
+With the model trained and validated, we proceed to implementing the defined optimization problem in Pyomo  (\href{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_determin.ipynb}{Notebook Github}) and embed the trained model using the approach described in Section \ref{sec:constraint_learning}.
 
 When solving this problem as defined using Gurobi, a major challenge becomes apparent as the result shows that there is an large number of equally optimal solutions (e.g. degeneracy of the problem, see  \cite{vanderbei2020chapter3} for an exact definition of degeneracy) everywhere outside the wake of turbine 1, as can be seen  in the visualization of the optimization result found in \ref{fig:opti_determ270}.
 
@@ -184,7 +182,7 @@ When solving this problem as defined using Gurobi, a major challenge becomes app
 \begin{figure}[h] 
 	\centering
 	\includegraphics[width=1\textwidth]{figures/optimization/opti_determ270.png} 
-	\caption{Deterministic optimization of the relative position of two windturbines relative to each other with winddirection 270° and constant windspeed}
+	\caption{Deterministic optimization of the relative position of two wind turbines relative to each other with wind direction 270° and constant windspeed}
 	\label{fig:opti_determ270}
 \end{figure}
 
