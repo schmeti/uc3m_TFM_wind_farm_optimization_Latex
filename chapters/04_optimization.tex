@@ -138,10 +138,10 @@ To begin with, the simulations to generate the dataset used to train the corresp
 	\caption{Value Ranges for Deterministic Two Turbine Problem Data Set}
 	\begin{tabular}{|l|c|c|c|}
 		\hline
-		\textbf{Variable} & \textbf{Constant/Variable} & \textbf{Value} & \textbf{$n_{Steps}$}\\
+		\textbf{Variable} & \textbf{Const/Variable} & \textbf{Value} & Step Length\\
 		\hline
-		$x_{\text{turb2}}$ & Variable & [0, 5000] m &\\
-		$y_{\text{turb2}}$ & Variable & [0, 500] m &\\
+		$x_{\text{turb2}}$ & Variable & [0, 5000] m & 50 m\\
+		$y_{\text{turb2}}$ & Variable & [0, 500] m & 50 m \\
 		wind\_speed & Constant & 8 m/s & -\\
 		wind\_direction & Constant & 270°&- \\
 		turbulence\_intensity & Constant & 0.06 & - \\
@@ -155,7 +155,7 @@ In line with the parameter space defined in Table \ref{tab:val_determ_data}, sim
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=1\textwidth]{figures/optimization/determ_nn_opti.png} 
+	\includegraphics[width=0.7\textwidth]{figures/optimization/determ_nn_opti.png} 
 	\caption{Grid search for Neural Network parameters for the deterministic model, showing how models with $n_{hidden} \geq 2$ and $n_{nodes} \geq 8$ yield near identical performance}
 	\label{fig:determ_nn_opti}
 \end{figure}
