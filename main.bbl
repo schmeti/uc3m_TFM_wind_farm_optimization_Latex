@@ -6,10 +6,11 @@ European~Environment Agency.
 \newblock Technical Report Technical report 6/2009, European Environment Agency, 2009.
 \newblock Accessed: 2025-04-03.
 
-\bibitem{Akpabio}
-Inimfon Akpabio and Serap Savari.
-\newblock On the construction of distribution-free prediction intervals for an image regression problem in semiconductor manufacturing.
-\newblock 03 2022.
+\bibitem{alcantara_ruiz_distcl_2022_git}
+Antonio Alcantara and Carlos Ruiz.
+\newblock Distcl: A neural network-based distributional constraint learning tool for mixed‑integer stochastic optimization.
+\newblock \url{https://github.com/antonioalcantaramata/DistCL}, 2022.
+\newblock Accessed: 2025-06-06.
 
 \bibitem{ALCANTARA2023120895}
 Antonio Alcántara and Carlos Ruiz.
@@ -103,6 +104,12 @@ C.T. Kiranoudis and Z.B. Maroulis.
 \newblock Effective short-cut modelling of wind park efficiency.
 \newblock {\em Renewable Energy}, 11(4):439--457, 1997.
 
+\bibitem{dtu_pywake_2025}
+{Mads M. Pedersen and Paul van der Laan and Mikkel Friis‑Møller and Alexander Meyer Forsting and Riccardo Riva and Leonardo Andrés Alcayaga Román and Javier Criado Risco and Julian Quick and Jens Peter Schøler Christiansen and Bjarke Tobias Olsen and Rafael Valotta Rodrigues and Pierre‑Elouan Réthoré}.
+\newblock {PyWake: an open‑source Python wind farm simulation tool}.
+\newblock \url{https://topfarm.pages.windenergy.dtu.dk/PyWake/}, 2025.
+\newblock Developed at DTU Wind Energy; computes flow fields, turbine-level power, and annual energy production for wind farms using various wake models.
+
 \bibitem{Madsen2022}
 Mads Madsen, Frederik Zahle, Sergio~Gonzalez Horcas, Thanasis Barlas, and Niels Sørensen.
 \newblock Cfd-based curved tip shape design for wind turbine blades.
@@ -113,10 +120,17 @@ M.~Magnusson and A.-S. Smedman.
 \newblock Air flow behind wind turbines.
 \newblock {\em Journal of Wind Engineering and Industrial Aerodynamics}, 80(1):169--189, 1999.
 
-\bibitem{Marcjasz_2023}
-Grzegorz Marcjasz, Michał Narajewski, Rafał Weron, and Florian Ziel.
-\newblock Distributional neural networks for electricity price forecasting.
-\newblock {\em Energy Economics}, 125:106843, September 2023.
+\bibitem{nrel_floris}
+{National Renewable Energy Laboratory (NREL)}.
+\newblock {FLORIS}: Flow redirection and induction in steady state.
+\newblock GitHub repository, 2025.
+\newblock Version 4.4.2, https://github.com/NREL/floris.
+
+\bibitem{nrel_floris_web}
+{National Renewable Energy Laboratory (NREL)}.
+\newblock {FLORIS: FLOw Redirection and Induction in Steady State}.
+\newblock \url{https://www.nrel.gov/wind/floris}, Mar 2025.
+\newblock Open‑source wind plant optimization tool.
 
 \bibitem{nielsen2015neuralChap1}
 Michael Nielsen.
@@ -128,15 +142,33 @@ Michael Nielsen.
 \newblock Neural networks and deep learning - chapter 2: How the backpropagation algorithm works, 2015.
 \newblock Accessed: 2025-05-01.
 
+\bibitem{schmetz2025_gendata_git}
+Simon Schmetz.
+\newblock generate\_data\_floris.ipynb - wind farm power modelling, 2025.
+\newblock Accessed: 2025-06-06.
+
+\bibitem{schmetz2025twoturbine_stoch1}
+Simon Schmetz.
+\newblock Two-turbine problem with constraint learning and probability-weighted objective.
+\newblock \url{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_probweighted.ipynb}, 2025.
+\newblock Accessed: 2025-06-06.
+
+\bibitem{schmetz2025twoturbine_stoch2}
+Simon Schmetz.
+\newblock Two-turbine problem with constraint learning and probability-weighted objective (expectation neural network).
+\newblock \url{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_probweightedt_expNN.ipynb}, 2025.
+\newblock Accessed: 2025-06-06.
+
+\bibitem{schmetz2025twoturbine_determ}
+Simon Schmetz.
+\newblock Two-turbine wind farm optimization using constrained learning (deterministic).
+\newblock \url{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_determin.ipynb}, 2025.
+\newblock Accessed: 2025-06-06.
+
 \bibitem{Sinner_2024}
 Michael Sinner and Paul Fleming.
 \newblock Robust wind farm layout optimization.
 \newblock {\em Journal of Physics: Conference Series}, 2767(3):032036, jun 2024.
-
-\bibitem{Steinwart_2011}
-Ingo Steinwart and Andreas Christmann.
-\newblock Estimating conditional quantiles with the help of the pinball loss.
-\newblock {\em Bernoulli}, 17(1), February 2011.
 
 \bibitem{TI2020114025}
 Zilong Ti, Xiao~Wei Deng, and Hongxing Yang.
