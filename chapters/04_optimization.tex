@@ -245,7 +245,7 @@ We then proceed to hyperparameter tuning of the model. Due to the added complexi
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.7\textwidth]{figures/optimization/prob_nn_opti.png} 
+	\includegraphics[width=0.62\textwidth]{figures/optimization/prob_nn_opti.png} 
 	\caption{Grid Search results for a Neural Network configuration to predict for data with variable wind direction, showing similar performance for models of layers greater or equal than two, starting at 50 or more nodes}
 	\label{fig:determ_nn_opti}
 \end{figure}
@@ -271,9 +271,9 @@ Having observed the deviation described above, another layer is added to the mod
 
 Since the parameter space has now become three-dimensional, conditioning on a single wind direction does not cover the full performance of the model. Figure \ref{fig:rmse_dist_3layers50nodes} shows the development of RMSE across different wind directions, indicating that the border regions and wind directions with an increased total wake length (e.g. wind directions closer to 270° wind direction) experience higher RMSE, providing more space for errors to accumulate. 
 
-\begin{figure}[h] 
+\begin{figure}[h!] 
 	\centering
-	\includegraphics[width=0.6\textwidth]{figures/optimization/rmse_dist_3layers50nodes.png}
+	\includegraphics[width=0.55\textwidth]{figures/optimization/rmse_dist_3layers50nodes.png}
 	\caption{RMSE of  $\text{NN}(5\,{-}\,25^{\times10}\,{-}\,1)$ across the parameter space of wind direction }
 	\label{fig:rmse_dist_3layers50nodes}
 \end{figure}
@@ -304,7 +304,7 @@ Using this distribution, the expected power for the ranges of x and y coordinate
 In the same way the distribution of farm power was previously dependent on the deterministic wind direction, it is now dependent on the wind direction distribution, e.g. its mean and variance, assuming a Normal distribution. Changing the mean of the distribution corresponds to changing the direction of the principal wind direction and thus the direction of the highest expected wake losses from turbine 1. Meanwhile, increasing the variance corresponds to spreading the expected wake losses due to turbine 1 across a wider range of wind directions and therefore increasing the area affected by expected wake losses, while reducing the absolute reduction in expected power within the area affected by the wake. This relationship can be seen in the expected power distribution for a normal with mean 220° and standard deviation 20° shown in Figure \ref{fig:wind_dist_opti2}.
 
 
-\begin{figure}[h] 
+\begin{figure}[h!] 
 	\centering
 	\includegraphics[width=1\textwidth]{figures/optimization/prob_expectation2.png} 
 	\caption{Distribution of Expectation of Farm power from a discretized Normal distribution with mean 220° and standard deviation 20° with steplength 10°}
@@ -426,7 +426,7 @@ With the parameter grid defined, the simulations can be performed, joint with th
 
 The model of configuration $\text{NN}(5\,{-}\,20^{\times2}\,{-}\,1)$ is thus trained and a brief visual inspection performed to investigate how well the model fits the data. As shown in Figure \ref{fig:stoch2_heatmap_inspect_NN}, does the model encorporate the shape of the Expected Power Distribution across x/y fairly well, with the only major deviations near the orgin, e.g. the position of Turbine 1 and directly after Turbine 1 in the principal wind direction. 
 
-\begin{figure}[h] 
+\begin{figure}[H] 
 	\centering
 	\includegraphics[width=1\textwidth]{figures/optimization/stoch2/stoch2_heatmap_inspect_NN.png} 
 	\caption{Visual comparison of training data vs predictions for Neural Network for Expectation of Farm Power, with linear interpolation in between data points to generate heatmap}
@@ -434,6 +434,8 @@ The model of configuration $\text{NN}(5\,{-}\,20^{\times2}\,{-}\,1)$ is thus tra
 \end{figure} 
 
 The model thus appears to fit the physical behavior suficiently well to be able to proceed to the optimization step. 
+
+
 
 \subsubsection{Optimization}
 
