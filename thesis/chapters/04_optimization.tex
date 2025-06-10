@@ -79,7 +79,7 @@ This problem can be visualized as shown in Figure \ref{fig:two_turbine_problem}.
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.6\textwidth]{figures/optimization/two_turbine_problem_schematic.png} % file name without extension
+	\includegraphics[width=0.6\textwidth]{../figures/optimization/two_turbine_problem_schematic.png} % file name without extension
 	\caption{Optimizing the relative position $\Delta x$/$\Delta y$ of a second wind turbine $T_2$ to a fixed first turbine $T_2$, constrained by minimum distance $d_{min}$ to  $T_1$ and maximum distances $\Delta x_{max}$/$\Delta y_{max}$}
 	\label{fig:two_turbine_problem}
 \end{figure}
@@ -94,7 +94,7 @@ Different from the geographic coordinates, the wind condition parameters like wi
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.9\textwidth]{figures/optimization/wind_dist.png} % file name without extension
+	\includegraphics[width=0.9\textwidth]{../figures/optimization/wind_dist.png} % file name without extension
 	\caption{Histogram and Polar Plot across radiants for a normally distributed wind direction probability density function with mean West}
 	\label{fig:wind_dist}
 \end{figure}
@@ -159,7 +159,7 @@ In line with the parameter space defined in Table \ref{tab:val_determ_data}, sim
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.7\textwidth]{figures/optimization/determ_nn_opti.png} 
+	\includegraphics[width=0.7\textwidth]{../figures/optimization/determ_nn_opti.png} 
 	\caption{Grid search for Neural Network parameters for the deterministic model, showing how models with $n_{hidden} \geq 2$ and $n_{nodes} \geq 8$ yield near identical performance}
 	\label{fig:determ_nn_opti}
 \end{figure}
@@ -168,7 +168,7 @@ To validate the chosen model and gain a deeper understanding of its predictive p
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=1\textwidth]{figures/optimization/determ_model_colormap.png} 
+	\includegraphics[width=1\textwidth]{../figures/optimization/determ_model_colormap.png} 
 	\caption{Colormap showing the Farm Power distribution for the second turbine being placed at any given x/y based on linear interpolation for real data, predicted data and the resulting percentage deviation, indicating overall good fit with only area of major deviation extremly close to turbine 1, an area excluded from the feasible region of the optimization problem }
 	\label{fig:determ_model_colormap}
 \end{figure}
@@ -185,7 +185,7 @@ When solving this problem as defined using Gurobi, a major challenge becomes app
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=1\textwidth]{figures/optimization/opti_determ270.png} 
+	\includegraphics[width=1\textwidth]{../figures/optimization/opti_determ270.png} 
 	\caption{Deterministic optimization of the relative position of two wind turbines relative to each other with wind direction 270° and constant windspeed}
 	\label{fig:opti_determ270}
 \end{figure}
@@ -245,7 +245,7 @@ We then proceed to hyperparameter tuning of the model. Due to the added complexi
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.62\textwidth]{figures/optimization/prob_nn_opti.png} 
+	\includegraphics[width=0.62\textwidth]{../figures/optimization/prob_nn_opti.png} 
 	\caption{Grid Search results for a Neural Network configuration to predict for data with variable wind direction, showing similar performance for models of layers greater or equal than two, starting at 50 or more nodes}
 	\label{fig:determ_nn_opti}
 \end{figure}
@@ -255,7 +255,7 @@ With a model chosen, we again investigate its performance and find that even wit
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=1\textwidth]{figures/optimization/prob_model_colormap.png} 
+	\includegraphics[width=1\textwidth]{../figures/optimization/prob_model_colormap.png} 
 	\caption{A heatmap of total generated farm power for a wind direction of 260° with datapoints and linear interpolation in between. Plot 1 shows the raw data, plot 2 the predictions of the $\text{NN}(5\,{-}\,50^{\times2}\,{-}\,1)$, plot 3 the percentage difference between training points and predictions}
 	\label{fig:prob_model_colormap}
 \end{figure}
@@ -264,7 +264,7 @@ Having observed the deviation described above, another layer is added to the mod
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=1\textwidth]{figures/optimization/prob_model_colormap_2.png} 
+	\includegraphics[width=1\textwidth]{../figures/optimization/prob_model_colormap_2.png} 
 	\caption{A heatmap of total generated farm power for a wind direction of 260° with datapoints and linear interpolation in between. Plot 1 shows the raw data, plot 2 the predictions of the $\text{NN}(5\,{-}\,50^{\times3}\,{-}\,1)$, plot 3 the percentage difference between training points and predictions, overall showing improved }
 	\label{fig:prob_model_colormap_2}
 \end{figure}
@@ -273,7 +273,7 @@ Since the parameter space has now become three-dimensional, conditioning on a si
 
 \begin{figure}[h!] 
 	\centering
-	\includegraphics[width=0.55\textwidth]{figures/optimization/rmse_dist_3layers50nodes.png}
+	\includegraphics[width=0.55\textwidth]{../figures/optimization/rmse_dist_3layers50nodes.png}
 	\caption{RMSE of  $\text{NN}(5\,{-}\,25^{\times10}\,{-}\,1)$ across the parameter space of wind direction }
 	\label{fig:rmse_dist_3layers50nodes}
 \end{figure}
@@ -286,7 +286,7 @@ To do so, first the probability distribution of the wind directions has to be de
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=1\textwidth]{figures/optimization/wind_dist_opti.png} 
+	\includegraphics[width=1\textwidth]{../figures/optimization/wind_dist_opti.png} 
 	\caption{Discrete Wind Direction Probability Distribution with mean 270° and standard deviation 5°, discretized in intervals of 10° }
 	\label{fig:wind_dist_opti}
 \end{figure}
@@ -296,7 +296,7 @@ Using this distribution, the expected power for the ranges of x and y coordinate
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=1\textwidth]{figures/optimization/prob_expectation.png} 
+	\includegraphics[width=1\textwidth]{../figures/optimization/prob_expectation.png} 
 	\caption{Distribution of Expectation of Farm power from a discretized Normal distribution with mean 260° and standard deviation 10° with steplength 10°}
 	\label{fig:prob_expectation}
 \end{figure}
@@ -306,7 +306,7 @@ In the same way the distribution of farm power was previously dependent on the d
 
 \begin{figure}[h!] 
 	\centering
-	\includegraphics[width=1\textwidth]{figures/optimization/prob_expectation2.png} 
+	\includegraphics[width=1\textwidth]{../figures/optimization/prob_expectation2.png} 
 	\caption{Distribution of Expectation of Farm power from a discretized Normal distribution with mean 220° and standard deviation 20° with steplength 10°}
 	\label{fig:wind_dist_opti2}
 \end{figure}
@@ -322,7 +322,7 @@ The Neural Network and the wind direction distribution are introduced into pyomo
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=1\textwidth]{figures/optimization/prob_data_lininter.png} 
+	\includegraphics[width=1\textwidth]{../figures/optimization/prob_data_lininter.png} 
 	\caption{}
 	\label{fig:prob_data_lininter}
 \end{figure}
@@ -335,7 +335,7 @@ The first problem observed in this formulation as the gaps between the scenario 
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.8\textwidth]{figures/optimization/wind_dist_opti_quantiles.png} 
+	\includegraphics[width=0.8\textwidth]{../figures/optimization/wind_dist_opti_quantiles.png} 
 	\caption{Quantile based discretization of Normal mean 270°,  standard deviation 5°, disrcetized into 7 scenarios with equal probability for scenario and the scenario angle corresponding to the expected value for the quantile }
 	\label{fig:wind_dist_opti_quantiles}
 \end{figure} 
@@ -379,7 +379,7 @@ To generate the model with the farm power expectation as output, more steps are 
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=1\textwidth]{figures/optimization/stoch2/stoch2_model_flow.png} 
+	\includegraphics[width=1\textwidth]{../figures/optimization/stoch2/stoch2_model_flow.png} 
 	\caption{Flowchart displaying the steps used to set up a Neural Network model to model Expected Farm Power across \(\Delta x\) and  \(\Delta y\)}
 	\label{fig:stoch2_model_flow}
 \end{figure} 
@@ -408,7 +408,7 @@ As at this stage the parameter grid for wind direction is not yet well defined, 
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.8\textwidth]{figures/optimization/stoch2/dist_discret.png} 
+	\includegraphics[width=0.8\textwidth]{../figures/optimization/stoch2/dist_discret.png} 
 	\caption{Quantile based discretized Normal with mean 260° and standard deviation 10°, discretized for 35 quantiles}
 	\label{fig:stoch2_dist}
 \end{figure} 
@@ -418,7 +418,7 @@ With the parameter grid defined, the simulations can be performed, joint with th
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.8\textwidth]{figures/optimization/stoch2/stoch2_NNopti.png} 
+	\includegraphics[width=0.8\textwidth]{../figures/optimization/stoch2/stoch2_NNopti.png} 
 	\caption{Grid Search Results for models trained on Farm Power Expectation data, with parameter grid as defined in Table 	\ref{tab:val_prob2_data} and Figure  \ref{fig:stoch2_dist} }
 	\label{fig:stoch2_NNopti}
 \end{figure} 
@@ -428,7 +428,7 @@ The model of configuration $\text{NN}(5\,{-}\,20^{\times2}\,{-}\,1)$ is thus tra
 
 \begin{figure}[H] 
 	\centering
-	\includegraphics[width=1\textwidth]{figures/optimization/stoch2/stoch2_heatmap_inspect_NN.png} 
+	\includegraphics[width=1\textwidth]{../figures/optimization/stoch2/stoch2_heatmap_inspect_NN.png} 
 	\caption{Visual comparison of training data vs predictions for Neural Network for Expectation of Farm Power, with linear interpolation in between data points to generate heatmap}
 	\label{fig:stoch2_heatmap_inspect_NN}
 \end{figure} 
@@ -443,7 +443,7 @@ The set up model is thus again embedded into a now seemingly deterministic optim
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=1\textwidth]{figures/optimization/stoch2/stoch2_opti.png} 
+	\includegraphics[width=1\textwidth]{../figures/optimization/stoch2/stoch2_opti.png} 
 	\caption{Optimization Result for maximization of Expected Farm Power, with wind direction Normally distributed with mean 260° and standard deviation 10°, discretized into 35 scenarios using quantile based discretization and Neural Network configuration $\text{NN}(5\,{-}\,20^{\times2}\,{-}\,1)$ }
 	\label{fig:stoch2_opti}
 \end{figure} 
