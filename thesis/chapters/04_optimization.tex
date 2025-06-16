@@ -108,6 +108,8 @@ The two main challenges of the optimization of the two-turbine problem are thus:
 
 The first of these challenges is tackled by applying the Neural Network models discussed in Section \ref{sec:modelling} and introducing them into the optimization problem via constraint learning as described in Section \ref{sec:constraint_learning}. For the second problem, multiple approaches are now explored in the following subsections.
 
+In the following formulations, Pytorch \cite{paszke2017automatic} is used to set up the Neural Network Architecture and traint the models, the Python Pyomo Package \cite{bynum2021pyomo} used to formulate the underlying optimization problems,  a modified version of the Constraint Learning algorithm developed in \cite{alcantara2024distcl} used to embedd the Neural Network into the optimization Problemthe Python packages and Gruobi \cite{gurobi} is used to solve the  optimization Problems.
+
 
 \subsection{Deterministic Optimization}
 

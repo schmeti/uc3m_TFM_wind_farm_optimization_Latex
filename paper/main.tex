@@ -101,15 +101,15 @@
 %%             state={},
 %%             country={}}
 
-\author{Simon Schmetz} %% Author name
+\author{Simon Schmetz, Carlos Ruiz Mora} %% Author name
 
 %% Author affiliation
 \affiliation{organization={Universidad Carlos III de Madrid},%Department and Organization
-            addressline={test}, 
-            city={test},
-            postcode={test}, 
-            state={test},
-            country={test}}
+            addressline={Adress}, 
+            city={Madrid},
+            postcode={Postcode}, 
+            state={Comunidad de Madrid},
+            country={Spain}}
 
 
 %% Use \subsubsection, \paragraph, \subparagraph commands to 
@@ -300,14 +300,7 @@ Beyond this, the ReLu function allows for embedding the Neural Network into a op
 
 
 The training of the Neural Network thus corresponds to adjusting the weights and biases in a way that minimizes the chosen loss function. The algorithm most commonly used for this is called \textit{Backpropagation}. \cite{nielsen2015neuralChap1}
-The algorithm to do so corresponds to: 
 
-\begin{enumerate}
-	\item Introduce Training Data into the Neural Network
-	\item Evaluate the Loss Function for the Training Points (with small random values for weights and biases for the first iteration) and evaluate the gradients of the Loss function for the gradients of the individual weights and biases 
-	\item Update the weights and biases according to a learning rate $\rho$ weighted by the specific weight or biases gradient
-	\item Repeat process $n$ Epochs, with one Epoch being the algorithm passing through all training points once
-\end{enumerate}
 
 
 
@@ -318,17 +311,15 @@ With the theoretical and pratical foundations of the model of farm/turbine power
 
 \subsection{Optimization under Uncertainty} \label{subsec:opti_under_uncertainty}
 
-Like in many areas, knowledge about the uncertainty associated with certain variables can change decisions in which these variables underlying uncertainty plays a part. For example, while optimizing anything from next year's crop to tomorrow's energy pricing, the field of Stochastic Programming is occupied with finding methods that allow for introducing these uncertainties into optimization problems.
+One way to approach uncertainties  ins optimization is to split the problem into scenarios. A bakery, for example, has to decide on how many Baguettes to bake for the next day to maximize its profit. To represent uncertainty, the problem is split into three scenarios for the possible demands
 
-One way to approach these uncertainties is to split the problem into scenarios. A bakery, for example, has to decide on how many Baguettes to bake for the next day to maximize its profit. Baking too few Baguettes will lead to missing out on potential sales, while baking too many baguettes will mean that the demand is fulfilled, but the money invested in the excess number of baguettes is lost. Assuming the mean number of baguettes bought every day is $1000$, the price to buy a baguette is $1 €$ and the cost to produce a baguette is $0,2 €$ the classical approach to solving such a problem would be by the following formulation \footnote{$x$ non-negative}: 
+\begin{enumerate}
+	\item Demand $= 900$ Baguettes, probability $30\%$ 
+	\item Demand $= 1000$ Baguettes, probability $50\%$ 
+	\item Demand $= 1100$ Baguettes, probability $20\%$ 
+\end{enumerate}
 
-
-\begin{align*}
-	\max_{x} \quad \left( 1.00 \cdot \min(x,1000) - 0.20 \cdot x \right)
-\end{align*}
-
-
-To represent uncertainty, additional scenarios of the demand being $10\%$ lower ($900$ Baguettes) and $10\%$ higher ($1100$ Baguettes) can be added. Assuming that the mean demand has a $50\%$ probability of occurring, the $10\%$ demand increases a $20\%$ probability and the $10\%$ decrease a $30\%$  probability, the problem can be modified to maximize the expected profit across these three scenarios by the formulation
+to yield the formulation
 
 \begin{align*}
 	\max_{x} \quad & 0.5 \cdot \left(1.00 \cdot \min(x,1000) - 0.20 \cdot x \right) \\
@@ -336,21 +327,9 @@ To represent uncertainty, additional scenarios of the demand being $10\%$ lower 
 	&+ 0.2 \cdot \left(1.00 \cdot \min(x,1100) - 0.20 \cdot x\right)
 \end{align*}
 
-Assuming only these three scenarios are possible, the result from this optimization problem would be the Expected profit and how many Baguettes are the optimal number of Baguettes to yield the maximum Expected profit across all scenarios. This would be optimal assuming there is no more information about the next day's demand, meaning that by using this approach, the total profit over a long time would be maximal. In case there is more information regarding the next day's demand, the probabilities that give the weights in this optimization might shift, with one scenario potentially reaching probability $100\%$ if there were to be absolute certainty that the next day's demand would be, for example, $1100$ baguettes. As having such exact information is very rare, the best solution will be in most cases to maximize the profit Expectation. 
+Assuming only these three scenarios are possible, the result from this optimization problem would be the Expected profit and how many Baguettes are the optimal number of Baguettes to yield the maximum Expected profit across all scenarios. 
 
-The obvious connection to conventional statistical analysis is that the demand is a random variable that can take multiple values, in this case, we assumed it to be a discrete random variable $Y$ with support ${900,1000,1100}$ even though in real-world applications the demand of baguettes will move somewhere between $[0,\infty]$. Finding the Expectation for such a discrete random variable can be done as 
-
-\[
-\mathbb{E}[X] = \sum_{i} x_i \cdot \mathbb{P}(X = x_i) = \sum_{i} x_i p_i
-\]
-
-or for continuous random variables  
-
-\[
-\mathbb{E}[X] = \int_{-\infty}^{\infty} x \cdot f_X(x) \, dx
-\]
-
-Using these two expressions, optimization problems can thus be formulated to optimize the Expectation of objective functions containing random variables. \cite{BirgeLouveauxStochasticProgramming}
+The connection to conventional statistical analysis is that the demand is a random variable that can take multiple values, in this case, we assumed it to be a discrete random variable $Y$ with support ${900,1000,1100}$ even though in real-world applications the demand of baguettes will move somewhere between $[0,\infty]$. The scenarios thus aim to approximate the true Expectation of the distribution of the objective function. \cite{BirgeLouveauxStochasticProgramming}
 
 
 \subsection{Constraint Learning} \label{sec:constraint_learning}
@@ -397,7 +376,7 @@ A problem that occours with the discrete scenarios introduced in Section \ref{su
 	\label{fig:wind_dist_opti_quantiles}
 \end{figure} 
 
-Using this distribution, the expected power distribution changes for the corresponding scenarios/quantiles, with the space left between scenarios proportional to the probability density. When considering the previous approach to stochastic optimization, the number of scenarios that can be introduced into the problem has now become the main limitation. The following subsection provides an alternative set up that allows for a greater number of scenarios.
+Using this distribution, the expected power distribution changes for the corresponding scenarios/quantiles, with the space left between scenarios proportional to the probability density. When considering the previous approach to stochastic optimization, the number of scenarios that can be introduced into the problem has now become the main limitation. The following subsection provides an alternative set up that allows for a greater number of scenarios. 
 
 \section{The Two Turbine Problem}
 
@@ -421,7 +400,7 @@ Different from the geographic coordinates, the wind condition parameters like wi
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.9\textwidth]{../figures/optimization/wind_dist.png} % file name without extension
+	\includegraphics[width=0.8\textwidth]{../figures/optimization/wind_dist.png} % file name without extension
 	\caption{Histogram and Polar Plot across radiants for a normally distributed wind direction probability density function with mean West}
 	\label{fig:wind_dist}
 \end{figure}
@@ -434,6 +413,8 @@ The two main challenges of the optimization of the two-turbine problem are thus:
 \end{enumerate}
 
 The first of these challenges is tackled by applying the Neural Network models discussed in Section \ref{sec:modelling} and introducing them into the optimization problem via constraint learning as described in Section \ref{sec:constraint_learning}. For the second problem, two approaches probabilistic approaches are explored in the following subsections.
+
+In the following formulations, Pytorch \cite{paszke2017automatic} is used to set up the Neural Network Architecture and traint the models, the Python Pyomo Package \cite{bynum2021pyomo} used to formulate the underlying optimization problems,  a modified version of the Constraint Learning algorithm developed in \cite{alcantara2024distcl} used to embedd the Neural Network into the optimization Problemthe Python packages and Gruobi \cite{gurobi} is used to solve the  optimization Problems.
 
 \subsection{Stochastic Optimization: Wind distribution indipendent Neural Network} \label{sec:stoch_opti_1}
 
@@ -461,6 +442,7 @@ The following section will first treat the univariate case of only wind directio
 
 The Notebook belonging to this formulation can be found in \href{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_probweighted.ipynb}{Stochastic optimization with farm power NN Fomulation Notebook} \cite{schmetz2025twoturbine_stoch1}
 
+
 \subsubsection{Modelling}
 
 We begin by finding a fitting Neural Network model that can be embedded into the optimization problem. To do so, we again define the parameter space, this time with wind direction being variable and set up in a grid with step length of 10°. The full parameter grid is defined in Table \ref{tab:val_prob_data}
@@ -482,57 +464,20 @@ We begin by finding a fitting Neural Network model that can be embedded into the
 	\label{tab:val_prob_data}
 \end{table}
 
-We then proceed to hyperparameter tuning of the model. As apparent in Figure \ref{fig:determ_nn_opti}, the performance appears to flatline for models with or more than 2 layers and with or more than 50 nodes, yielding similar performance. To minimize the number of nodes, we thus proceed with the initial model configuration $\text{NN}(5\,{-}\,50^{\times2}\,{-}\,1)$ for the following optimization.
+Based on a grid search optimization and experimentation,  \textit{the model configuration $\text{NN}(5\,{-}\,50^{\times3}\,{-}\,1)$  is chosen}. Initially, $\text{NN}(5\,{-}\,50^{\times2}\,{-}\,1)$ was considered, but showed to represent the geomtry of the wake no sufficiently well, which is why a additional hidden layer was added. The grid search results and comparison between both competing models can be found in the Appendix (Figures \ref{fig:determ_nn_opti},  \ref{fig:prob_model_colormap} and \ref{fig:prob_model_comparison})
+
+
+
+With a model chosen, we investigate its performance and find that while visually the shape of the wake generally appears to fit, the deviation in percent shows greater deviation, especially at greater distances away from Turbine 1 for the case of wind direction 260°, as shown in Figure \ref{fig:prob_model_colormap_2}.
+
 
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.62\textwidth]{../figures/optimization/prob_nn_opti.png} 
-	\caption{Grid Search results for a Neural Network configuration to predict for data with variable wind direction, showing similar performance for models of layers greater or equal than two, starting at 50 or more nodes}
-	\label{fig:determ_nn_opti}
+	\includegraphics[width=1\textwidth]{../figures/optimization/prob_model_colormap_2.png} 
+	\caption{A heatmap of total generated farm power for a wind direction of 260° with datapoints and linear interpolation in between. Plot 1 shows the raw data, plot 2 the predictions of the $\text{NN}(5\,{-}\,50^{\times3}\,{-}\,1)$, plot 3 the percentage difference between training points and predictions, overall showing improved }
+	\label{fig:prob_model_colormap_2}
 \end{figure}
-
-
-With a model chosen, we investigate its performance and find that while visually the shape of the wake generally appears to fit, the deviation in percent shows greater deviation, especially at greater distances away from Turbine 1 for the case of wind direction 260°, as shown in Figure \ref{fig:prob_model_colormap}. The model appears to also show some artifacts, with the most notable being the highest values in parallel to the wake right at the borders of the wake flow itself.
-
-%\begin{figure}[h] 
-%	\centering
-%	\includegraphics[width=1\textwidth]{../figures/optimization/prob_model_colormap.png} 
-%	\caption{A heatmap of total generated farm power for a wind direction of 260° with datapoints and linear interpolation in between. Plot 1 shows the raw data, plot 2 the predictions of the $\text{NN}(5\,{-}\,50^{\times2}\,{-}\,1)$, plot 3 the percentage difference between training points and predictions}
-%	\label{fig:prob_model_colormap}
-%\end{figure}
-
-Having observed the deviation described above, another layer is added to the model in an attempt to prevent the previous behaviour. The resulting configuration $\text{NN}(5\,{-}\,50^{\times3}\,{-}\,1)$ improved the previous models weaknesses in that respect as can be seen in Figure \ref{fig:prob_model_colormap_2}, which is why \textit{the final model choosen for the optimization is  $\text{NN}(5\,{-}\,50^{\times3}\,{-}\,1)$}
-%
-%\begin{figure}[h] 
-%	\centering
-%	\includegraphics[width=1\textwidth]{../figures/optimization/prob_model_colormap_2.png} 
-%	\caption{A heatmap of total generated farm power for a wind direction of 260° with datapoints and linear interpolation in between. Plot 1 shows the raw data, plot 2 the predictions of the $\text{NN}(5\,{-}\,50^{\times3}\,{-}\,1)$, plot 3 the percentage difference between training points and predictions, overall showing improved }
-%	\label{fig:prob_model_colormap_2}
-%\end{figure}
-
-
-
-
-\begin{figure}[h]
-	\centering
-	\begin{subfigure}[b]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{../figures/optimization/prob_model_colormap.png}
-		\caption{Predictions of $\text{NN}(5\,{-}\,50^{\times2}\,{-}\,1)$}
-		\label{fig:prob_model_colormap}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[b]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{../figures/optimization/prob_model_colormap_2.png}
-		\caption{Predictions of $\text{NN}(5\,{-}\,50^{\times3}\,{-}\,1)$}
-		\label{fig:prob_model_colormap_2}
-	\end{subfigure}
-	\caption{Comparison of model predictions: the left with two hidden layers, the right with three, showing reduced deviation in the final model.}
-	\label{fig:prob_model_comparison}
-\end{figure}
-
-
-While increasing the size of the Neural Network might further reduce the deviations across wind directions and for the individual wind directions, it is restricted by the solvability of the optimization problem. While there is no exact threshold, the solving time of the mixed integer problem that results from the embedding of the Neural Network increases roughly exponentially by adding Neurons to the Network and therefore adding binary variables to the problem. The shown model is deemed sufficient because of that trade-off.
 
 For optimization purposes, the individual power per wind direction becomes less relevant, as the power outputs are weighted by their probability of occurring. 
 To do so, first the probability distribution of the wind directions has to be defined, like the Normal distribution with mean 270° and standard deviation of 10° shown in Figure \ref{fig:wind_dist_opti}. To calculate the expectation for the retized parameter space using the trained model, this distribution itself has to be discretized in line with the initial parameter space defintion, which in this case is done in 10° steps. 
@@ -562,7 +507,7 @@ The normal distribution is used in this thesis as a placeholder for proof-of-con
 
 With the model set up, solving the stochastic optimization problem for a maximum expected farm power output can be attempted. In the case of optimization, the problem is limited to three scenarios due to the computational constraints due to the size of the problem. A normal distribution with a mean of 270° and  a standard deviation of 5° was therefore used as the wind direction distribution, yielding three scenarios (260°,270°,280°).
 
-The Neural Network and the wind direction distribution are introduced into pyomo to find a global maximum. As previously, a range of optima exists, with Poyomo choosing among this area, as seen in Figure \ref{fig:prob_data_lininter}. More specifically in this case, the area close to the wake had been shown to predict higher values than in the simulations by the model (see Figure \ref{fig:prob_model_colormap_2}), showing the optimization to find the global maximum within the provided Neural Network. 
+The Neural Network and the wind direction distribution are introduced into mo to find a global maximum. As previously, a range of optima exists, with Poyomo choosing among this area, as seen in Figure \ref{fig:prob_data_lininter}. More specifically in this case, the area close to the wake had been shown to predict higher values than in the simulations by the model (see Figure \ref{fig:prob_model_colormap_2}), showing the optimization to find the global maximum within the provided Neural Network. 
 
 \begin{figure}[h] 
 	\centering
@@ -634,7 +579,6 @@ As previously, we proceed to defining the parameter space, with the only differe
 
 As at this stage the parameter grid for wind direction is not yet well defined, the wind direction distribution and the number of discretization steps first has to be chosen. For this section, we proceed with the same normal distribution mith mean 260° and standard deviation 10° used in Section \ref{sec:stoch_opti_1}, but now discretized for 35 quantiles as shown in Figure \ref{fig:stoch2_dist}.
 
-
 \begin{figure}[h] 
 	\centering
 	\includegraphics[width=0.7\textwidth]{../figures/optimization/stoch2/dist_discret.png} 
@@ -642,20 +586,7 @@ As at this stage the parameter grid for wind direction is not yet well defined, 
 	\label{fig:stoch2_dist}
 \end{figure} 
 
-With the parameter grid defined, the simulations can be performed, joint with the wind condition probabilities and expectations for the farm power calculated, yielding the dataset to be used in the training of the Neural Network. We thus proceed to the grid search optimization of the Neural Network configuration, as done in the previous chapters. For the distribution shown above, we find the 2-hidden layer and 20 neurons per hidden layer $\text{NN}(5\,{-}\,20^{\times2}\,{-}\,1)$ configuration to yield the best results for least numbers of neurons, as can be seen in Figure \ref{fig:stoch2_NNopti}. 
-
-\textit{We thus proceed with the configuration $\text{NN}(5\,{-}\,20^{\times2}\,{-}\,1)$}.
-
-
-\begin{figure}[h] 
-	\centering
-	\includegraphics[width=0.6\textwidth]{../figures/optimization/stoch2/stoch2_NNopti.png} 
-	\caption{Grid Search Results for models trained on Farm Power Expectation data, with parameter grid as defined in Table 	\ref{tab:val_prob2_data} and Figure  \ref{fig:stoch2_dist} }
-	\label{fig:stoch2_NNopti}
-\end{figure} 
-
-
-The model of configuration $\text{NN}(5\,{-}\,20^{\times2}\,{-}\,1)$ is thus trained and a brief visual inspection performed to investigate how well the model fits the data. As shown in Figure \ref{fig:stoch2_heatmap_inspect_NN}, does the model encorporate the shape of the Expected Power Distribution across x/y fairly well, with the only major deviations near the orgin, e.g. the position of Turbine 1 and directly after Turbine 1 in the principal wind direction. 
+With the parameter grid defined, the simulations can be performed, joint with the wind condition probabilities and expectations for the farm power calculated, yielding the dataset to be used in the training of the Neural Network. \textit{We find the configuration $\text{NN}(5\,{-}\,20^{\times2}\,{-}\,1)$ to be fit well} (grid search Visualization in Appendix, Figure \ref{fig:stoch2_NNopti}). As shown in Figure \ref{fig:stoch2_heatmap_inspect_NN}, does the model encorporate the shape of the Expected Power Distribution across x/y fairly well, with the only major deviations near the orgin, e.g. the position of Turbine 1 and directly after Turbine 1 in the principal wind direction. 
 
 \begin{figure}[h] 
 	\centering
@@ -665,8 +596,6 @@ The model of configuration $\text{NN}(5\,{-}\,20^{\times2}\,{-}\,1)$ is thus tra
 \end{figure} 
 
 The model thus appears to fit the physical behavior suficiently well to be able to proceed to the optimization step. 
-
-
 
 \subsubsection{Optimization}
 
@@ -681,8 +610,6 @@ The set up model is thus again embedded into a now seemingly deterministic optim
 
 Notably, the solving of this variation optimization problem requires significantly less computational recourses as the previous stochastic formulation, with a significantly larger quantity of scenarios considered for calculating the Expectation. In the entire optimization pipeline, the main limitation is in this formulation constitued by running the simulations required for the individual discretization of different wind direction/wind condition distributions. Due to the efficency of the FLORIS simulations, this does not seem to be a significant limitation for the two turbine configuration at this moment however. Therefore, this method appears to be better fit to scale up the complexity of the wind condition distribution, allowing for expanding to a multivariate distribution of the potentially dependent variables wind direction and wind speed for example. 
 
-
-
 \section{Conclusion}\label{chapter:conclusion}
 
 The Paper contains the training of a Neural Network to predict the total farm power/expected farm power generated by a wind farm consisting of two turbines, with the inputs to the model as the relative position of the second wind turbine to the first as well as the wind condition parameters like wind direction. The resulting Neural Networks where embedded into a mixed integer linear programming problem using an approach for decomposing a Neural Network into lmixed-integer inear constraints. Two optimization problems where solved using this aproach, for a stochastic optimizations with a scenario based approach, to maximize the expected power generation, subject to a discreitzed distribution of the wind direction. Here two variants where developed, one via a large general neural network with the wind condition parameters as additional variables and one via a reduced Neural Network, trained on the already evaluated expected farm power for each x/y position of the second turbine. 
@@ -694,6 +621,57 @@ Overall, the second stochastic formulation appears to be the only variant that s
 With the second stochastic formulation having shown to deliver good results, the next steps would revolve around investigating how to generalize the formulation to a larger number of wind turbines. Here, a fundamental reformulation might be required as the current formulation using relative positions would quickly grow the parameter space exponentially. 
 
 None the less it might be worthwile to pursue as the underlying Constraint Learning Methodology has been shown to be able to cope with the complexity of wind turbine wakes in this Thesis.
+
+
+\section{Appendix}\label{chapter:Appendix}
+
+\subsection{Stochastic Optimization: Wind distribution indipendent Neural Network}
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.62\textwidth]{../figures/optimization/prob_nn_opti.png} 
+	\caption{Grid Search results for a Neural Network configuration to predict for data with variable wind direction, showing similar performance for models of layers greater or equal than two, starting at 50 or more nodes}
+	\label{fig:determ_nn_opti}
+\end{figure}
+
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=1\textwidth]{../figures/optimization/prob_model_colormap.png} 
+	\caption{A heatmap of total generated farm power for a wind direction of 260° with datapoints and linear interpolation in between. Plot 1 shows the raw data, plot 2 the predictions of the $\text{NN}(5\,{-}\,50^{\times2}\,{-}\,1)$, plot 3 the percentage difference between training points and predictions}
+	\label{fig:prob_model_colormap}
+\end{figure}
+
+
+
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{../figures/optimization/prob_model_colormap.png}
+		\caption{Predictions of $\text{NN}(5\,{-}\,50^{\times2}\,{-}\,1)$}
+		\label{fig:prob_model_colormap_sidebyside}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{../figures/optimization/prob_model_colormap_2.png}
+		\caption{Predictions of $\text{NN}(5\,{-}\,50^{\times3}\,{-}\,1)$}
+		\label{fig:prob_model_colormap_sidebyside_2}
+	\end{subfigure}
+	\caption{Comparison of model predictions: the left with two hidden layers, the right with three, showing reduced deviation in the final model.}
+	\label{fig:prob_model_comparison}
+\end{figure}
+
+\subsection{Stochastic Optimization:  Expectation Modelling Neural Network}
+
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[width=0.6\textwidth]{../figures/optimization/stoch2/stoch2_NNopti.png} 
+	\caption{Grid Search Results for models trained on Farm Power Expectation data, with parameter grid as defined in Table 	\ref{tab:val_prob2_data} and Figure  \ref{fig:stoch2_dist} }
+	\label{fig:stoch2_NNopti}
+\end{figure} 
+
 
 \begin{thebibliography}{00}
 
@@ -940,6 +918,28 @@ Simon Schmetz,
 \url{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_probweightedt_expNN.ipynb},
 2025.
 Accessed: 2025-06-06.
+
+\bibitem[Bynum et al.(2021)]{bynum2021pyomo}
+Michael L. Bynum, Gabriel A. Hackebeil, William E. Hart, Carl D. Laird, Bethany L. Nicholson, John D. Siirola, Jean-Paul Watson, and David L. Woodruff,\\
+\textit{Pyomo--Optimization Modeling in Python},\\
+Third edition, volume 67, Springer Science \& Business Media, 2021.
+
+\bibitem[Gurobi Optimization(2024)]{gurobi}
+Gurobi Optimization, LLC,\\
+\textit{Gurobi Optimizer Reference Manual},\\
+\url{https://www.gurobi.com}, 2024.
+
+
+\bibitem[Paszke et al.(2017)]{paszke2017automatic}
+Adam Paszke, Sam Gross, Soumith Chintala, Gregory Chanan, Edward Yang, Zachary DeVito, Zeming Lin, Alban Desmaison, Luca Antiga, and Adam Lerer,\\
+\textit{Automatic Differentiation in PyTorch},\\
+Proceedings of the NIPS 2017 Workshop, 2017.
+
+\bibitem[Alcántara(2024)]{alcantara2024distcl}
+Antonio Alcántara,\\
+\textit{DistCL: A Distributed Contrastive Learning Framework},\\
+\url{https://github.com/antonioalcantaramata/DistCL}, 2024.\\
+Accessed: 2025-06-16.
 
 
 \end{thebibliography}
