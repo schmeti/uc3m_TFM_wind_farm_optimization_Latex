@@ -1,13 +1,13 @@
 \chapter{Optimization}\label{section:optimization}
 
-With the theoretical and pratical foundations of the model of farm/turbine power established, the following section treats the embedding of the trained model(s)  into a deterministic/stochastic optimization problem. The underlying theory of optimization under uncertainty and constraint learning is introduced before the actual optimization problems for the two turbine optimization problem are defined, the required models trained, and the results discussed.
+With the theoretical and pratical foundations of the model of farm/turbine power established, the following section treats the embedding of the trained model(s)  into a deterministic/stochastic optimization problem. The underlying theory of optimization under uncertainty and constraint learning is introduced before the actual optimization problems for the two turbines are defined, the required models trained, and the results discussed.
 
 
 \section{Optimization under Uncertainty}
 
 Like in many areas, knowledge about the uncertainty associated with certain variables can change decisions in which these variables underlying uncertainty plays a part. For example, while optimizing anything from next year's crop to tomorrow's energy pricing, the field of Stochastic Programming is occupied with finding methods that allow for introducing these uncertainties into optimization problems.
 
-One way to approach these uncertainties is to split the problem into scenarios. A bakery, for example, has to decide on how many Baguettes to bake for the next day to maximize its profit. Baking too few Baguettes will lead to missing out on potential sales, while baking too many baguettes will mean that the demand is fulfilled, but the money invested in the excess number of baguettes is lost. Assuming the mean number of baguettes bought every day is $1000$, the price to buy a baguette is $1 €$ and the cost to produce a baguette is $0,2 €$ the classical approach to solving such a problem would be by the following formulation \footnote{$x$ of course non-negative}: 
+One way to approach these uncertainties is to split the problem into scenarios. A bakery, for example, has to decide on how many Baguettes to bake for the next day to maximize its profit. Baking too few Baguettes will lead to missing out on potential sales, while baking too many baguettes will mean that the demand is fulfilled, but the money invested in the excess number of baguettes is lost. Assuming the mean number of baguettes bought every day is $1000$, the price to buy a baguette is $1 €$ and the cost to produce a baguette is $0.2 €$ the classical approach to solving such a problem would be by the following formulation \footnote{$x$ of course non-negative}: 
 
 
 \begin{align*}
@@ -42,7 +42,7 @@ Using these two expressions, optimization problems can thus be formulated to opt
 
 \section{Constraint Learning} \label{sec:constraint_learning}
 
-Constraint learning refers to introducing a model that has learned relationships between certain variables from data into an optimization problem. In the case of constraint learning, the model is more specifically introduced into an optimization problem as a set of constraints. As many real-life relationships are dificult to represent by a simple analytical function, introducing machine learning models to optimization problems opens up many new possibilities \cite{FAJEMISIN20241}.
+Constraint learning refers to introducing a model that has learned relationships between certain variables from data into an optimization problem. In the case of constraint learning, the model is more specifically introduced into an optimization problem as a set of constraints. As many real-life relationships are difficult to represent by a simple analytical function, introducing Machine Learning models to optimization problems opens up many new possibilities \cite{FAJEMISIN20241}.
 
 In the case of Neural Networks, one way of introducing a Neural Network as a constraint into an optimization problem is by recognizing that when using the Rectifier Linear Unit (ReLu) Function as activation function with the (linear) sum of neuron bias and weighted inputs $\tilde{v}_i^\ell$ being the function argument
 
@@ -60,7 +60,7 @@ the function can be rewritten as the following constraints
 	v_i^\ell &\leq M^{\text{up}} j_i
 \end{align}
 
-with $j_i \in \{0,1\}$ a integer variable such that
+with $j_i \in \{0,1\}$ an integer variable such that
 
 \begin{align}
 	j_i =
@@ -90,7 +90,7 @@ $$
 f_{total Power}(x,y,\text{windspeed},\text{wind direction}, \text{(...)})
 $$
 
-Different from the geographic coordinates, the wind condition parameters like windspeed are inherently not deterministic and follow distributions like the normal distribution as shown in Figure \ref{fig:wind_dist}.
+Different from the geographic coordinates, the wind condition parameters like windspeed are inherently not deterministic and follow a probability model like the normal distribution as shown in Figure \ref{fig:wind_dist}.
 
 \begin{figure}[h] 
 	\centering
@@ -106,14 +106,14 @@ The two main challenges of the optimization of the two-turbine problem are thus:
 	\item Introduce the non-deterministic nature of wind conditions into the optimization problem
 \end{enumerate}
 
-The first of these challenges is tackled by applying the Neural Network models discussed in Section \ref{sec:modelling} and introducing them into the optimization problem via constraint learning as described in Section \ref{sec:constraint_learning}. For the second problem, multiple approaches are now explored in the following subsections.
+The first of these challenges is tackled by applying the Neural Network models discussed in Section \ref{sec:Modeling} and introducing them into the optimization problem via constraint learning as described in Section \ref{sec:constraint_learning}. For the second problem, multiple approaches are now explored in the following subsections.
 
-In the following formulations, Pytorch \cite{paszke2017automatic} is used to set up the Neural Network Architecture and traint the models, the Python Pyomo Package \cite{bynum2021pyomo} used to formulate the underlying optimization problems,  a modified version of the Constraint Learning algorithm developed in \cite{alcantara2024distcl} used to embedd the Neural Network into the optimization Problemthe Python packages and Gruobi \cite{gurobi} is used to solve the  optimization Problems.
+In the following formulations, Pytorch \cite{paszke2017automatic} is used to set up the Neural Network Architecture and train the models, the Python Pyomo Package \cite{bynum2021pyomo} used to formulate the underlying optimization problems,  a modified version of the Constraint Learning algorithm developed in \cite{alcantara2024distcl} used to embed the Neural Network into the optimization Problemthe Python packages and Gurobi \cite{gurobi} is used to solve the  optimization Problems.
 
 
 \subsection{Deterministic Optimization}
 
-To begin solving the problem, the simplest approach is to assume the wind conditions to be discrete. In application, this might be analogous to using the Expectations of the joint probability distribution of all wind condition parameters, which in pratical terms would be considered the "principal wind direction". Taking these parameters as constant and homogeneous across the entire parameter space, the result is an objective function that is effectively only dependent on the relative positions of the turbine with the previously discussed geometrical constraints.
+To begin solving the problem, the simplest approach is to assume the wind conditions to be deterministic, e.g to assume the wind comes only out of one direction. In application, this might be analogous to using the Expectations of the joint probability distribution of all wind condition parameters, which in practical terms would be considered the "principal wind direction". Taking these parameters as constant and homogeneous across the entire parameter space, the result is an objective function that is effectively only dependent on the relative positions of the turbine with the previously discussed geometrical constraints.
 
 \begin{align}
 	\max_{\mathbf{x}, \mathbf{y}} & f_{Power,\text{NN}}(\Delta x, \Delta y) \\
@@ -133,11 +133,11 @@ where:
 
 
 
-The Notebook belonging to this formulation can be found in \href{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_determin.ipynb}{Deterministic Fomulation Notebook} \cite{schmetz2025twoturbine_determ}
+The Notebook belonging to this formulation can be found in \href{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_determin.ipynb}{Deterministic Formulation Notebook} \cite{schmetz2025twoturbine_determ}
 
-\subsubsection{Modelling}
+\subsubsection{Modeling}
 
-To begin with, the simulations to generate the dataset used to train the corresponding model for the deterministic case have to be generated. For the deterministic optimization, the position of the second turbine is variable in the given bounds and with an even steplength  as shown in Table \ref{tab:val_determ_data}. All remaining airflow characteristics remain constant (deterministic).
+To begin with, the simulations to generate the dataset used to train the corresponding model for the deterministic case have to be generated. For the deterministic optimization, the position of the second turbine is variable in the given bounds and with an even step length  as shown in Table \ref{tab:val_determ_data}. All remaining airflow characteristics remain constant (deterministic).
 
 \begin{table}[ht]
 	\centering
@@ -161,17 +161,17 @@ In line with the parameter space defined in Table \ref{tab:val_determ_data}, sim
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.7\textwidth]{../figures/optimization/determ_nn_opti.png} 
+	\includegraphics[width=0.62\textwidth]{../figures/optimization/determ_nn_opti.png} 
 	\caption{Grid search for Neural Network parameters for the deterministic model, showing how models with $n_{hidden} \geq 2$ and $n_{nodes} \geq 8$ yield near identical performance}
 	\label{fig:determ_nn_opti}
 \end{figure}
 
-To validate the chosen model and gain a deeper understanding of its predictive power, we proceed to visualize the total power output across the variable parameter space. Figure \ref{fig:determ_model_colormap} shows a colormap generated from linealy interpolating between the datapoints for the simulation data (Subplot 1), a finer grid of predictions of the model (Subplot 2) and a colormap of the percentage deviation between model prediction and true simulation values (calculated at points and then again linearly interpolated). The color in the first two subplots represents the \textit{total power generated of both wind turbines}, with the second turbine placed at the given x/y location We find that the model appears to overall represents the behaviour well, with only systematic deviation occuring at locations very close to the first wind turbine at the origin. As the simulation allows for placing wind turbines at the exact same location and with corresponding results unrealistic, simulations in this area are not necessarily correct in results either. For the optimization, the minimum distance constraint removes this area from the feasible region, meaning that the comparatively large deviations there do not affect the optimization. 
+To validate the chosen model and gain a deeper understanding of its predictive power, we proceed to visualize the total power output across the variable parameter space. Figure \ref{fig:determ_model_colormap} shows a colormap generated from linearly interpolating between the datapoints for the simulation data (Subplot 1), a finer grid of predictions of the model (Subplot 2) and a colormap of the percentage deviation between model prediction and true simulation values (calculated at points and then again linearly interpolated). The color in the first two subplots represents the \textit{total power generated of both wind turbines}, with the second turbine placed at the given x/y location We find that the model appears to overall represents the behaviour well, with only systematic deviation occurring at locations very close to the first wind turbine at the origin. As the simulation allows for placing wind turbines at the exact same location and with corresponding results unrealistic, simulations in this area are not necessarily correct in results either. For the optimization, the minimum distance constraint removes this area from the feasible region, meaning that the comparatively large deviations there do not affect the optimization. 
 
 \begin{figure}[h] 
 	\centering
 	\includegraphics[width=1\textwidth]{../figures/optimization/determ_model_colormap.png} 
-	\caption{Colormap showing the Farm Power distribution for the second turbine being placed at any given x/y based on linear interpolation for real data, predicted data and the resulting percentage deviation, indicating overall good fit with only area of major deviation extremly close to turbine 1, an area excluded from the feasible region of the optimization problem }
+	\caption{Colormap showing the Farm Power distribution for the second turbine being placed at any given x/y based on linear interpolation for real data, predicted data and the resulting percentage deviation, indicating overall good fit with only area of major deviation extremely close to turbine 1, an area excluded from the feasible region of the optimization problem }
 	\label{fig:determ_model_colormap}
 \end{figure}
 
@@ -182,7 +182,7 @@ The model thus appears to be suitable to represent the interactions between the 
 
 With the model trained and validated, we proceed to implementing the defined optimization problem in Pyomo  and embed the trained model using the approach described in Section \ref{sec:constraint_learning}.
 
-When solving this problem as defined using Gurobi, a major challenge becomes apparent as the result shows that there is an large number of equally optimal solutions (e.g. degeneracy of the problem, see  \cite{vanderbei2020chapter3} for an exact definition of degeneracy) everywhere outside the wake of turbine 1, as can be seen  in the visualization of the optimization result found in \ref{fig:opti_determ270}.
+When solving this problem as defined using Gurobi, a major challenge becomes apparent as the result shows that there is a large number of equally optimal solutions (e.g. degeneracy of the problem, see  \cite{vanderbei2020chapter3} for an exact definition of degeneracy) everywhere outside the wake of turbine 1, as can be seen  in the visualization of the optimization result found in Figure \ref{fig:opti_determ270}.
 
 
 \begin{figure}[h] 
@@ -194,12 +194,12 @@ When solving this problem as defined using Gurobi, a major challenge becomes app
 
 The existence of a large number of optimal values thus has to be taken into account moving forward.
 
-\subsection{Stochastic Optimization} \label{sec:stoch_opti_1}
+\subsection{Stochastic Optimization: Wind distribution independent Neural Network} \label{sec:stoch_opti_1}
 
 As the deterministic optimization does not account for the distribution of wind condition parameters and has found that the deterministic approach leaves a range of infinite global optima outside of the wake of turbine 1, the next step is to proceed with the introduction of uncertainty of the wind condition parameters into the problem. To do so, the objective function is modified to represent the expected power generated by the farm, if a turbine were to be placed at a given location. The Neural Network thus now has to be able to predict the power output for a given turbine 2 location, taking into account the wind condition parameters like direction and speed at a given location. The problem is formulated as follows: 
 
 \begin{align}
-	\max_{\mathbf{x}, \mathbf{y}} &  \sum_{i=1}^{n} f_{Power,\text{NN}}(\Delta x, \Delta y, \text{wind condition})\cdot p_{n,\text{wind condtion combination}} \\
+	\max_{\mathbf{x}, \mathbf{y}} &  \sum_{i=1}^{n} f_{Power,\text{NN}}(\Delta x, \Delta y, \text{wind condition})\cdot p_{n,\text{wind condition combination}} \\
 	\text{s.t.} \quad 
 	&  \Delta x \leq X_{\max} \\
 	&  \Delta y \leq Y_{\max} \\
@@ -212,16 +212,16 @@ Where:
 	\item \( f_{Power, \text{NN}}(\Delta x, \Delta y)\) is a deterministic neural network  approximating the total power output for turbine positions and wind conditions
 	\item \(  X_{\max}, Y_{\max} \) define the maximal distance the two turbines can be placed apart
 	\item \( d_{\min} \) is the minimum distance between the two turbines
-	\item \(p_{n, \text{wind condtion combination}}\) is the probability corresponding to each of the scenarios
+	\item \(p_{n, \text{wind conditions}}\) is the probability corresponding to each of the scenarios
 	\item \( n \) is the index of the discretized possible combinations of wind conditions 
 \end{itemize}
 
-The following section will first treat the univariate case of only wind direction being random, while wind speed and turbolence intensity remain constants. 
+The following section will first treat the univariate case of only wind direction being random, while wind speed and turbulence intensity remain constants. 
 
 
-The Notebook belonging to this formulation can be found in \href{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_probweighted.ipynb}{Stochastic optimization with farm power NN Fomulation Notebook} \cite{schmetz2025twoturbine_stoch1}
+The Notebook belonging to this formulation can be found in \href{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_probweighted.ipynb}{Stochastic optimization with farm power NN Formulation Notebook} \cite{schmetz2025twoturbine_stoch1}
 
-\subsubsection{Modelling}
+\subsubsection{Modeling}
 
 Like for the deterministic case, we begin by finding a fitting Neural Network model that can be embedded into the optimization problem. To do so, we again define the parameter space, this time with wind direction being variable and set up in a grid with step length of 10°. The full parameter grid is defined in Table \ref{tab:val_prob_data}
 
@@ -242,14 +242,14 @@ Like for the deterministic case, we begin by finding a fitting Neural Network mo
 	\label{tab:val_prob_data}
 \end{table}
 
-We then proceed to hyperparameter tuning of the model. Due to the added complexity, the model size has to be increased significantly to yield similarly good results compared to the deterministic case. As apparent in Figure \ref{fig:determ_nn_opti}, the performance appears to flatline for models with or more than 2 layers and with or more than 50 nodes, yielding similar performance. To minimize the number of nodes, we thus proceed with the initial model configuration $\text{NN}(5\,{-}\,50^{\times2}\,{-}\,1)$ for the following optimization.
+We then proceed to the hyperparameter tuning of the model. Due to the added complexity, the model size has to be increased significantly to yield similarly good results compared to the deterministic case. As apparent in Figure \ref{fig:stoch1_nn_opti}, the performance appears to flatline for models with or more than 2 layers and with or more than 50 nodes, yielding similar performance. To minimize the number of nodes, we thus proceed with the initial model configuration $\text{NN}(5\,{-}\,50^{\times2}\,{-}\,1)$ for the following optimization.
 
 
 \begin{figure}[h] 
 	\centering
 	\includegraphics[width=0.62\textwidth]{../figures/optimization/prob_nn_opti.png} 
 	\caption{Grid Search results for a Neural Network configuration to predict for data with variable wind direction, showing similar performance for models of layers greater or equal than two, starting at 50 or more nodes}
-	\label{fig:determ_nn_opti}
+	\label{fig:stoch1_nn_opti}
 \end{figure}
 
 
@@ -262,7 +262,9 @@ With a model chosen, we again investigate its performance and find that even wit
 	\label{fig:prob_model_colormap}
 \end{figure}
 
-Having observed the deviation described above, another layer is added to the model in an attempt to prevent the previous behaviour. The resulting configuration $\text{NN}(5\,{-}\,50^{\times3}\,{-}\,1)$ improved the previous models weaknesses in that respect as can be seen in Figure \ref{fig:prob_model_colormap_2}, which is why \textit{the final model choosen for the optimization is  $\text{NN}(5\,{-}\,50^{\times3}\,{-}\,1)$}
+
+\newpage
+Having observed the deviation described above, another layer is added to the model in an attempt to prevent the previous behaviour. The resulting configuration $\text{NN}(5\,{-}\,50^{\times3}\,{-}\,1)$ improved the previous models weaknesses in that respect as can be seen in Figure \ref{fig:prob_model_colormap_2}, which is why \textit{this is the final model chosen for the optimization}.
 
 \begin{figure}[h] 
 	\centering
@@ -283,27 +285,27 @@ Since the parameter space has now become three-dimensional, conditioning on a si
 While increasing the size of the Neural Network might further reduce the deviations across wind directions and for the individual wind directions, it is restricted by the solvability of the optimization problem. While there is no exact threshold, the solving time of the mixed integer problem that results from the embedding of the Neural Network increases roughly exponentially by adding Neurons to the Network and therefore adding binary variables to the problem. The shown model is deemed sufficient because of that trade-off.
 
 For optimization purposes, the individual power per wind direction becomes less relevant, as the power outputs are weighted by their probability of occurring. 
-To do so, first the probability distribution of the wind directions has to be defined, like the Normal distribution with mean 270° and standard deviation of 10° shown in Figure \ref{fig:wind_dist_opti}. To calculate the expectation for the discretized parameter space using the trained model, this distribution itself has to be discretized in line with the initial parameter space defintion, which in this case is done in 10° steps. 
+To do so, first the probability distribution of the wind directions has to be defined, like the Normal distribution with mean 270° and standard deviation of 10° shown in Figure \ref{fig:wind_dist_opti}. To calculate the expectation for the discretized parameter space using the trained model, this distribution itself has to be discretized in line with the initial parameter space definition, which in this case is done in 10° steps. 
 
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=1\textwidth]{../figures/optimization/wind_dist_opti.png} 
+	\includegraphics[width=0.7\textwidth]{../figures/optimization/wind_dist_opti.png} 
 	\caption{Discrete Wind Direction Probability Distribution with mean 270° and standard deviation 5°, discretized in intervals of 10° }
 	\label{fig:wind_dist_opti}
 \end{figure}
 
 
-Using this distribution, the expected power for the ranges of x and y coordinates can thus now be calculated by aggregating the powers for the different wind directions as a sum weighted by probability to yield the expected farm power generated at the specific coordinate. By evaluating the expected farm power both for the training data as well as for predictions for the training data, we can again compare the results and deviations as done in Figure \ref{fig:prob_expectation}. The directions with a probability greater than are shown as lines and their impact on the distribution of expected farm power visibel.
+Using this distribution, the expected power for the ranges of x and y coordinates can thus now be calculated by aggregating the powers for the different wind directions as a sum weighted by probability to yield the expected farm power generated at the specific coordinate. By evaluating the expected farm power both for the training data as well as for predictions for the training data, we can again compare the results and deviations as done in Figure \ref{fig:prob_expectation}. The directions of the discretized wind direction probability distribution are shown as lines, and their impact on the distribution of expected farm power visible in the reduced expected power along them.
 
 \begin{figure}[h] 
 	\centering
 	\includegraphics[width=1\textwidth]{../figures/optimization/prob_expectation.png} 
-	\caption{Distribution of Expectation of Farm power from a discretized Normal distribution with mean 260° and standard deviation 10° with steplength 10°}
+	\caption{Distribution of Expectation of Farm power from a discretized Normal distribution with mean 260° and standard deviation 10° with step length 10°}
 	\label{fig:prob_expectation}
 \end{figure}
 
-In the same way the distribution of farm power was previously dependent on the deterministic wind direction, it is now dependent on the wind direction distribution, e.g. its mean and variance, assuming a Normal distribution. Changing the mean of the distribution corresponds to changing the direction of the principal wind direction and thus the direction of the highest expected wake losses from turbine 1. Meanwhile, increasing the variance corresponds to spreading the expected wake losses due to turbine 1 across a wider range of wind directions and therefore increasing the area affected by expected wake losses, while reducing the absolute reduction in expected power within the area affected by the wake. This relationship can be seen in the expected power distribution for a normal with mean 220° and standard deviation 20° shown in Figure \ref{fig:wind_dist_opti2}.
+In the same way the distribution of farm power was previously dependent on the deterministic wind direction, it is now dependent on the wind direction distribution, e.g. its mean and variance, assuming a Normal distribution. Changing the mean of the distribution corresponds to changing the direction of the principal wind direction and thus the direction of the highest expected wake losses from turbine 1. Meanwhile, increasing the variance corresponds to spreading the expected wake losses due to turbine 1 across a wider range of wind directions and therefore increasing the area affected by expected wake losses, while reducing the absolute reduction in expected power within the area affected by the wake. This relationship can be seen in the expected power distribution for a Normal with mean 220° and standard deviation 20° shown in Figure \ref{fig:wind_dist_opti2}.
 
 
 \begin{figure}[h!] 
@@ -314,18 +316,18 @@ In the same way the distribution of farm power was previously dependent on the d
 \end{figure}
 
 
-The normal distribution is used in this thesis as a placeholder for proof-of-concept purposes. In a practical application, the real wind distribution would have to be evaluated at the specific location of the wind farm. 
+The Normal distribution is used in this thesis as a placeholder for proof-of-concept purposes. In a practical application, the real wind distribution would have to be evaluated at the specific location of the wind farm. 
 
 \subsubsection{Optimization}
 
-With the model set up, solving the stochastic optimization problem for a maximum expected farm power output can be attempted. In the case of optimization, the problem is limited to three scenarios due to the computational constraints due to the size of the problem. A normal distribution with a mean of 270° and  a standard deviation of 5° was therefore used as the wind direction distribution, yielding three scenarios (260°,270°,280°).
+With the model set up, solving the stochastic optimization problem for a maximum expected farm power output can be attempted. In the case of optimization, the problem is limited to three scenarios due to the computational constraints due to the size of the problem. A Normal distribution with a mean of 270° and  a standard deviation of 5° was therefore used as the wind direction distribution, yielding three scenarios (260°,270°,280°).
 
-The Neural Network and the wind direction distribution are introduced into pyomo to find a global maximum. As previously, a range of optima exists, with Poyomo choosing among this area, as seen in Figure \ref{fig:prob_data_lininter}. More specifically in this case, the area close to the wake had been shown to predict higher values than in the simulations by the model (see Figure \ref{fig:prob_model_colormap_2}), showing the optimization to find the global maximum within the provided Neural Network. 
+The Neural Network and the wind direction distribution are introduced into pyomo to find a global maximum. As previously, a range of optima exists, with Pyomo choosing among this area, as seen in Figure \ref{fig:prob_data_lininter}. More specifically in this case, the area close to the wake had been shown to predict higher values than in the simulations by the model (see Figure \ref{fig:prob_model_colormap_2}), showing the optimization to find the global maximum within the provided Neural Network. 
 
 \begin{figure}[h] 
 	\centering
 	\includegraphics[width=1\textwidth]{../figures/optimization/prob_data_lininter.png} 
-	\caption{}
+	\caption{Optimization Result of the embedded wind distribution independent Neural Network, showing a optima at the border zone of the wake, where the model had shown to deliver high power values in its evaluation}
 	\label{fig:prob_data_lininter}
 \end{figure}
 
@@ -346,7 +348,7 @@ Using this distribution, the expected power distribution changes for the corresp
 
 \subsection{Stochastic Optimization: Direct Expectation Neural Network}
 
-While the expectation maximization has shown to be the most accurate depiction of the problem on theoretical level, the previous method used for the resulting stochastic optimzation has shown to be severly limited by computational power, as a large Neural Network is required to model the farm power output both across x and y ranges of the second turbine, as well as across the wind condition variables. 
+While the expectation maximization has shown to be the most accurate depiction of the problem on a theoretical level, the previous method used for the resulting stochastic optimization has shown to be severely limited by computational power, as a large Neural Network is required to model the farm power output both across x and y ranges of the second turbine, as well as across the wind condition variables. 
 To overcome these constraints, a alternative formulation is set up, where the Neural Network is designed to output the expected farm power at any x/y point, given a certain wind condition distribution. 
 
 
@@ -362,19 +364,19 @@ To overcome these constraints, a alternative formulation is set up, where the Ne
 Where:
 \begin{itemize}
 	\item \( (\Delta x, \Delta y) \) are the relative distances of the two turbines,
-	\item \( \mathbb{E}[f_{Power}(\Delta x, \Delta y) \mid \text{wind condition distribution}]_\text{NN}\) a Neural Network that predicts the Expected Farm Power at al \( (\Delta x, \Delta y) \) positions in the parameter space, given a specific wind speed distribution 
+	\item \( \mathbb{E}[f_{Power}(\Delta x, \Delta y) \mid \text{wind condition distribution}]_\text{NN}\) a Neural Network that predicts the Expected Farm Power at all \( (\Delta x, \Delta y) \) positions in the parameter space, given a specific wind speed distribution 
 	\item \(  X_{\max}, Y_{\max} \) define the maximal distance the two turbines can be placed apart
 	\item \( d_{\min} \) is the minimum distance between the two turbines
 \end{itemize}
 
-In practice, the new Neural Network configuration is achieved by training the Network directly on the Expected Farm Ppower Values, with the only remaining variables as the relative x/y position of the second wind turbine. To do so, the simulation values across the wind condition variables for a single location are used to calculate the expectation for that location as a probability weighted sum, with probabilities resulting from the distribution of the wind condition variables (wind direction, etc). To combine this approach with quantile discretization from Section \ref{subsubsection: discretization}, the resulting quantile scenario discretization is used to define the parameter space for the initial data set generating simulations. That way, a match between the scenario values and data set discretizations can be assured to allow for seemless calculation of the expectations. 
+In practice, the new Neural Network configuration is achieved by training the Network directly on the Expected Farm Power Values, with the only remaining variables as the relative x/y position of the second wind turbine. To do so, the simulation values across the wind condition variables for a single location are used to calculate the expectation for that location as a probability weighted sum, with probabilities resulting from the distribution of the wind condition variables (wind direction, etc). To combine this approach with quantile discretization from Section \ref{subsubsection: discretization}, the resulting quantile scenario discretization is used to define the parameter space for the initial data set generating simulations. That way, a match between the scenario values and data set discretizations can be assured to allow for seamless calculation of the expectations. 
 
-The central benefit of this formulation is that the dimensionality of the Neural Network is significantly reduced, with only  \(\Delta x, \Delta y\) remaining free after calculating the expectations. The drawback ist that the model is thus condition on a spcific wind condition distribution and can not be used in a more flexible way.
+The central benefit of this formulation is that the dimensionality of the Neural Network is significantly reduced, with only  \(\Delta x, \Delta y\) remaining free after calculating the expectations. The drawback is that the model is thus conditioned on a specific wind condition distribution and can not be used in a more flexible way.
 
 
-The Notebook belonging to this formulation can be found in \href{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_probweightedt_expNN.ipynb}{Stochastic optimization with farm power Expectation NN Fomulation Notebook} \cite{schmetz2025twoturbine_stoch2}
+The Notebook belonging to this formulation can be found in \href{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_probweightedt_expNN.ipynb}{Stochastic optimization with farm power Expectation NN Formulation Notebook} \cite{schmetz2025twoturbine_stoch2}
 
-\subsubsection{Modelling}
+\subsubsection{Modeling}
 
 To generate the model with the farm power expectation as output, more steps are required as initially described in Chapter \ref{sec:model_pipe}. As detailed in the introduction, for the configuration used in this chapter, the Wind Condition distribution, which in this case will only be the distribution of wind directions, has to be defined. For this wind distribution, a discretization is generated the quantile based method described in Section \ref{subsubsection: discretization}. From this discretization, together with chosen limits for \(\Delta x, \Delta y\), the parameter grid/space is defined and corresponding simulation performed to generate the data set. The probabilities from the wind condition distribution are then joined to the dataset and used to calculate the Expected Farm power for each \(\Delta x, \Delta y\) combination in the parameter grid. This yields a significantly smaller data set with \(\Delta x, \Delta y\) and Expected Farm power as features. This dataset is then used to train a model in the same way done previously, choosing a appropriat configuration of the model which then is used for embedding in the optimization problem. The described steps are shown in Figure \ref{fig:stoch2_model_flow}.
 
@@ -386,7 +388,7 @@ To generate the model with the farm power expectation as output, more steps are 
 	\label{fig:stoch2_model_flow}
 \end{figure} 
 
-As previously, we proceed to defining the parameter space, with the only difference compared to the previous stochastic formulation is that the wind direction how has variable steplength, using the method presented in Section \ref{subsubsection: discretization}.
+As previously, we proceed to defining the parameter space, where the only difference compared to the previous stochastic formulation is that the wind direction how has variable steplength, using the method presented in Section \ref{subsubsection: discretization}.
 
 \begin{table}[ht]
 	\centering
@@ -405,7 +407,7 @@ As previously, we proceed to defining the parameter space, with the only differe
 	\label{tab:val_prob2_data}
 \end{table}
 
-As at this stage the parameter grid for wind direction is not yet well defined, the wind direction distribution and the number of discretization steps first has to be chosen. For this section, we proceed with the same normal distribution mith mean 260° and standard deviation 10° used in Section \ref{sec:stoch_opti_1}, but now discretized for 35 quantiles as shwon in Figure \ref{fig:stoch2_dist}.
+As at this stage the parameter grid for wind direction is not yet well defined, the wind direction distribution and the number of discretization steps first has to be chosen. For this section, we proceed with the same Normal distribution with mean 260° and standard deviation 10° used in Section \ref{sec:stoch_opti_1}, but now discretized for 35 quantiles as shown in Figure \ref{fig:stoch2_dist}.
 
 
 \begin{figure}[h] 
@@ -420,13 +422,13 @@ With the parameter grid defined, the simulations can be performed, joint with th
 
 \begin{figure}[h] 
 	\centering
-	\includegraphics[width=0.8\textwidth]{../figures/optimization/stoch2/stoch2_NNopti.png} 
+	\includegraphics[width=0.62\textwidth]{../figures/optimization/stoch2/stoch2_NNopti.png} 
 	\caption{Grid Search Results for models trained on Farm Power Expectation data, with parameter grid as defined in Table 	\ref{tab:val_prob2_data} and Figure  \ref{fig:stoch2_dist} }
 	\label{fig:stoch2_NNopti}
 \end{figure} 
 
 
-The model of configuration $\text{NN}(5\,{-}\,20^{\times2}\,{-}\,1)$ is thus trained and a brief visual inspection performed to investigate how well the model fits the data. As shown in Figure \ref{fig:stoch2_heatmap_inspect_NN}, does the model encorporate the shape of the Expected Power Distribution across x/y fairly well, with the only major deviations near the orgin, e.g. the position of Turbine 1 and directly after Turbine 1 in the principal wind direction. 
+The model of configuration $\text{NN}(5\,{-}\,20^{\times2}\,{-}\,1)$ is thus trained and a brief visual inspection performed to investigate how well the model fits the data. As shown in Figure \ref{fig:stoch2_heatmap_inspect_NN},  the model incorporates the shape of the Expected Power Distribution across x/y fairly well, with the only major deviations near the origin, e.g. the position of Turbine 1 and directly after Turbine 1 in the principal wind direction. 
 
 \begin{figure}[H] 
 	\centering
@@ -435,13 +437,13 @@ The model of configuration $\text{NN}(5\,{-}\,20^{\times2}\,{-}\,1)$ is thus tra
 	\label{fig:stoch2_heatmap_inspect_NN}
 \end{figure} 
 
-The model thus appears to fit the physical behavior suficiently well to be able to proceed to the optimization step. 
+The model thus appears to fit the physical behavior sufficiently well to be able to proceed to the optimization step. 
 
 
 
 \subsubsection{Optimization}
 
-The set up model is thus again embedded into a now seemingly deterministic optimization problem, as the uncertainty has already been taken into account when setting up the Neural Network itself through the expectations. The Neural Network is thus embedded directly into the problem, with the constraints as initially defined. The result shown in Figure \ref{fig:stoch2_opti} yield the expected result, with turbine 2 being placed as far upstream and as far away perpendicularly to the principal wind direction as possible from Wind Turbine 2. 
+The set up model is thus again embedded into a now seemingly deterministic optimization problem, as the uncertainty has already been taken into account when setting up the Neural Network itself through the expectations. The Neural Network is thus embedded directly into the problem, with the constraints as initially defined. The result shown in Figure \ref{fig:stoch2_opti} yields the expected result, with turbine 2 being placed as far upstream and as far away perpendicularly to the principal wind direction as possible from Wind Turbine 2. 
 
 \begin{figure}[h] 
 	\centering
@@ -450,7 +452,7 @@ The set up model is thus again embedded into a now seemingly deterministic optim
 	\label{fig:stoch2_opti}
 \end{figure} 
 
-Notably, the solving of this variation optimization problem requires significantly less computational recourses as the previous stochastic formulation, with a significantly larger quantity of scenarios considered for calculating the Expectation. In the entire optimization pipeline, the main limitation is in this formulation constitued by running the simulations required for the individual discretization of different wind direction/wind condition distributions. Due to the efficency of the FLORIS simulations, this does not seem to be a limitation for the two turbine configuration at this moment however. Therefore, this method appears to be better fit to scale up the complexity of the wind condition distribution, allowing for expanding to a multivariate distribution of the potentially dependent variables wind direction and wind speed for example. 
+Notably, the solving of this variation optimization problem requires significantly less computational resources as the previous stochastic formulation, with a significantly larger quantity of scenarios considered for calculating the Expectation. Along the entire optimization pipeline, the main limitation is the number of simulations required for the individual discretization of different wind direction/wind condition distributions. Due to the efficiency of the FLORIS simulations, this does not seem to be a limitation for the two turbine configuration at this moment however. Therefore, this method appears to be better fit to scale up the complexity of the wind condition distribution, allowing for expanding to a multivariate distribution of the potentially dependent variables wind direction and wind speed for example. 
 
 %\subsection{Thoughts}
 %

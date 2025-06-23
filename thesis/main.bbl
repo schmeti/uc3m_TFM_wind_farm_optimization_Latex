@@ -1,26 +1,10 @@
 \begin{thebibliography}{10}
 
-\bibitem{EEA_Wind_Energy_Potential_2009}
-European~Environment Agency.
-\newblock Europe's onshore and offshore wind energy potential.
-\newblock Technical Report Technical report 6/2009, European Environment Agency, 2009.
+\bibitem{EU_RE_Targets_2023}
+European Commission.
+\newblock Renewable energy targets.
+\newblock \url{https://energy.ec.europa.eu/topics/renewable-energy/renewable-energy-directive-targets-and-rules/renewable-energy-targets_en}, 2023.
 \newblock Accessed: 2025-04-03.
-
-\bibitem{alcantara_ruiz_distcl_2022_git}
-Antonio Alcantara and Carlos Ruiz.
-\newblock Distcl: A neural network-based distributional constraint learning tool for mixed‑integer stochastic optimization.
-\newblock \url{https://github.com/antonioalcantaramata/DistCL}, 2022.
-\newblock Accessed: 2025-06-06.
-
-\bibitem{ALCANTARA2023120895}
-Antonio Alcántara and Carlos Ruiz.
-\newblock A neural network-based distributional constraint learning methodology for mixed-integer stochastic optimization.
-\newblock {\em Expert Systems with Applications}, 232:120895, 2023.
-
-\bibitem{ALCANTARA2025127876}
-Antonio Alcántara, Carlos Ruiz, and Calvin Tsay.
-\newblock A quantile neural network framework for two-stage stochastic optimization.
-\newblock {\em Expert Systems with Applications}, page 127876, 2025.
 
 \bibitem{ConsiliumEU_Harnessing_Wind_Power_2024}
 Analysis and General Secretariat of the Council of the European~Union Research~Team.
@@ -28,81 +12,119 @@ Analysis and General Secretariat of the Council of the European~Union Research~T
 \newblock \url{https://www.consilium.europa.eu/media/1kyk0wjm/2024_685_art_windpower_web.pdf}, September 2024.
 \newblock Accessed: 2025-04-03.
 
-\bibitem{AZLAN2021110047}
-F.~Azlan, J.C. Kurnia, B.T. Tan, and M.-Z. Ismadi.
-\newblock Review on optimisation methods of wind farm array under three classical wind condition problems.
-\newblock {\em Renewable and Sustainable Energy Reviews}, 135:110047, 2021.
-
-\bibitem{wes-9-869-2024}
-N.~Bempedelis, F.~Gori, A.~Wynn, S.~Laizet, and L.~Magri.
-\newblock Data-driven optimisation of wind farm layout and wake steering with large-eddy simulations.
-\newblock {\em Wind Energy Science}, 9(4):869--882, 2024.
-
-\bibitem{BirgeLouveauxStochasticProgramming}
-John~R. Birge and Fran\c{c}ois Louveaux.
-\newblock {\em {Introduction to Stochastic Programming}}.
-\newblock Springer Series in Operations Research and Financial Engineering. Springer, July 1997.
-
-\bibitem{preprintBonfiettiEmbeddDecisionTrees}
-Alessio Bonfietti, Michele Lombardi, and Michela Milano.
-\newblock Embedding decision trees and random forests in constraint programming.
-\newblock 05 2015.
-
-\bibitem{Bortolotti2019}
-Pietro Bortolotti, Helena~Canet Tarrés, Katherine Dykes, Karl Merz, Latha Sethuraman, David Verelst, and Frederik Zahle.
-\newblock Iea wind task 37 on systems engineering in wind energy – wp2.1 reference wind turbines.
-\newblock Technical report, National Renewable Energy Laboratory, 2019.
-
-\bibitem{EU_RE_Targets_2023}
-European Commission.
-\newblock Renewable energy targets.
-\newblock \url{https://energy.ec.europa.eu/topics/renewable-energy/renewable-energy-directive-targets-and-rules/renewable-energy-targets_en}, 2023.
+\bibitem{EEA_Wind_Energy_Potential_2009}
+European~Environment Agency.
+\newblock Europe's onshore and offshore wind energy potential.
+\newblock Technical Report Technical report 6/2009, European Environment Agency, 2009.
 \newblock Accessed: 2025-04-03.
-
-\bibitem{dealba2024reformulationembeddingneuralnetwork}
-Héctor~G. de~Alba, Andres Tellez, Cipriano Santos, and Emmanuel Gómez.
-\newblock A reformulation to embedding a neural network in a linear program without integer variables, 2024.
-
-\bibitem{de2018learning}
-Luc De~Raedt, Andrea Passerini, and Stefano Teso.
-\newblock Learning constraints from examples.
-\newblock In {\em Proceedings of the AAAI conference on artificial intelligence}, volume~32, 2018.
-
-\bibitem{FAJEMISIN20241}
-Adejuyigbe~O. Fajemisin, Donato Maragno, and Dick {den Hertog}.
-\newblock Optimization with constraint learning: A framework and survey.
-\newblock {\em European Journal of Operational Research}, 314(1):1--14, 2024.
-
-\bibitem{preprintReLuGlorot}
-Xavier Glorot, Antoine Bordes, and Y.~Bengio.
-\newblock Deep sparse rectifier neural networks.
-\newblock volume~15, 01 2010.
 
 \bibitem{hou_review_2019}
 Peng Hou, Jiangsheng Zhu, Kuichao MA, Guangya YANG, Weihao HU, and Zhe CHEN.
 \newblock A review of offshore wind farm layout optimization and electrical system design methods.
 \newblock {\em Journal of Modern Power Systems and Clean Energy}, 7(5):975--986, September 2019.
 
-\bibitem{James2023}
-Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, and Jonathan Taylor.
-\newblock {\em An Introduction to Statistical Learning: with Applications in Python}.
-\newblock Springer Texts in Statistics. Springer, 2023.
-
-\bibitem{Kainz2024IEA}
-Samuel Kainz, Julian Quick, Mauricio~Souza de~Alencar, Sebastian Sanchez~Perez Moreno, Katherine Dykes, Christopher Bay, Michiel Zaaijer, and Pietro Bortolotti.
-\newblock Iea wind tcp task 55: The iea wind 740-10-mw reference offshore wind plants.
-\newblock Technical Report NREL/TP-5000-87923, National Renewable Energy Laboratory, 2024.
-\newblock Technical Report.
-
 \bibitem{KIM2024123383}
 Taewan Kim, Jeonghwan Song, and Donghyun You.
 \newblock Optimization of a wind farm layout to mitigate the wind power intermittency.
-\newblock {\em Applied Energy}, 367:123383, 2024.
+\newblock {\em Applied Energy}, 367, 2024.
+
+\bibitem{ALCANTARA2023120895}
+Antonio Alcántara and Carlos Ruiz.
+\newblock A neural network-based distributional constraint learning methodology for mixed-integer stochastic optimization.
+\newblock {\em Expert Systems with Applications}, 232, 2023.
+
+\bibitem{nrel_floris}
+{National Renewable Energy Laboratory (NREL)}.
+\newblock {FLORIS}: Flow redirection and induction in steady state.
+\newblock GitHub repository, 2025.
+\newblock Version 4.4.2, https://github.com/NREL/floris.
+
+\bibitem{AZLAN2021110047}
+F.~Azlan, J.C. Kurnia, B.T. Tan, and M.-Z. Ismadi.
+\newblock Review on optimisation methods of wind farm array under three classical wind condition problems.
+\newblock {\em Renewable and Sustainable Energy Reviews}, 135, 2021.
+
+\bibitem{Sinner_2024}
+Michael Sinner and Paul Fleming.
+\newblock Robust wind farm layout optimization.
+\newblock {\em Journal of Physics: Conference Series}, 2767(3), jun 2024.
+
+\bibitem{WANG2024118508}
+Li~Wang, Mi~Dong, Jian Yang, Lei Wang, Sifan Chen, Neven Duić, Young~Hoon Joo, and Dongran Song.
+\newblock Wind turbine wakes modeling and applications: Past, present, and future.
+\newblock {\em Ocean Engineering}, 309, 2024.
+
+\bibitem{YANG2023119240}
+Kun Yang, Xiaowei Deng, Zilong Ti, Shanghui Yang, Senbin Huang, and Yuhang Wang.
+\newblock A data-driven layout optimization framework of large-scale wind farms based on machine learning.
+\newblock {\em Renewable Energy}, 218, 2023.
+
+\bibitem{wes-9-869-2024}
+N.~Bempedelis, F.~Gori, A.~Wynn, S.~Laizet, and L.~Magri.
+\newblock Data-driven optimisation of wind farm layout and wake steering with large-eddy simulations.
+\newblock {\em Wind Energy Science}, 9(4):869--882, 2024.
+
+\bibitem{TI2020114025}
+Zilong Ti, Xiao~Wei Deng, and Hongxing Yang.
+\newblock Wake modeling of wind turbines using machine learning.
+\newblock {\em Applied Energy}, 257, 2020.
+
+\bibitem{TI2021618}
+Zilong Ti, Xiao~Wei Deng, and Mingming Zhang.
+\newblock Artificial neural networks based wake model for power prediction of wind farm.
+\newblock {\em Renewable Energy}, 172:618--631, 2021.
+
+\bibitem{de2018learning}
+Luc De~Raedt, Andrea Passerini, and Stefano Teso.
+\newblock Learning constraints from examples.
+\newblock In {\em Proceedings of the AAAI conference on artificial intelligence}, volume~32, 2018.
+
+\bibitem{ALCANTARA2025127876}
+Antonio Alcántara, Carlos Ruiz, and Calvin Tsay.
+\newblock A quantile neural network framework for two-stage stochastic optimization.
+\newblock {\em Expert Systems with Applications}, 2025.
+
+\bibitem{preprintBonfiettiEmbeddDecisionTrees}
+Alessio Bonfietti, Michele Lombardi, and Michela Milano.
+\newblock Embedding decision trees and random forests in constraint programming.
+\newblock 05 2015.
+
+\bibitem{dealba2024reformulationembeddingneuralnetwork}
+Héctor~G. de~Alba, Andres Tellez, Cipriano Santos, and Emmanuel Gómez.
+\newblock A reformulation to embedding a neural network in a linear program without integer variables, 2024.
+
+\bibitem{FAJEMISIN20241}
+Adejuyigbe~O. Fajemisin, Donato Maragno, and Dick {den Hertog}.
+\newblock Optimization with constraint learning: A framework and survey.
+\newblock {\em European Journal of Operational Research}, 314(1):1--14, 2024.
+
+\bibitem{alcantara_ruiz_distcl_2022_git}
+Antonio Alcantara and Carlos Ruiz.
+\newblock Distcl: A neural network-based distributional constraint learning tool for mixed‑integer stochastic optimization.
+\newblock \url{https://github.com/antonioalcantaramata/DistCL}, 2022.
+\newblock Accessed: 2025-06-06.
 
 \bibitem{KIRANOUDIS1997439}
 C.T. Kiranoudis and Z.B. Maroulis.
 \newblock Effective short-cut modelling of wind park efficiency.
 \newblock {\em Renewable Energy}, 11(4):439--457, 1997.
+
+\bibitem{MAGNUSSON1999169}
+M.~Magnusson and A.-S. Smedman.
+\newblock Air flow behind wind turbines.
+\newblock {\em Journal of Wind Engineering and Industrial Aerodynamics}, 80(1):169--189, 1999.
+
+\bibitem{windpowermonthly_offshore_clusters}
+{Windpower Monthly}.
+\newblock Offshore wind clusters to lower energy production – study.
+\newblock {\em Windpower Monthly}, 2019.
+\newblock Accessed: 2025-04-29.
+
+\bibitem{nrel_floris_web}
+{National Renewable Energy Laboratory (NREL)}.
+\newblock {FLORIS: FLOw Redirection and Induction in Steady State}.
+\newblock \url{https://www.nrel.gov/wind/floris}, Mar 2025.
+\newblock Open‑source wind plant optimization tool.
 
 \bibitem{dtu_pywake_2025}
 {Mads M. Pedersen and Paul van der Laan and Mikkel Friis‑Møller and Alexander Meyer Forsting and Riccardo Riva and Leonardo Andrés Alcayaga Román and Javier Criado Risco and Julian Quick and Jens Peter Schøler Christiansen and Bjarke Tobias Olsen and Rafael Valotta Rodrigues and Pierre‑Elouan Réthoré}.
@@ -115,22 +137,21 @@ Mads Madsen, Frederik Zahle, Sergio~Gonzalez Horcas, Thanasis Barlas, and Niels 
 \newblock Cfd-based curved tip shape design for wind turbine blades.
 \newblock {\em Wind Energy Science}, 7:1471--1501, 07 2022.
 
-\bibitem{MAGNUSSON1999169}
-M.~Magnusson and A.-S. Smedman.
-\newblock Air flow behind wind turbines.
-\newblock {\em Journal of Wind Engineering and Industrial Aerodynamics}, 80(1):169--189, 1999.
+\bibitem{Kainz2024IEA}
+Samuel Kainz, Julian Quick, Mauricio~Souza de~Alencar, Sebastian Sanchez~Perez Moreno, Katherine Dykes, Christopher Bay, Michiel Zaaijer, and Pietro Bortolotti.
+\newblock Iea wind tcp task 55: The iea wind 740-10-mw reference offshore wind plants.
+\newblock Technical Report NREL/TP-5000-87923, National Renewable Energy Laboratory, 2024.
+\newblock Technical Report.
 
-\bibitem{nrel_floris}
-{National Renewable Energy Laboratory (NREL)}.
-\newblock {FLORIS}: Flow redirection and induction in steady state.
-\newblock GitHub repository, 2025.
-\newblock Version 4.4.2, https://github.com/NREL/floris.
+\bibitem{Bortolotti2019}
+Pietro Bortolotti, Helena~Canet Tarrés, Katherine Dykes, Karl Merz, Latha Sethuraman, David Verelst, and Frederik Zahle.
+\newblock Iea wind task 37 on systems engineering in wind energy – wp2.1 reference wind turbines.
+\newblock Technical report, National Renewable Energy Laboratory, 2019.
 
-\bibitem{nrel_floris_web}
-{National Renewable Energy Laboratory (NREL)}.
-\newblock {FLORIS: FLOw Redirection and Induction in Steady State}.
-\newblock \url{https://www.nrel.gov/wind/floris}, Mar 2025.
-\newblock Open‑source wind plant optimization tool.
+\bibitem{preprintReLuGlorot}
+Xavier Glorot, Antoine Bordes, and Y.~Bengio.
+\newblock Deep sparse rectifier neural networks.
+\newblock volume~15, 01 2010.
 
 \bibitem{nielsen2015neuralChap1}
 Michael Nielsen.
@@ -142,10 +163,51 @@ Michael Nielsen.
 \newblock Neural networks and deep learning - chapter 2: How the backpropagation algorithm works, 2015.
 \newblock Accessed: 2025-05-01.
 
+\bibitem{James2023}
+Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, and Jonathan Taylor.
+\newblock {\em An Introduction to Statistical Learning: with Applications in Python}.
+\newblock Springer Texts in Statistics. Springer, 2023.
+
 \bibitem{schmetz2025_gendata_git}
 Simon Schmetz.
 \newblock generate\_data\_floris.ipynb - wind farm power modelling, 2025.
 \newblock Accessed: 2025-06-06.
+
+\bibitem{BirgeLouveauxStochasticProgramming}
+John~R. Birge and Fran\c{c}ois Louveaux.
+\newblock {\em {Introduction to Stochastic Programming}}.
+\newblock Springer Series in Operations Research and Financial Engineering. Springer, July 1997.
+
+\bibitem{paszke2017automatic}
+Adam Paszke, Sam Gross, Soumith Chintala, Gregory Chanan, Edward Yang, Zachary DeVito, Zeming Lin, Alban Desmaison, Luca Antiga, and Adam Lerer.
+\newblock Automatic differentiation in pytorch.
+\newblock In {\em NIPS-W}, 2017.
+
+\bibitem{bynum2021pyomo}
+Michael~L. Bynum, Gabriel~A. Hackebeil, William~E. Hart, Carl~D. Laird, Bethany~L. Nicholson, John~D. Siirola, Jean-Paul Watson, and David~L. Woodruff.
+\newblock {\em Pyomo--optimization modeling in python}, volume~67.
+\newblock Springer Science \& Business Media, third edition, 2021.
+
+\bibitem{alcantara2024distcl}
+Antonio Alcántara-Mata.
+\newblock Distcl: A distributed contrastive learning framework.
+\newblock \url{https://github.com/antonioalcantaramata/DistCL}, 2024.
+\newblock Accessed: 2025-06-16.
+
+\bibitem{gurobi}
+{Gurobi Optimization, LLC}.
+\newblock {Gurobi Optimizer Reference Manual}, 2024.
+
+\bibitem{schmetz2025twoturbine_determ}
+Simon Schmetz.
+\newblock Two-turbine wind farm optimization using constrained learning (deterministic).
+\newblock \url{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_determin.ipynb}, 2025.
+\newblock Accessed: 2025-06-06.
+
+\bibitem{vanderbei2020chapter3}
+Robert~J. Vanderbei.
+\newblock {\em Linear Programming}, chapter~3.
+\newblock Springer, New York, NY, 5 edition, 2020.
 
 \bibitem{schmetz2025twoturbine_stoch1}
 Simon Schmetz.
@@ -158,47 +220,5 @@ Simon Schmetz.
 \newblock Two-turbine problem with constraint learning and probability-weighted objective (expectation neural network).
 \newblock \url{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_probweightedt_expNN.ipynb}, 2025.
 \newblock Accessed: 2025-06-06.
-
-\bibitem{schmetz2025twoturbine_determ}
-Simon Schmetz.
-\newblock Two-turbine wind farm optimization using constrained learning (deterministic).
-\newblock \url{https://github.com/schmeti/uc3m_TFM_wind_farm_optimization_codebase/blob/main/Windfarm_power_modelling/0_two_turbine_problem_constrLearn_determin.ipynb}, 2025.
-\newblock Accessed: 2025-06-06.
-
-\bibitem{Sinner_2024}
-Michael Sinner and Paul Fleming.
-\newblock Robust wind farm layout optimization.
-\newblock {\em Journal of Physics: Conference Series}, 2767(3):032036, jun 2024.
-
-\bibitem{TI2020114025}
-Zilong Ti, Xiao~Wei Deng, and Hongxing Yang.
-\newblock Wake modeling of wind turbines using machine learning.
-\newblock {\em Applied Energy}, 257:114025, 2020.
-
-\bibitem{TI2021618}
-Zilong Ti, Xiao~Wei Deng, and Mingming Zhang.
-\newblock Artificial neural networks based wake model for power prediction of wind farm.
-\newblock {\em Renewable Energy}, 172:618--631, 2021.
-
-\bibitem{vanderbei2020chapter3}
-Robert~J. Vanderbei.
-\newblock {\em Linear Programming}, chapter~3.
-\newblock Springer, New York, NY, 5 edition, 2020.
-
-\bibitem{WANG2024118508}
-Li~Wang, Mi~Dong, Jian Yang, Lei Wang, Sifan Chen, Neven Duić, Young~Hoon Joo, and Dongran Song.
-\newblock Wind turbine wakes modeling and applications: Past, present, and future.
-\newblock {\em Ocean Engineering}, 309:118508, 2024.
-
-\bibitem{windpowermonthly_offshore_clusters}
-{Windpower Monthly}.
-\newblock Offshore wind clusters to lower energy production – study.
-\newblock {\em Windpower Monthly}, 2019.
-\newblock Accessed: 2025-04-29.
-
-\bibitem{YANG2023119240}
-Kun Yang, Xiaowei Deng, Zilong Ti, Shanghui Yang, Senbin Huang, and Yuhang Wang.
-\newblock A data-driven layout optimization framework of large-scale wind farms based on machine learning.
-\newblock {\em Renewable Energy}, 218:119240, 2023.
 
 \end{thebibliography}

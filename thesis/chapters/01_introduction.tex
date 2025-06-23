@@ -4,12 +4,12 @@
 \chapter{Introduction}\label{chapter:introduction}
 
 
-With the clean energy transition currently taking place in Europe with ambitious targets for 2030 and beyond \cite{EU_RE_Targets_2023}, wind energy is playing a central role in that transition and expected to rise to 50 \% in the EU energy mix. \cite{ConsiliumEU_Harnessing_Wind_Power_2024}
-With wind energy thus expected to become one of the main contributers to the EU's energy production and large potentials identified for both onshore and offshore parks \cite{EEA_Wind_Energy_Potential_2009}, attempts to optimize all parameters of windparks that result in even minor power efficeny improvement can be expected to yield significant returns in absolute power due to the scale of future wind energy production. 
+With the clean energy transition currently taking place in Europe with ambitious targets for 2030 and beyond \cite{EU_RE_Targets_2023}, wind energy is playing a central role in that transition and expected to rise to 50 \% in the EU energy mix \cite{ConsiliumEU_Harnessing_Wind_Power_2024}. 
+With wind energy thus expected to become one of the main contributors to the EU's energy production and large potentials identified for both onshore and offshore parks \cite{EEA_Wind_Energy_Potential_2009}, attempts to optimize all parameters of windparks that result in even minor power efficiency improvement can be expected to yield significant returns in absolute power due to the scale of future wind energy production. 
 
-Within the main wind energy challanges lies the problem of optimizing the layout of wind farms. Here, the main goal is to reduce the negative impact that wake effects between wind turbines have on overall power generation, with yield reduction of up to $15\%$  mainly due to reduced wind speeds in wake regions. Optimizing the farm for overall minimal wake exposure between wind turbines can thus potentially significantly increase the power output. \cite{hou_review_2019} \cite{KIM2024123383} 
+Within the main wind energy challenges lies the problem of optimizing the layout of wind farms. Here, the main goal is to reduce the negative impact that wake effects between wind turbines have on overall power generation, with yield reduction of up to $15\%$  mainly due to reduced wind speeds in wake regions. Optimizing the farm for overall minimal wake exposure between wind turbines can thus potentially significantly increase the power output \cite{hou_review_2019,KIM2024123383}.
 
-In practice, the problem reduces to placing wind turbines within a predefined zone, subject to the wind conditions as shown in Figure \ref{fig:intro_plot}. These wind conditions can be assumed to be deterministic or (more accurately) random variables, by considering probability distributions for variables like wind direction and wind speed.
+The problem reduces to placing wind turbines within a predefined zone, subject to the wind conditions as shown in Figure \ref{fig:intro_plot}. These wind conditions can be assumed to be deterministic or (more accurately) random variables, by considering probability distributions for variables like wind direction and wind speed.
 
 
 \begin{figure}[h] 
@@ -39,7 +39,7 @@ where:
 
 This thesis is dedicated to a new approach for optimizing the placement of a fixed number of wind turbines in a predefined space, beginning with the two-turbine problem, the problem of optimally placing two turbines relative to each other. To solve this optimization problem, an extension to the Pyomo Python library is used, which allows the embedding of Neural Networks into the optimization problem as a set of constraints \cite{ALCANTARA2023120895}. This extension allows the modelling of the effects of wind turbine placement relative to each other on power production. Introducing this model into the problem then allows for the optimization of overall power production across all wind turbines in the wind park.
 
-To create a model optimally fit to the needs of the optimization problem, the model is trained on data specifically generated with the \href{https://www.nrel.gov/wind/floris.html}{FLORIS} \cite{nrel_floris} wind farm simulation tool  for optimal coverage of the optimizations parameter space. To simplify the problem, the surface below the turbines is assumed to be perfectly flat and an equal wind speed is assumed along the entire height of the turbines. Solving the problem can be seperated into two main Steps:
+To create a model that optimally fits to the needs of the optimization problem, the model is trained on data specifically generated with the \href{https://www.nrel.gov/wind/floris.html}{FLORIS} \cite{nrel_floris} wind farm simulation tool  for optimal coverage of the optimizations parameter space. To simplify the problem, the surface below the turbines is assumed to be perfectly flat and an equal wind speed is assumed along the entire height of the turbines. Solving the problem can be separated into two main Steps:
 
 \begin{enumerate}
 	\item \textit{Farm Power Model:} Generation of simulation data covering the parameter space and training a Neural Network model with power generation as output
